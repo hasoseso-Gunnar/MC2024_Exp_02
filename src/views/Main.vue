@@ -18,18 +18,13 @@
     animated
   >
     <q-tab-panel name="page1">
-        <Page1 
-          :progress="progress"
-          :tab="tab"
-        />
+      <Page1 @eventEmit="execEvent"/>
     </q-tab-panel>
     <q-tab-panel name="page2">
-        <page2 
-          :progress="progress"
-          :tab="tab"
-        />
+      <Page2 @eventEmit="execEvent"/>
     </q-tab-panel>
     <q-tab-panel name="page3">
+      <Page3 @eventEmit="execEvent"/>
     </q-tab-panel>
     <q-tab-panel name="page4">
 
@@ -41,6 +36,9 @@ import { ref, onMounted } from "vue";
 import { useQuasar } from "quasar";
 import Page1 from "@/components/Page1.vue";
 import Page2 from "@/components/Page2.vue";
+import Page3 from "@/components/Page3.vue";
+import Page4 from "@/components/Page4.vue";
+import Page5 from "@/components/Page5.vue";
 
 const $q = useQuasar();
 
@@ -48,9 +46,14 @@ const $q = useQuasar();
 const progress = ref<number>(0);
 const tab = ref<string>('page1');
 
+//子コンポーネントからのデータ受け取り
+const execEvent = (data: any) => {
+  tab.value = data.tab
+  progress.value = data.progress
+};
 
 </script>
-<style scoped>
+<style>
 .description{
     font-size: 16px;
     color: black;

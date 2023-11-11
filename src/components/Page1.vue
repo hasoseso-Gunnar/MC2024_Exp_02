@@ -20,7 +20,7 @@
   <p class="description">参加に同意しなかった場合でも不利益は生じません。</p>
   <p class="description">同意した場合も、同意を撤回して参加を中止できます。</p>
   <p class="description">その場合でも不利益は生じず、データは分析から除外されます。</p>
-  <p class="description" style="color: red;">※ただし、報酬支払後はデータを除外できません。</p>
+  <p class="description text-red">※ただし、報酬支払後はデータを除外できません。</p>
   <br/>
   <p class="title">４．個人情報の取り扱い</p>
   <p class="description">本研究は無記名で行われます。</p>
@@ -34,6 +34,13 @@
   <p class="description">学会発表や学術論文などの形式で公表される可能性があります。</p>
   <p class="description">また、匿名化済のデータがウェブ上で公開される場合があります。</p>
   <br/>
+  <p class="title">7．調査回答上の注意</p>
+  <p class="description text-red">①必ず、ノートパソコンかデスクトップパソコンから実験に参加してください。</p>
+  <p class="description">※スマートフォンやタブレット端末では正常にページが表示されない場合があります。</p>
+  <br>
+  <p class="description text-red">②調査への回答の最中に、「ページを再読み込みする」「ウィンドウを閉じる」などのブラウザ上の操作を行わないでください。</p>
+  <p class="description">※回答の進捗が初期化されてしまう可能性があります。</p>
+  <br/>
   <p class="title">調査実施機関：</p>
   <p class="description">名古屋大学 大学院情報学研究科</p>
   <p class="description">社会心理学研究室</p>
@@ -42,59 +49,62 @@
   <p class="description" style="font-size: 19px;">あなたは上記の説明を理解し，本研究への参加に同意しますか。</p>
   <br/>
   <div class="row">
-      <div class="col-4" align="center" :style="radioAgree === 'agree' ? 'background-color: #CCEBFF;': ''">
-          <p class="description" style="font-size: 19px;">同意する</p>
-          <q-radio v-model="radioAgree" size="xl" checked-icon="task_alt" unchecked-icon="panorama_fish_eye" val="agree"/>
-      </div>
-      <div class="col-4" align="center" :style="radioAgree === 'disagree' ? 'background-color: #CCEBFF;': ''">
-          <p class="description" style="font-size: 19px;">同意しない</p>
-          <q-radio v-model="radioAgree" size="xl" checked-icon="task_alt" unchecked-icon="panorama_fish_eye" val="disagree"/>
-      </div>
+    <div class="col-4" align="center" :style="radioAgree === 'agree' ? 'background-color: #CCEBFF;': ''">
+      <p class="description" style="font-size: 19px;">同意する</p>
+      <q-radio 
+        v-model="radioAgree" 
+        size="xl" 
+        checked-icon="task_alt" 
+        unchecked-icon="panorama_fish_eye" 
+        val="agree"
+      />
+    </div>
+    <div class="col-4" align="center" :style="radioAgree === 'disagree' ? 'background-color: #CCEBFF;': ''">
+      <p class="description" style="font-size: 19px;">同意しない</p>
+      <q-radio 
+        v-model="radioAgree" 
+        size="xl" 
+        checked-icon="task_alt" 
+        unchecked-icon="panorama_fish_eye" 
+        val="disagree"
+      />
+    </div>
   </div>
   <div class="row q-mt-xl">
-      <div class="col-6"></div>
+    <div class="col-6"></div>
       <q-btn 
-          v-if="radioAgree === ''"
-          label="次のページへ"
-          flat
-          :ripple="false"
-          class="bg-grey text-white"
+        v-if="radioAgree === ''"
+        label="次のページへ"
+        flat
+        :ripple="false"
+        class="bg-grey text-white"
       ></q-btn>
       <q-btn 
-          v-else
-          label="次のページへ"
-          flat
-          class="bg-blue-7 text-white"
-          @click="toPage2"
+        v-else
+        label="次のページへ"
+        flat
+        class="bg-blue-7 text-white"
+        @click="toPage2"
       ></q-btn>
   </div>
 </template>
 <script setup  lang="ts">
-import { ref, onMounted, defineProps, withDefaults } from "vue";
+import { ref, onMounted } from "vue";
 
-
-//親コンポーネントからデータ受け渡し
-interface Props {
-  tab?: string,
-  progress?: number
-}
-const props = withDefaults(defineProps<Props>(), {
-  tab: 'page1',
-  progress: 0,
-})
-
-const tab = ref<string>(props.tab);
-const progress = ref<number>(props.progress);
 
 //ラジオボタン設定
 const radioAgree = ref<string>('');
 
 //次のページへ
 const toPage2 = function(){
-    tab.value = "page2";
-    progress.value = 0.25
-    window.scrollTo(0, 0);
+  window.scrollTo(0, 0);  
+  execEmit();
 };
+
+const emit = defineEmits(['eventEmit'])
+const execEmit = () => {
+  emit('eventEmit', { 'tab': 'page2', 'progress': 0.1})
+}
 
 </script>
 <style lang="scss">
