@@ -1,6 +1,6 @@
 <template>
   <div class="space_for_header">
-    <div class="q-pa-md">
+    <div>
       <!-- router -->
       <RouterView />
     </div>
