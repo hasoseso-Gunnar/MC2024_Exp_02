@@ -1,7 +1,8 @@
 <template>
   <div class="q-pa-md">
     <!-- 態度の強さリード文 -->
-    <p class="text-subtitle1 text-black">あなたは先ほど、<span class="text-red-9 text-bold">日本での移民の積極的な受け入れに{{ props.agreeImmigrant }}</span>と答えました。</p>
+    <p class="text-subtitle1 text-black">続いて、もう1つのトピックの考えについてもお尋ねします。</p>
+    <p class="text-subtitle1 text-black">あなたは先ほど、<span class="text-red-9 text-bold">学問やビジネスでのAIの積極的活用に{{ props.agreeAI }}</span>と答えました。</p>
     <p class="text-subtitle1 text-black">1.それを踏まえて、あなたの考えに最もよく当てはまる選択肢を選んでください。</p>
     <div style="height: 40px;"></div>
     <!-- 態度の強さ質問項目 -->
@@ -71,7 +72,7 @@
     <!-- 道徳的確信リード文 -->
     <p class="text-subtitle1 text-black">2.以下に続けて各質問を読み、あなたの考えに最もよく当てはまる選択肢を選んでください。</p>
     <div style="height: 40px;"></div>
-    <p class="text-subtitle1 text-black">『<span class="text-red-9 text-bold">日本での移民の積極的な受け入れに{{ props.agreeImmigrant }}</span>だというあなたの考えは・・・』</p>
+    <p class="text-subtitle1 text-black">『<span class="text-red-9 text-bold">学問やビジネスでのAIの積極的活用に{{ props.agreeAI }}</span>だというあなたの考えは・・・』</p>
     <div style="height: 40px;"></div>
     <!-- 道徳的確信質問項目 -->
     <div v-for="(prop, i) in itemListMoralConviction">
@@ -157,7 +158,7 @@ const shuffle = (list: any) => {
 };
 
 //親からの受け取りデータ
-const props = defineProps(['agreeImmigrant']);
+const props = defineProps(['agreeAI']);
 
 //型定義
 interface itemListTypeAttitudeStrength{
@@ -198,7 +199,7 @@ interface itemListTypeMoralConvition{
 const itemListAttitudeStrength = ref<Array<itemListTypeAttitudeStrength>>([
   {
     seed: 1,
-    question: `移民の受け入れに${props.agreeImmigrant}というあなたの考えの強さについて回答してください`,
+    question: `AIの活用に${props.agreeAI}というあなたの考えの強さについて回答してください`,
     option1: '非常に弱い<br/><span class="option-value">1</span>',
     option2: '　<br/><span class="option-value">2</span>',
     option3: '　<br/><span class="option-value">3</span>',
@@ -215,7 +216,7 @@ const itemListAttitudeStrength = ref<Array<itemListTypeAttitudeStrength>>([
   },
   {
     seed: 2,
-    question: `移民の受け入れに${props.agreeImmigrant}することがあなたにとってどの程度重要か回答してください`,
+    question: `AIの活用に${props.agreeAI}することがあなたにとってどの程度重要か回答してください`,
     option1: 'まったく重要でない<br/><span class="option-value">1</span>',
     option2: '　<br/><span class="option-value">2</span>',
     option3: '　<br/><span class="option-value">3</span>',
@@ -232,7 +233,7 @@ const itemListAttitudeStrength = ref<Array<itemListTypeAttitudeStrength>>([
   },
   {
     seed: 3,
-    question: `移民の受け入れに${props.agreeImmigrant}ということがあなたにとってどの程度明確か回答してください`,
+    question: `AIの活用に${props.agreeAI}ということがあなたにとってどの程度明確か回答してください`,
     option1: 'まったく明確でない<br/><span class="option-value">1</span>',
     option2: '　<br/><span class="option-value">2</span>',
     option3: '　<br/><span class="option-value">3</span>',
@@ -320,7 +321,7 @@ const toPage6 = function(){
 
 const emit = defineEmits(['eventEmit'])
 const execEmit = () => {
-  emit('eventEmit', { 'tab': 'page6', 'progress': 0.5})
+  emit('eventEmit', { 'tab': 'page8', 'progress': 0.5})
 }
 
 </script>

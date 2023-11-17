@@ -35,11 +35,11 @@
   <p class="description">また、匿名化済のデータがウェブ上で公開される場合があります。</p>
   <br/>
   <p class="title">7．調査回答上の注意</p>
-  <p class="description text-red">①必ず、ノートパソコンかデスクトップパソコンから実験に参加してください。</p>
-  <p class="description">※スマートフォンやタブレット端末では正常にページが表示されない場合があります。</p>
+  <p class="description text-red-9 text-bold">①必ず、パソコンやタブレット端末から実験に参加してください。</p>
+  <p class="description">※スマートフォンやその他の端末では正常にページが表示されない場合があります。</p>
   <br>
-  <p class="description text-red">②調査への回答の最中に、「ページを再読み込みする」「ウィンドウを閉じる」などのブラウザ上の操作を行わないでください。</p>
-  <p class="description">※回答の進捗が初期化されてしまう可能性があります。</p>
+  <p class="description text-red-9 text-bold">②調査への回答の最中に、「ページを再読み込みする」「ウィンドウを閉じる」などのブラウザ上の操作を行わないでください。</p>
+  <p class="description">※正常に調査が完了しない場合や、回答の進捗が初期化されてしまう可能性があります。</p>
   <br/>
   <p class="title">調査実施機関：</p>
   <p class="description">名古屋大学 大学院情報学研究科</p>
@@ -103,7 +103,14 @@ const toPage2 = function(){
 
 const emit = defineEmits(['eventEmit'])
 const execEmit = () => {
-  emit('eventEmit', { 'tab': 'page2', 'progress': 0.1})
+  //実験参加へ同意する場合
+  if(radioAgree.value === 'agree'){
+    emit('eventEmit', { 'tab': 'page2', 'progress': 0.1});
+    
+  //実験参加へ同意しない場合は強制終了
+  }else{
+    emit('eventEmit', { 'tab': 'forcedEnd', 'progress': 1.0});
+  }
 }
 
 </script>
