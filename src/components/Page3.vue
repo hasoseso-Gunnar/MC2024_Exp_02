@@ -7,7 +7,8 @@
       <p class="text-subtitle1 text-black" v-html="prop.question2"></p>
       <br/>
       <div class="row q-mb-xl">
-        <div class="col-2" align="center">
+        <div class="col-1"></div>
+        <div class="col-2" align="center" :style="prop.answer === '1' ? 'background-color: #CCEBFF;': ''">
           <p>{{ prop.option1 }}</p>
           <q-radio 
             v-model="prop.answer"
@@ -16,7 +17,7 @@
             :val="prop.value1"
           />
         </div>
-        <div class="col-2" align="center">
+        <div class="col-2" align="center" :style="prop.answer === '2' ? 'background-color: #CCEBFF;': ''">
           <p>{{ prop.option2 }}</p>
           <q-radio 
             v-model="prop.answer"

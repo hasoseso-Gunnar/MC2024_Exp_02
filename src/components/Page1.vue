@@ -20,7 +20,7 @@
   <p class="description">参加に同意しなかった場合でも不利益は生じません。</p>
   <p class="description">同意した場合も、同意を撤回して参加を中止できます。</p>
   <p class="description">その場合でも不利益は生じず、データは分析から除外されます。</p>
-  <p class="description text-red">※ただし、報酬支払後はデータを除外できません。</p>
+  <p class="description text-red-9">※ただし、報酬支払後はデータを除外できません。</p>
   <br/>
   <p class="title">４．個人情報の取り扱い</p>
   <p class="description">本研究は無記名で行われます。</p>
@@ -34,12 +34,15 @@
   <p class="description">学会発表や学術論文などの形式で公表される可能性があります。</p>
   <p class="description">また、匿名化済のデータがウェブ上で公開される場合があります。</p>
   <br/>
-  <p class="title">7．調査回答上の注意</p>
+  <p class="title">7．本調査での回答上の注意</p>
   <p class="description text-red-9 text-bold">①必ず、パソコンやタブレット端末から実験に参加してください。</p>
   <p class="description">※スマートフォンやその他の端末では正常にページが表示されない場合があります。</p>
   <br>
   <p class="description text-red-9 text-bold">②調査への回答の最中に、「ページを再読み込みする」「ウィンドウを閉じる」などのブラウザ上の操作を行わないでください。</p>
   <p class="description">※正常に調査が完了しない場合や、回答の進捗が初期化されてしまう可能性があります。</p>
+  <br/>
+  <p class="description text-red-9 text-bold">③本調査では、途中で音が出る箇所がありますので、必ず端末のミュートを解除してください。</p>
+  <p class="description">※イヤホンやヘッドホンを装着するか、周りに音を聞かれてもよい環境での回答を推奨します。</p>
   <br/>
   <p class="title">調査実施機関：</p>
   <p class="description">名古屋大学 大学院情報学研究科</p>

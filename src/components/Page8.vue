@@ -31,7 +31,7 @@
             label="次のページへ"
             flat
             class="bg-blue-7 text-white"
-            @click="toPage7"
+            @click="toPage9"
         ></q-btn>
     </div>
   </div>
@@ -58,7 +58,7 @@ const checkTextLength = () => {
 };
 
 //次のページへ
-const toPage7 = function(){
+const toPage9 = function(){
   window.scrollTo(0, 0);  
   execEmit();
 };

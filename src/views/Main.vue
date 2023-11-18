@@ -2,6 +2,7 @@
 
   <!-- 進捗表示 -->
   <q-linear-progress :value="progress" color="blue"/>
+  <div class="text-right">進捗率：{{ (progress*100) }}%</div>
 
   <q-tabs
     v-model="tab"
@@ -17,6 +18,8 @@
     <q-tab name="page6" label="Page6"/>
     <q-tab name="page7" label="Page7"/>
     <q-tab name="page8" label="Page8"/>
+    <q-tab name="page9" label="Page9"/>
+    <q-tab name="page10" label="Page10"/>
   </q-tabs>
   <q-tab-panels
     v-model="tab"
@@ -46,8 +49,14 @@
     <q-tab-panel name="page7">
       <Page7 @eventEmit="execEvent" :agreeAI="agreeAI"/>
     </q-tab-panel>
-    <q-tab-panel name="page7">
+    <q-tab-panel name="page8">
       <Page8 @eventEmit="execEvent" :agreeAI="agreeAI"/>
+    </q-tab-panel>
+    <q-tab-panel name="page9">
+      <Page9 @eventEmit="execEvent"/>
+    </q-tab-panel>
+    <q-tab-panel name="page10">
+      <Page10 @eventEmit="execEvent"/>
     </q-tab-panel>
   </q-tab-panels>
 </template>
@@ -63,6 +72,9 @@ import Page5 from "@/components/Page5.vue";
 import Page6 from "@/components/Page6.vue";
 import Page7 from "@/components/Page7.vue";
 import Page8 from "@/components/Page8.vue";
+import Page9 from "@/components/Page9.vue";
+import Page10 from "@/components/Page10.vue";
+
 
 const $q = useQuasar();
 
@@ -71,14 +83,16 @@ const progress = ref<number>(0);
 const tab = ref<string>('page1');
 const agreeImmigrant = ref<string>('');
 const agreeAI = ref<string>('');
+const experimentCondition = ref<string>('');
 
 //子コンポーネントからのデータ受け取り
 const execEvent = (data: any) => {
   tab.value = data.tab;
   progress.value = data.progress;
-  //受け渡しデータが存在している時のみ受け入れ
+  //受け渡しデータが存在している時のみ受け入れる変数(移民受け入れ賛否・AI利用賛否・実験条件)
   agreeImmigrant.value = !data.agreeImmigrant ? agreeImmigrant.value :  data.agreeImmigrant;
   agreeAI.value = !data.agreeAI ? agreeAI.value :  data.agreeAI;
+  experimentCondition.value = !data.experimentCondition ? experimentCondition.value :  data.experimentCondition;
 
 };
 

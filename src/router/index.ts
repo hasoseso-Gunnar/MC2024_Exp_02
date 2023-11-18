@@ -9,6 +9,7 @@ import Page5 from '../components/Page5.vue';
 import Page6 from '../components/Page6.vue';
 import Page7 from '../components/Page7.vue';
 import Page8 from '../components/Page8.vue';
+import Page9 from '../components/Page9.vue';
 
 
 const router = createRouter({
@@ -63,6 +64,11 @@ const router = createRouter({
       path: '/page8',
       name: 'page8',
       component: Page8
+    },
+    {
+      path: '/page9',
+      name: 'page9',
+      component: Page9
     },
   ]
 })
