@@ -125,8 +125,13 @@ const itemList = ref<Array<itemListType>>([
     answer: '',
   },
 ]);
+
+//プロフィール情報提示などで使用する変数
 const agreeImmigrant = ref<string>('');
+const agreeDefenseCost = ref<string>('');
 const agreeAI = ref<string>('');
+const agreeBear = ref<string>('');
+const agreeInsect = ref<string>('');
 
 //次のページへ
 const toPage4 = function(){
@@ -140,10 +145,24 @@ const execEmit = () => {
     if(e.seed === 1){
       agreeImmigrant.value = e.answer === '1' ? '賛成' :  '反対';
     }else if(e.seed === 2){
+      agreeDefenseCost.value = e.answer === '1' ? '賛成' :  '反対';
+    }else if(e.seed === 3){
       agreeAI.value = e.answer === '1' ? '賛成' :  '反対';
+    }else if(e.seed === 4){
+      agreeBear.value = e.answer === '1' ? '賛成' :  '反対';
+    }else if(e.seed === 5){
+      agreeInsect.value = e.answer === '1' ? '賛成' :  '反対';
     }
-  })
-  emit('eventEmit', { 'tab': 'page4', 'progress': 0.3, 'agreeImmigrant' : agreeImmigrant.value, 'agreeAI' : agreeAI.value})
+  });
+  emit('eventEmit', { 
+    'tab': 'page4', 
+    'progress': 0.3, 
+    'agreeImmigrant' : agreeImmigrant.value, 
+    'agreeDefenseCost': agreeDefenseCost.value, 
+    'agreeAI' : agreeAI.value,
+    'agreeBear' : agreeBear.value,
+    'agreeInsect' : agreeInsect.value,
+  });
 }
 
 </script>

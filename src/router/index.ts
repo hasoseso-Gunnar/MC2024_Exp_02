@@ -10,7 +10,9 @@ import Page6 from '../components/Page6.vue';
 import Page7 from '../components/Page7.vue';
 import Page8 from '../components/Page8.vue';
 import Page9 from '../components/Page9.vue';
-
+import Page10 from '../components/Page10.vue';
+import Page11 from '../components/Page11.vue';
+import Page12 from '../components/Page12.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -69,6 +71,21 @@ const router = createRouter({
       path: '/page9',
       name: 'page9',
       component: Page9
+    },
+    {
+      path: '/page10',
+      name: 'page10',
+      component: Page10
+    },
+    {
+      path: '/page11',
+      name: 'page11',
+      component: Page11
+    },
+    {
+      path: '/page12',
+      name: 'page12',
+      component: Page12
     },
   ]
 })

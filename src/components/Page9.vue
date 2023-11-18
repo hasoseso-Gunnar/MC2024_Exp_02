@@ -33,7 +33,7 @@
 
     <div style="height: 100px;"></div>
     <p class="text-subtitle1 text-black">適切な音量が設定できましたら、以下の「この音量で適切である」ボタンをクリックして、次のページに進んでください。</p>
-    <p class="text-subtitle1 text-black">次のページに進むと、すぐに現在回答中の<span class="text-bold">他の参加者とのマッチングが開始</span>されます。</p>
+    <p class="text-subtitle1 text-black">次のページに進むと、すぐに<span class="text-bold">他の参加者とのマッチングが開始</span>されます。</p>
     <div style="height: 40px;"></div>
     <div class="row">
       <div class="col-4"></div>

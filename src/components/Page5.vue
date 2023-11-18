@@ -159,6 +159,9 @@ const shuffle = (list: any) => {
 //親からの受け取りデータ
 const props = defineProps(['agreeImmigrant']);
 
+//アテンションチェック
+const attentionCheck = ref<string>('ok');
+
 //型定義
 interface itemListTypeAttitudeStrength{
   seed: number,
@@ -309,6 +312,21 @@ const itemListMoralConviction = ref<Array<itemListTypeMoralConvition>>([
     value4: '4',
     value5: '5',
     answer: '',
+  },
+  {
+    seed: 5,
+    question: 'この項目では「2」を選択してください。',
+    option1: '　<br/>　<br/><span class="option-value">1</span>',
+    option2: '　<br/>　<br/><span class="option-value">2</span>',
+    option3: '　<br/>　<br/><span class="option-value">3</span>',
+    option4: '　<br/>　<br/><span class="option-value">4</span>',
+    option5: '　<br/>　<br/><span class="option-value">5</span>',
+    value1: '1',
+    value2: '2',
+    value3: '3',
+    value4: '4',
+    value5: '5',
+    answer: '',
   }
 ]);
 
@@ -320,7 +338,18 @@ const toPage6 = function(){
 
 const emit = defineEmits(['eventEmit'])
 const execEmit = () => {
-  emit('eventEmit', { 'tab': 'page6', 'progress': 0.5})
+  itemListMoralConviction.value.forEach((e:any)=>{
+    if(e.seed === 5){
+      attentionCheck.value = e.answer === '2' ? 'ok' :  'ng';
+    }
+  });
+  //アテンションチェック失敗の場合、回答終了
+  if(attentionCheck.value === 'ng'){
+    emit('eventEmit', { 'tab': 'forcedEnd', 'progress': 1.0});
+  //それ以外は次のページへ
+  }else{
+    emit('eventEmit', { 'tab': 'page6', 'progress': 0.5})
+  }
 }
 
 </script>

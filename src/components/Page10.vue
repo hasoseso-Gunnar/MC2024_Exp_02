@@ -21,6 +21,7 @@
             </div>
           </div>
           <p class="text-h5 text-center">パートナーが見つかりました！</p>
+          <p class="text-subtitle1 text-center">※5秒後に自動的に次のステップに進みます。</p>
         </div>
       </q-card-section>
       <div v-if="visible">
@@ -34,32 +35,27 @@
       </div>
     </q-card>
     <br>
-    <div align="right">
-        <q-btn 
-            label="次のページへ"
-            flat
-            class="bg-blue-7 text-white"
-            @click="toPage11"
-        ></q-btn>
-    </div>
   </div>
 </template>
 <script setup  lang="ts">
 import { ref, onMounted, defineProps, withDefaults } from "vue";
 
-//ページ読み込み時にカウントダウン開始
-onMounted(()=>{
-  setTimeout;
+//ページ読み込んだ際の処理
+onMounted(async()=>{
+  //検索中表示を終わらせる処理
+  setTimeout(async() => {
+      visible.value = false;
+      showSimulatedReturnData.value = true;
+  }, 5000);
+  //次のページへ移動させる処理
+  setTimeout(async() => {
+    toPage11();
+  }, 10000);
 });
 
+//読み込み中の画面を制御する変数
 const visible = ref<boolean>(true);
 const showSimulatedReturnData = ref<boolean>(false);
-
-//検索中表示を終わらせる処理
-setTimeout(() => {
-  visible.value = false;
-  showSimulatedReturnData.value = true;
-}, 4000);
 
 //次のページへ
 const toPage11 = function(){

@@ -20,6 +20,8 @@
     <q-tab name="page8" label="Page8"/>
     <q-tab name="page9" label="Page9"/>
     <q-tab name="page10" label="Page10"/>
+    <q-tab name="page11" label="Page11"/>
+    <q-tab name="page12" label="Page12"/>
   </q-tabs>
   <q-tab-panels
     v-model="tab"
@@ -58,6 +60,20 @@
     <q-tab-panel name="page10">
       <Page10 @eventEmit="execEvent"/>
     </q-tab-panel>
+    <q-tab-panel name="page11">
+      <Page11 
+        @eventEmit="execEvent"
+        :agreeImmigrant="agreeImmigrant"
+        :agreeDefenseCost="agreeDefenseCost"
+        :agreeAI="agreeAI"
+        :agreeBear="agreeBear"
+        :agreeInsect="agreeInsect"
+        :experimentCondition="experimentCondition"
+      />
+    </q-tab-panel>
+    <q-tab-panel name="page12">
+      <Page12 @eventEmit="execEvent"/>
+    </q-tab-panel>
   </q-tab-panels>
 </template>
 <script setup lang="ts">
@@ -74,7 +90,7 @@ import Page7 from "@/components/Page7.vue";
 import Page8 from "@/components/Page8.vue";
 import Page9 from "@/components/Page9.vue";
 import Page10 from "@/components/Page10.vue";
-
+import Page11 from "@/components/Page11.vue";
 
 const $q = useQuasar();
 
@@ -82,8 +98,15 @@ const $q = useQuasar();
 const progress = ref<number>(0);
 const tab = ref<string>('page1');
 const agreeImmigrant = ref<string>('');
+const agreeDefenseCost = ref<string>('');
 const agreeAI = ref<string>('');
-const experimentCondition = ref<string>('');
+const agreeBear = ref<string>('');
+const agreeInsect = ref<string>('');
+const experimentCondition = ref<number>(0);
+
+//ページを読み込んだ際に実験条件をランダムに割り当て(1→態度一致,2→態度不一致)
+experimentCondition.value = Math.random() < 0.5 ? 1 : 2;
+console.log(experimentCondition.value)
 
 //子コンポーネントからのデータ受け取り
 const execEvent = (data: any) => {
@@ -91,9 +114,10 @@ const execEvent = (data: any) => {
   progress.value = data.progress;
   //受け渡しデータが存在している時のみ受け入れる変数(移民受け入れ賛否・AI利用賛否・実験条件)
   agreeImmigrant.value = !data.agreeImmigrant ? agreeImmigrant.value :  data.agreeImmigrant;
+  agreeDefenseCost.value = !data.agreeDefenseCost ? agreeDefenseCost.value :  data.agreeDefenseCost;
   agreeAI.value = !data.agreeAI ? agreeAI.value :  data.agreeAI;
-  experimentCondition.value = !data.experimentCondition ? experimentCondition.value :  data.experimentCondition;
-
+  agreeBear.value = !data.agreeBear ? agreeBear.value :  data.agreeBear;
+  agreeInsect.value = !data.agreeInsect ? agreeInsect.value :  data.agreeInsect;
 };
 
 </script>
