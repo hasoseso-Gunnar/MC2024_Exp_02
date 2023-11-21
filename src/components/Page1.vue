@@ -52,24 +52,24 @@
   <p class="description" style="font-size: 19px;">あなたは上記の説明を理解し，本研究への参加に同意しますか。</p>
   <br/>
   <div class="row">
-    <div class="col-4" align="center" :style="radioAgree === 'agree' ? 'background-color: #CCEBFF;': ''">
+    <div class="col-4" align="center" :style="radioAgree === '1' ? 'background-color: #CCEBFF;': ''">
       <p class="description" style="font-size: 19px;">同意する</p>
       <q-radio 
         v-model="radioAgree" 
         size="xl" 
         checked-icon="task_alt" 
         unchecked-icon="panorama_fish_eye" 
-        val="agree"
+        val="1"
       />
     </div>
-    <div class="col-4" align="center" :style="radioAgree === 'disagree' ? 'background-color: #CCEBFF;': ''">
+    <div class="col-4" align="center" :style="radioAgree === '0' ? 'background-color: #CCEBFF;': ''">
       <p class="description" style="font-size: 19px;">同意しない</p>
       <q-radio 
         v-model="radioAgree" 
         size="xl" 
         checked-icon="task_alt" 
         unchecked-icon="panorama_fish_eye" 
-        val="disagree"
+        val="0"
       />
     </div>
   </div>
@@ -92,29 +92,80 @@
   </div>
 </template>
 <script setup  lang="ts">
-import { ref, onMounted } from "vue";
+import { ref, onMounted, defineProps, withDefaults } from "vue";
+import uuid from "node-uuid";
 
+//ページ読み込み時にUUIDと開始時間とIPアドレスを取得
+onMounted(async()=>{
+  UUID.value = uuid.v4();
+  //開始時間
+  startDateTime.value = new Date().toISOString().slice(0, 19).replace('T', ' ');
+  //IPアドレス
+  await fetch('https://api.ipify.org?format=json')
+    .then(response => response.json())
+    .then(data => {
+      ipAddress.value = data.ip;
+    })
+    .catch(error => {
+      ipAddress.value = 'none';
+    });
+});
 
-//ラジオボタン設定
+//親からの受け取りデータ
+const props = defineProps(['uri']);
+
+//変数
 const radioAgree = ref<string>('');
+const UUID = ref<string>('')
+const startDateTime = ref<string>('');
+const ipAddress = ref<string>('');
 
 //次のページへ
 const toPage2 = function(){
-  window.scrollTo(0, 0);  
+  window.scrollTo(0, 0);
+  const body: string = `start=${startDateTime.value}&ipAddress=${ipAddress.value}&agreeParticipate=${radioAgree.value}`;
+  postData('page1', body);
   execEmit();
 };
 
 const emit = defineEmits(['eventEmit'])
 const execEmit = () => {
   //実験参加へ同意する場合
-  if(radioAgree.value === 'agree'){
-    emit('eventEmit', { 'tab': 'page2', 'progress': 0.1});
+  if(radioAgree.value === '1'){
+    emit('eventEmit', { 'tab': 'page2', 'progress': 0.1, 'UUID': UUID.value});
     
   //実験参加へ同意しない場合は強制終了
   }else{
-    emit('eventEmit', { 'tab': 'forcedEnd', 'progress': 1.0});
+    emit('eventEmit', { 'tab': 'forcedEnd', 'progress': 1.0, 'UUID': UUID.value});
   }
 }
+
+//データを送信する関数
+const postData = async(route: string, body: string) => {
+  
+  //GASにリクエストを送る
+	const requestOptions: any = {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/x-www-form-urlencoded',
+		},
+		body: `route=${route}&uuid=${UUID.value}&` + body,
+	};
+
+	let result: string = '';
+
+	await fetch(props.uri, requestOptions)
+		.then((res) => {
+      console.log(res.json());
+      result = 'complete';
+    })
+		.catch((err) => {
+      console.log(err);
+      result = 'error';
+    });
+
+  return result;
+};
 
 </script>
 <style lang="scss">

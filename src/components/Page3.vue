@@ -50,6 +50,9 @@
 <script setup  lang="ts">
 import { ref, onMounted, defineProps, withDefaults } from "vue";
 
+//親からの受け取りデータ
+const props = defineProps(['uri','UUID']);
+
 //ページ読み込み時に配列をランダムに並び替え
 onMounted(()=>{
   shuffle(itemList.value);
@@ -106,8 +109,8 @@ const itemList = ref<Array<itemListType>>([
   },
   {
     seed: 4,
-    question1: '現在、日本各地でクマの住宅街での出没が社会問題となっています。',
-    question2: 'あなたは、<span class="text-bold">住宅街に出没したクマを駆除すること</span>について、賛成ですか？反対ですか？',
+    question1: '現在、日本各地でクマの住宅街での出没が社会問題となっており、実際に人が襲われるケースなどが出てきています。',
+    question2: 'あなたは、<span class="text-bold">住宅街に出没したクマを例外なく駆除すること</span>について、賛成ですか？反対ですか？',
     option1: '賛成',
     option2: '反対',
     value1: '1',
@@ -136,6 +139,8 @@ const agreeInsect = ref<string>('');
 //次のページへ
 const toPage4 = function(){
   window.scrollTo(0, 0);  
+  const body: string = `agree1=${itemList.value.find((e:any) => e.seed === 1)?.answer}&agree2=${itemList.value.find((e:any) => e.seed === 2)?.answer}&agree3=${itemList.value.find((e:any) => e.seed === 3)?.answer}&agree4=${itemList.value.find((e:any) => e.seed === 4)?.answer}&agree5=${itemList.value.find((e:any) => e.seed === 5)?.answer}`;
+  postData('page3', body);
   execEmit();
 };
 
@@ -164,6 +169,33 @@ const execEmit = () => {
     'agreeInsect' : agreeInsect.value,
   });
 }
+
+//データを送信する関数
+const postData = async(route: string, body: string) => {
+  
+  //GASにリクエストを送る
+	const requestOptions: any = {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/x-www-form-urlencoded',
+		},
+		body: `route=${route}&uuid=${props.UUID}&` + body,
+	};
+
+	let result: string = '';
+
+	await fetch(props.uri, requestOptions)
+		.then((res) => {
+      console.log(res.json());
+      result = 'complete';
+    })
+		.catch((err) => {
+      console.log(err);
+      result = 'error';
+    });
+
+  return result;
+};
 
 </script>
 <style lang="scss">

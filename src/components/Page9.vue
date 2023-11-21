@@ -68,6 +68,8 @@
 <script setup  lang="ts">
 import { ref, onMounted, defineProps, withDefaults } from "vue";
 
+//親からの受け取りデータ
+const props = defineProps(['uri','UUID','condition']);
 
 //音量に関する変数
 const volume = ref<number>(0);
@@ -90,6 +92,8 @@ const activateSound = () =>{
 //次のページへ
 const toPage10 = function(){
   window.scrollTo(0, 0);  
+  const body: string = `volume=${volume.value}&condition=${props.condition}`;
+  postData('page9', body);  
   execEmit();
 };
 
@@ -97,6 +101,33 @@ const emit = defineEmits(['eventEmit'])
 const execEmit = () => {
   emit('eventEmit', { 'tab': 'page10', 'progress': 0.9})
 }
+
+//データを送信する関数
+const postData = async(route: string, body: string) => {
+  
+  //GASにリクエストを送る
+	const requestOptions: any = {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/x-www-form-urlencoded',
+		},
+		body: `route=${route}&uuid=${props.UUID}&` + body,
+	};
+
+	let result: string = '';
+
+	await fetch(props.uri, requestOptions)
+		.then((res) => {
+      console.log(res.json());
+      result = 'complete';
+    })
+		.catch((err) => {
+      console.log(err);
+      result = 'error';
+    });
+
+  return result;
+};
 
 </script>
 <style lang="scss">

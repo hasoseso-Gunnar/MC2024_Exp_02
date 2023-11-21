@@ -8,7 +8,7 @@
             label="次のページへ"
             flat
             class="bg-blue-7 text-white"
-            @click="toPage12"
+            @click="toPage5"
         ></q-btn>
     </div>
   </div>
@@ -17,14 +17,14 @@
 import { ref, onMounted, defineProps, withDefaults } from "vue";
 
 //次のページへ
-const toPage12 = function(){
+const toPage5 = function(){
   window.scrollTo(0, 0);  
   execEmit();
 };
 
 const emit = defineEmits(['eventEmit'])
 const execEmit = () => {
-  emit('eventEmit', { 'tab': 'page12', 'progress': 1.0})
+  emit('eventEmit', { 'tab': 'page5', 'progress': 0.4})
 }
 
 </script>

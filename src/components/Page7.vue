@@ -158,7 +158,7 @@ const shuffle = (list: any) => {
 };
 
 //親からの受け取りデータ
-const props = defineProps(['agreeAI']);
+const props = defineProps(['agreeAI','uri','UUID']);
 
 //型定義
 interface itemListTypeAttitudeStrength{
@@ -316,6 +316,8 @@ const itemListMoralConviction = ref<Array<itemListTypeMoralConvition>>([
 //次のページへ
 const toPage6 = function(){
   window.scrollTo(0, 0);  
+  const body: string = `AIAS=${itemListAttitudeStrength.value.find((e:any) => e.seed === 1)?.answer}&AIAI=${itemListAttitudeStrength.value.find((e:any) => e.seed === 2)?.answer}&AIAC=${itemListAttitudeStrength.value.find((e:any) => e.seed === 3)?.answer}&AIMC1=${itemListMoralConviction.value.find((e:any) => e.seed === 1)?.answer}&AIMC2=${itemListMoralConviction.value.find((e:any) => e.seed === 2)?.answer}&AIMC3=${itemListMoralConviction.value.find((e:any) => e.seed === 3)?.answer}&AIMC4=${itemListMoralConviction.value.find((e:any) => e.seed === 4)?.answer}`;
+  postData('page7', body);
   execEmit();
 };
 
@@ -323,6 +325,33 @@ const emit = defineEmits(['eventEmit'])
 const execEmit = () => {
   emit('eventEmit', { 'tab': 'page8', 'progress': 0.7})
 }
+
+//データを送信する関数
+const postData = async(route: string, body: string) => {
+  
+  //GASにリクエストを送る
+	const requestOptions: any = {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/x-www-form-urlencoded',
+		},
+		body: `route=${route}&uuid=${props.UUID}&` + body,
+	};
+
+	let result: string = '';
+
+	await fetch(props.uri, requestOptions)
+		.then((res) => {
+      console.log(res.json());
+      result = 'complete';
+    })
+		.catch((err) => {
+      console.log(err);
+      result = 'error';
+    });
+
+  return result;
+};
 
 </script>
 <style lang="scss">

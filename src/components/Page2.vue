@@ -83,6 +83,8 @@
 <script setup  lang="ts">
 import { ref, onMounted, defineProps, withDefaults } from "vue";
 
+//親からの受け取りデータ
+const props = defineProps(['uri','UUID']);
 
 //取得するデータ設定
 const sex = ref<string>('');
@@ -115,6 +117,8 @@ const deviceOptions = ref<Array<string>>(['パソコン (Windows, Mac等)','タ�
 //次のページへ
 const toPage3 = function(){
   window.scrollTo(0, 0);  
+  const body: string = `sex=${sex.value}&age=${age.value}&nationality=${nationality.value}&householdIncome=${householdIncome.value}&school=${school.value}&device=${device.value}`;
+  postData('page2', body);
   execEmit();
 };
 
@@ -129,6 +133,33 @@ const execEmit = () => {
     emit('eventEmit', { 'tab': 'page3', 'progress': 0.2});
   }
 }
+
+//データを送信する関数
+const postData = async(route: string, body: string) => {
+  
+  //GASにリクエストを送る
+	const requestOptions: any = {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/x-www-form-urlencoded',
+		},
+		body: `route=${route}&uuid=${props.UUID}&` + body,
+	};
+
+	let result: string = '';
+
+	await fetch(props.uri, requestOptions)
+		.then((res) => {
+      console.log(res.json());
+      result = 'complete';
+    })
+		.catch((err) => {
+      console.log(err);
+      result = 'error';
+    });
+
+  return result;
+};
 
 </script>
 <style lang="scss">

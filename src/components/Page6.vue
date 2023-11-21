@@ -40,7 +40,7 @@
 import { ref, onMounted, defineProps, withDefaults } from "vue";
 
 //親からの受け取りデータ
-const props = defineProps(['agreeImmigrant']);
+const props = defineProps(['agreeImmigrant','uri','UUID']);
 
 //自由記述内容
 const openEndedQuesiton = ref<string>('');
@@ -59,7 +59,9 @@ const checkTextLength = () => {
 
 //次のページへ
 const toPage7 = function(){
-  window.scrollTo(0, 0);  
+  window.scrollTo(0, 0);
+  const body: string = `immigrantOEQ=${openEndedQuesiton.value}`;
+  postData('page6', body);  
   execEmit();
 };
 
@@ -68,6 +70,32 @@ const execEmit = () => {
   emit('eventEmit', { 'tab': 'page7', 'progress': 0.7})
 }
 
+//データを送信する関数
+const postData = async(route: string, body: string) => {
+  
+  //GASにリクエストを送る
+	const requestOptions: any = {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/x-www-form-urlencoded',
+		},
+		body: `route=${route}&uuid=${props.UUID}&` + body,
+	};
+
+	let result: string = '';
+
+	await fetch(props.uri, requestOptions)
+		.then((res) => {
+      console.log(res.json());
+      result = 'complete';
+    })
+		.catch((err) => {
+      console.log(err);
+      result = 'error';
+    });
+
+  return result;
+};
 </script>
 <style lang="scss">
 

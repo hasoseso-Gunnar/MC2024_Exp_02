@@ -22,62 +22,132 @@
     <q-tab name="page10" label="Page10"/>
     <q-tab name="page11" label="Page11"/>
     <q-tab name="page12" label="Page12"/>
+    <q-tab name="page13" label="Page13"/>
+    <q-tab name="page14" label="Page14"/>
+    <q-tab name="page15" label="Page15"/>
   </q-tabs>
   <q-tab-panels
     v-model="tab"
     animated
   >
     <q-tab-panel name="forcedEnd">
-      <forcedEnd @eventEmit="execEvent"/>
+      <forcedEnd 
+        @eventEmit="execEvent" 
+        :uri="uri"
+        :UUID="UUID"
+      />
     </q-tab-panel>
     <q-tab-panel name="page1">
-      <Page1 @eventEmit="execEvent"/>
+      <Page1 
+        @eventEmit="execEvent" 
+        :uri="uri" 
+      />
     </q-tab-panel>
     <q-tab-panel name="page2">
-      <Page2 @eventEmit="execEvent"/>
+      <Page2 
+        @eventEmit="execEvent" 
+        :uri="uri" 
+        :UUID="UUID"
+      />
     </q-tab-panel>
     <q-tab-panel name="page3">
-      <Page3 @eventEmit="execEvent"/>
+      <Page3 
+        @eventEmit="execEvent" 
+        :uri="uri" 
+        :UUID="UUID"
+      />
     </q-tab-panel>
     <q-tab-panel name="page4">
-      <Page4 @eventEmit="execEvent"/>
+      <Page4 
+        @eventEmit="execEvent" 
+        :uri="uri" 
+        :UUID="UUID"
+      />
     </q-tab-panel>
     <q-tab-panel name="page5">
-      <Page5 @eventEmit="execEvent" :agreeImmigrant="agreeImmigrant"/>
+      <Page5 
+        @eventEmit="execEvent" 
+        :uri="uri" 
+        :UUID="UUID" 
+        :agreeImmigrant="agreeImmigrant"
+      />
     </q-tab-panel>
     <q-tab-panel name="page6">
-      <Page6 @eventEmit="execEvent" :agreeImmigrant="agreeImmigrant"/>
+      <Page6 
+        @eventEmit="execEvent" 
+        :uri="uri" 
+        :UUID="UUID" 
+        :agreeImmigrant="agreeImmigrant"
+      />
     </q-tab-panel>
     <q-tab-panel name="page7">
-      <Page7 @eventEmit="execEvent" :agreeAI="agreeAI"/>
+      <Page7 
+        @eventEmit="execEvent" 
+        :uri="uri" 
+        :UUID="UUID" 
+        :agreeAI="agreeAI"
+      />
     </q-tab-panel>
     <q-tab-panel name="page8">
-      <Page8 @eventEmit="execEvent" :agreeAI="agreeAI"/>
+      <Page8 
+        @eventEmit="execEvent" 
+        :uri="uri" 
+        :UUID="UUID" 
+        :agreeAI="agreeAI"
+      />
     </q-tab-panel>
     <q-tab-panel name="page9">
-      <Page9 @eventEmit="execEvent"/>
+      <Page9 
+        @eventEmit="execEvent" 
+        :uri="uri" 
+        :UUID="UUID" 
+        :condition="condition"
+      />
     </q-tab-panel>
     <q-tab-panel name="page10">
-      <Page10 @eventEmit="execEvent"/>
+      <Page10 
+        @eventEmit="execEvent" 
+        :uri="uri" 
+        :UUID="UUID"
+      />
     </q-tab-panel>
     <q-tab-panel name="page11">
       <Page11 
         @eventEmit="execEvent"
+      />
+    </q-tab-panel>
+    <q-tab-panel name="page12">
+      <Page12 
+        @eventEmit="execEvent"
+        :uri="uri"
+        :UUID="UUID"
         :agreeImmigrant="agreeImmigrant"
         :agreeDefenseCost="agreeDefenseCost"
         :agreeAI="agreeAI"
         :agreeBear="agreeBear"
         :agreeInsect="agreeInsect"
-        :experimentCondition="experimentCondition"
+        :condition="condition"
+        />
+    </q-tab-panel>
+    <q-tab-panel name="page13">
+      <Page13
+        @eventEmit="execEvent"
       />
     </q-tab-panel>
-    <q-tab-panel name="page12">
-      <Page12 @eventEmit="execEvent"/>
+    <q-tab-panel name="page14">
+      <Page14
+        @eventEmit="execEvent"
+      />
+    </q-tab-panel>
+    <q-tab-panel name="page15">
+      <Page15
+        @eventEmit="execEvent"
+      />
     </q-tab-panel>
   </q-tab-panels>
 </template>
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
+import { ref, onMounted, toRefs } from "vue";
 import { useQuasar } from "quasar";
 import forcedEnd from "@/components/forcedEnd.vue";
 import Page1 from "@/components/Page1.vue";
@@ -91,28 +161,37 @@ import Page8 from "@/components/Page8.vue";
 import Page9 from "@/components/Page9.vue";
 import Page10 from "@/components/Page10.vue";
 import Page11 from "@/components/Page11.vue";
+import Page12 from "@/components/Page12.vue";
+import Page13 from "@/components/Page13.vue";
+import Page14 from "@/components/Page14.vue";
+import Page15 from "@/components/Page15.vue";
 
 const $q = useQuasar();
 
 //共通設定
 const progress = ref<number>(0);
 const tab = ref<string>('page1');
+const uri = ref<string>('https://script.google.com/macros/s/AKfycbzEoN9TPGUXjLeS8fUn2rIaoBa0YwEVEqM2rlQ7iOAa2zDndR6NhXjm1dHEf8u44VpC/exec');
+const UUID = ref<string>('');
+
+//実験条件に必要な変数
 const agreeImmigrant = ref<string>('');
 const agreeDefenseCost = ref<string>('');
 const agreeAI = ref<string>('');
 const agreeBear = ref<string>('');
 const agreeInsect = ref<string>('');
-const experimentCondition = ref<number>(0);
+const condition = ref<number>(0);
 
 //ページを読み込んだ際に実験条件をランダムに割り当て(1→態度一致,2→態度不一致)
-experimentCondition.value = Math.random() < 0.5 ? 1 : 2;
-console.log(experimentCondition.value)
+condition.value = Math.random() < 0.5 ? 1 : 2;
+
 
 //子コンポーネントからのデータ受け取り
 const execEvent = (data: any) => {
   tab.value = data.tab;
   progress.value = data.progress;
-  //受け渡しデータが存在している時のみ受け入れる変数(移民受け入れ賛否・AI利用賛否・実験条件)
+  //受け渡しデータが存在している時のみ受け入れる変数(UUID・移民受け入れ賛否・AI利用賛否・実験条件)
+  UUID.value = !data.UUID ? UUID.value :  data.UUID;
   agreeImmigrant.value = !data.agreeImmigrant ? agreeImmigrant.value :  data.agreeImmigrant;
   agreeDefenseCost.value = !data.agreeDefenseCost ? agreeDefenseCost.value :  data.agreeDefenseCost;
   agreeAI.value = !data.agreeAI ? agreeAI.value :  data.agreeAI;

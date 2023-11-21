@@ -157,10 +157,10 @@ const shuffle = (list: any) => {
 };
 
 //親からの受け取りデータ
-const props = defineProps(['agreeImmigrant']);
+const props = defineProps(['agreeImmigrant','uri','UUID']);
 
 //アテンションチェック
-const attentionCheck = ref<string>('ok');
+const attentionCheck = ref<string>('');
 
 //型定義
 interface itemListTypeAttitudeStrength{
@@ -333,6 +333,8 @@ const itemListMoralConviction = ref<Array<itemListTypeMoralConvition>>([
 //次のページへ
 const toPage6 = function(){
   window.scrollTo(0, 0);  
+  const body: string = `immigrantAS=${itemListAttitudeStrength.value.find((e:any) => e.seed === 1)?.answer}&immigrantAI=${itemListAttitudeStrength.value.find((e:any) => e.seed === 2)?.answer}&immigrantAC=${itemListAttitudeStrength.value.find((e:any) => e.seed === 3)?.answer}&immigrantMC1=${itemListMoralConviction.value.find((e:any) => e.seed === 1)?.answer}&immigrantMC2=${itemListMoralConviction.value.find((e:any) => e.seed === 2)?.answer}&immigrantMC3=${itemListMoralConviction.value.find((e:any) => e.seed === 3)?.answer}&immigrantMC4=${itemListMoralConviction.value.find((e:any) => e.seed === 4)?.answer}&attentionCheck=${itemListMoralConviction.value.find((e:any) => e.seed === 5)?.answer}`;
+  postData('page5', body);
   execEmit();
 };
 
@@ -341,16 +343,43 @@ const execEmit = () => {
   itemListMoralConviction.value.forEach((e:any)=>{
     if(e.seed === 5){
       attentionCheck.value = e.answer === '2' ? 'ok' :  'ng';
-    }
+    };
   });
   //アテンションチェック失敗の場合、回答終了
   if(attentionCheck.value === 'ng'){
     emit('eventEmit', { 'tab': 'forcedEnd', 'progress': 1.0});
   //それ以外は次のページへ
   }else{
-    emit('eventEmit', { 'tab': 'page6', 'progress': 0.5})
+    emit('eventEmit', { 'tab': 'page6', 'progress': 0.5});
   }
 }
+
+//データを送信する関数
+const postData = async(route: string, body: string) => {
+  
+  //GASにリクエストを送る
+	const requestOptions: any = {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/x-www-form-urlencoded',
+		},
+		body: `route=${route}&uuid=${props.UUID}&` + body,
+	};
+
+	let result: string = '';
+
+	await fetch(props.uri, requestOptions)
+		.then((res) => {
+      console.log(res.json());
+      result = 'complete';
+    })
+		.catch((err) => {
+      console.log(err);
+      result = 'error';
+    });
+
+  return result;
+};
 
 </script>
 <style lang="scss">
