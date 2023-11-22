@@ -133,7 +133,7 @@ const toPage17 = function(){
 };
 
 const emit = defineEmits(['eventEmit']);
-const execEmit = () => {emit('eventEmit', { 'tab': 'page17', 'progress': 1.0});
+const execEmit = () => {emit('eventEmit', { 'tab': 'page17', 'progress': 0.8});
 }
 
 //データを送信する関数

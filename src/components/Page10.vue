@@ -65,7 +65,7 @@ const toPage11 = function(){
 
 const emit = defineEmits(['eventEmit'])
 const execEmit = () => {
-  emit('eventEmit', { 'tab': 'page11', 'progress': 1.0})
+  emit('eventEmit', { 'tab': 'page11', 'progress': 0.5})
 }
 
 </script>

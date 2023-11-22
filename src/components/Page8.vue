@@ -67,7 +67,7 @@ const toPage9 = function(){
 
 const emit = defineEmits(['eventEmit'])
 const execEmit = () => {
-  emit('eventEmit', { 'tab': 'page9', 'progress': 0.8})
+  emit('eventEmit', { 'tab': 'page9', 'progress': 0.4})
 }
 
 //データを送信する関数

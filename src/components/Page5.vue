@@ -350,7 +350,7 @@ const execEmit = () => {
     emit('eventEmit', { 'tab': 'forcedEnd', 'progress': 1.0});
   //それ以外は次のページへ
   }else{
-    emit('eventEmit', { 'tab': 'page6', 'progress': 0.5});
+    emit('eventEmit', { 'tab': 'page6', 'progress': 0.25});
   }
 }
 

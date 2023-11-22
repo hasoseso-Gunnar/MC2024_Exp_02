@@ -161,7 +161,7 @@ const execEmit = () => {
   });
   emit('eventEmit', { 
     'tab': 'page4', 
-    'progress': 0.3, 
+    'progress': 0.15, 
     'agreeImmigrant' : agreeImmigrant.value, 
     'agreeDefenseCost': agreeDefenseCost.value, 
     'agreeAI' : agreeAI.value,

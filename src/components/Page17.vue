@@ -31,7 +31,7 @@
             label="次のページへ"
             flat
             class="bg-blue-7 text-white"
-            @click="toPage7"
+            @click="toPage18"
         ></q-btn>
     </div>
   </div>
@@ -58,16 +58,16 @@ const checkTextLength = () => {
 };
 
 //次のページへ
-const toPage7 = function(){
+const toPage18 = function(){
   window.scrollTo(0, 0);
   const body: string = `immigrantOEQ=${openEndedQuesiton.value}`;
-  postData('page6', body);  
+  postData('page17', body);  
   execEmit();
 };
 
 const emit = defineEmits(['eventEmit'])
 const execEmit = () => {
-  emit('eventEmit', { 'tab': 'page7', 'progress': 0.3})
+  emit('eventEmit', { 'tab': 'page18', 'progress': 0.85})
 }
 
 //データを送信する関数

@@ -132,7 +132,7 @@ const emit = defineEmits(['eventEmit'])
 const execEmit = () => {
   //実験参加へ同意する場合
   if(radioAgree.value === '1'){
-    emit('eventEmit', { 'tab': 'page2', 'progress': 0.1, 'UUID': UUID.value});
+    emit('eventEmit', { 'tab': 'page2', 'progress': 0.05, 'UUID': UUID.value});
     
   //実験参加へ同意しない場合は強制終了
   }else{

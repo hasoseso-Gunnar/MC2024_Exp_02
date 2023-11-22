@@ -9,7 +9,6 @@
     class="text-teal"
     style="display: none;"
   >
-    <q-tab name="forcedEnd" label="forcedEnd"/>
     <q-tab name="page1" label="Page1"/>
     <q-tab name="page2" label="Page2"/>
     <q-tab name="page3" label="Page3"/>
@@ -26,18 +25,14 @@
     <q-tab name="page14" label="Page14"/>
     <q-tab name="page15" label="Page15"/>
     <q-tab name="page16" label="Page16"/>
+    <q-tab name="page17" label="Page17"/>
+    <q-tab name="page18" label="Page18"/>
+    <q-tab name="forcedEnd" label="forcedEnd"/>
   </q-tabs>
   <q-tab-panels
     v-model="tab"
     animated
   >
-    <q-tab-panel name="forcedEnd">
-      <forcedEnd 
-        @eventEmit="execEvent" 
-        :uri="uri"
-        :UUID="UUID"
-      />
-    </q-tab-panel>
     <q-tab-panel name="page1">
       <Page1 
         @eventEmit="execEvent" 
@@ -154,6 +149,27 @@
         :UUID="UUID"
       />
     </q-tab-panel>
+    <q-tab-panel name="page17">
+      <Page17
+        @eventEmit="execEvent" 
+        :uri="uri" 
+        :UUID="UUID"
+      />
+    </q-tab-panel>
+    <q-tab-panel name="page18">
+      <Page18
+        @eventEmit="execEvent" 
+        :uri="uri" 
+        :UUID="UUID"
+      />
+    </q-tab-panel>
+    <q-tab-panel name="forcedEnd">
+      <forcedEnd 
+        @eventEmit="execEvent" 
+        :uri="uri"
+        :UUID="UUID"
+      />
+    </q-tab-panel>
   </q-tab-panels>
 </template>
 <script setup lang="ts">
@@ -176,7 +192,8 @@ import Page13 from "@/components/Page13.vue";
 import Page14 from "@/components/Page14.vue";
 import Page15 from "@/components/Page15.vue";
 import Page16 from "@/components/Page16.vue";
-
+import Page17 from "@/components/Page17.vue";
+import Page18 from "@/components/Page18.vue";
 
 
 const $q = useQuasar();
@@ -195,7 +212,7 @@ const agreeBear = ref<string>('');
 const agreeInsect = ref<string>('');
 const condition = ref<number>(0);
 
-//ページを読み込んだ際に実験条件をランダムに割り当て(1→態度一致,2→態度不一致)
+//実験を開始した際に実験条件をランダムに割り当て(1→態度一致,2→態度不一致)
 condition.value = Math.random() < 0.5 ? 1 : 2;
 
 
