@@ -11,13 +11,13 @@
       <p class="col-1 text-subtitle1 text-black"></p>
       <p class="col-1 text-subtitle1 text-black">① 32</p>
       <p class="col-1 text-subtitle1 text-black">② 39</p>
-      <p class="col-1 text-subtitle1 text-red-9">③ 47</p>
+      <p class="col-1 text-subtitle1 text-black">③ 47</p>
       <p class="col-1 text-subtitle1 text-black">④ 56</p>
     </div>
     <br>
 
     <p class="text-subtitle1 text-black">クイズに1問正解するたびに1点加算されますので、あなた1人で最大5点獲得できます。</p>
-    <p class="text-subtitle1 text-black">このクイズをパートナーも同時に行うため、お互いの<span class="text-bold">最大合計得点は10点</span>となります。できるだけ高得点を狙いましょう。</p>
+    <p class="text-subtitle1 text-black">このクイズをパートナーも同時に行うため、お互いの<span class="text-bold">最大合計スコアは10点</span>となります。できるだけ高得点を狙いましょう。</p>
     <p class="text-subtitle1 text-black">なお、実際の協力課題を行う前に<span class="text-bold">1問練習用のクイズを行います</span>ので、そこで再度ルールと手順を確認してください。</p>
     <div style="height: 60px;"></div>
     <p class="text-subtitle1 text-black">また、本調査では相手との遠隔でのコミュニケーションを通して、どれだけ課題の結果が変化するかを検証しています。</p>

@@ -15,8 +15,6 @@ import { useQuasar } from 'quasar'
 const $q = useQuasar();
 $q.dark.set(false);
 
-console.log($q.dark.isActive)
-
 const dialog = ref<boolean>(false)
 const position = ref<any>('left')
 

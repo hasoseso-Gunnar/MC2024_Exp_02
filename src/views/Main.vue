@@ -25,6 +25,7 @@
     <q-tab name="page13" label="Page13"/>
     <q-tab name="page14" label="Page14"/>
     <q-tab name="page15" label="Page15"/>
+    <q-tab name="page16" label="Page16"/>
   </q-tabs>
   <q-tab-panels
     v-model="tab"
@@ -137,11 +138,20 @@
     <q-tab-panel name="page14">
       <Page14
         @eventEmit="execEvent"
+        :uri="uri" 
+        :UUID="UUID"
       />
     </q-tab-panel>
     <q-tab-panel name="page15">
       <Page15
         @eventEmit="execEvent"
+      />
+    </q-tab-panel>
+    <q-tab-panel name="page16">
+      <Page16
+        @eventEmit="execEvent" 
+        :uri="uri" 
+        :UUID="UUID"
       />
     </q-tab-panel>
   </q-tab-panels>
@@ -165,6 +175,9 @@ import Page12 from "@/components/Page12.vue";
 import Page13 from "@/components/Page13.vue";
 import Page14 from "@/components/Page14.vue";
 import Page15 from "@/components/Page15.vue";
+import Page16 from "@/components/Page16.vue";
+
+
 
 const $q = useQuasar();
 

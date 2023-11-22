@@ -373,10 +373,23 @@ const postData = async(route: string, body: string) => {
       console.log(res.json());
       result = 'complete';
     })
-		.catch((err) => {
-      console.log(err);
-      result = 'error';
-    });
+		.catch(async(err) => {
+
+      //エラー用リクエスト
+      const requestOptionsError: any = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `route=error&uuid=${props.UUID}&dateTime=${new Date().toISOString().slice(0, 19).replace('T', ' ')}&error=${err}&page=${route}&data=${body}`,
+      };
+
+      await fetch(props.uri, requestOptionsError)
+        .then((res) => {
+          console.log(res.json());
+          result = 'error';
+        });
+      });
 
   return result;
 };

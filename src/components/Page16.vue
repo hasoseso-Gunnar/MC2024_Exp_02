@@ -1,10 +1,11 @@
 <template>
   <div class="q-pa-md">
-    <p class="text-subtitle1 text-black">次に<span class="text-bold">さまざまな物事についてのあなたの賛否</span>をお尋ねします。</p>
-    <br>
+    <p class="text-subtitle1 text-black">以下に続けて各質問を読み、<span class="text-bold text-red-9">正しい内容</span>を選択してください。</p>
+    <div style="height: 40px;"></div>
+    <p class="text-subtitle1 text-black">『先ほど一緒に<span class="text-red-9 text-bold">協力課題を行ったパートナー</span>は・・・』</p>
+    <div style="height: 40px;"></div>
     <div v-for="(prop, i) in itemList">
-      <p class="text-subtitle1 text-black" style="margin-bottom: 0px;">{{ prop.question1 }}</p>
-      <p class="text-subtitle1 text-black" v-html="prop.question2"></p>
+      <p class="text-subtitle1 text-black" style="margin-bottom: 0px;">{{ prop.question }}</p>
       <br/>
       <div class="row q-mb-xl">
         <div class="col-1"></div>
@@ -42,7 +43,7 @@
             label="次のページへ"
             flat
             class="bg-blue-7 text-white"
-            @click="toPage4"
+            @click="toPage17"
         ></q-btn>
     </div>
   </div>
@@ -66,8 +67,7 @@ const shuffle = (list: any) => {
 //型定義
 interface itemListType{
   seed: number,
-  question1: string,
-  question2: string,
+  question: string,
   option1: string,
   option2: string,
   value1: string,
@@ -79,8 +79,7 @@ interface itemListType{
 const itemList = ref<Array<itemListType>>([
   {
     seed: 1,
-    question1: '近年、少子化に伴う労働人口の増加の解決手段として、日本への移民の積極的受け入れが議論されています。',
-    question2: 'あなたは、<span class="text-bold">日本での移民の積極的な受け入れ</span>について、賛成ですか？反対ですか？',
+    question: '日本での移民の積極的な受け入れに賛成でしたか？反対でしたか？',
     option1: '賛成',
     option2: '反対',
     value1: '1',
@@ -89,8 +88,7 @@ const itemList = ref<Array<itemListType>>([
   },
   {
     seed: 2,
-    question1: '現在、政府は物価高に対応するために所得税の減税や非課税世帯への給付を行う一方、防衛費の財源確保のために将来的に増税を行うと公表しています。',
-    question2: 'あなたは、<span class="text-bold">防衛費の財源確保のために将来的に増税を行う</span>について、賛成ですか？反対ですか？',
+    question: '防衛費の財源確保のための将来的な増税に賛成でしたか？反対でしたか？',
     option1: '賛成',
     option2: '反対',
     value1: '1',
@@ -99,8 +97,7 @@ const itemList = ref<Array<itemListType>>([
   },
   {
     seed: 3,
-    question1: '近年、文章や画像などの自動生成を行う生成系AIの技術が目覚ましく発展しています。',
-    question2: 'あなたは、<span class="text-bold">学問やビジネスなどでのAIの積極的な利用</span>について、賛成ですか？反対ですか？',
+    question: 'AIの積極的な利用に賛成でしたか？反対でしたか？',
     option1: '賛成',
     option2: '反対',
     value1: '1',
@@ -109,8 +106,7 @@ const itemList = ref<Array<itemListType>>([
   },
   {
     seed: 4,
-    question1: '現在、日本各地でクマの住宅街での出没が社会問題となっており、実際に人が襲われるケースなどが出てきています。',
-    question2: 'あなたは、<span class="text-bold">住宅街に出没したクマを例外なく駆除すること</span>について、賛成ですか？反対ですか？',
+    question: '住宅街に出没したクマの駆除に賛成でしたか？反対でしたか？',
     option1: '賛成',
     option2: '反対',
     value1: '1',
@@ -119,8 +115,7 @@ const itemList = ref<Array<itemListType>>([
   },
   {
     seed: 5,
-    question1: '近年、持続可能性などの観点から肉魚に代わるタンパク源として昆虫食が注目されています。',
-    question2: 'あなたは、<span class="text-bold">現在の食生活に昆虫食を取り入れること</span>について、賛成ですか？反対ですか？',
+    question: '現在の食生活に昆虫食を取り入れることに賛成でしたか？反対でしたか？',
     option1: '賛成',
     option2: '反対',
     value1: '1',
@@ -129,45 +124,16 @@ const itemList = ref<Array<itemListType>>([
   },
 ]);
 
-//プロフィール情報提示などで使用する変数
-const agreeImmigrant = ref<string>('');
-const agreeDefenseCost = ref<string>('');
-const agreeAI = ref<string>('');
-const agreeBear = ref<string>('');
-const agreeInsect = ref<string>('');
-
 //次のページへ
-const toPage4 = function(){
+const toPage17 = function(){
   window.scrollTo(0, 0);  
-  const body: string = `agree1=${itemList.value.find((e:any) => e.seed === 1)?.answer}&agree2=${itemList.value.find((e:any) => e.seed === 2)?.answer}&agree3=${itemList.value.find((e:any) => e.seed === 3)?.answer}&agree4=${itemList.value.find((e:any) => e.seed === 4)?.answer}&agree5=${itemList.value.find((e:any) => e.seed === 5)?.answer}`;
-  postData('page3', body);
+  const body: string = `manipulationCheck1=${itemList.value.find((e:any) => e.seed === 1)?.answer}&manipulationCheck2=${itemList.value.find((e:any) => e.seed === 2)?.answer}&manipulationCheck3=${itemList.value.find((e:any) => e.seed === 3)?.answer}&manipulationCheck4=${itemList.value.find((e:any) => e.seed === 4)?.answer}&manipulationCheck5=${itemList.value.find((e:any) => e.seed === 5)?.answer}`;
+  postData('page16', body);
   execEmit();
 };
 
-const emit = defineEmits(['eventEmit'])
-const execEmit = () => {
-  itemList.value.forEach((e:any)=>{
-    if(e.seed === 1){
-      agreeImmigrant.value = e.answer === '1' ? '賛成' :  '反対';
-    }else if(e.seed === 2){
-      agreeDefenseCost.value = e.answer === '1' ? '賛成' :  '反対';
-    }else if(e.seed === 3){
-      agreeAI.value = e.answer === '1' ? '賛成' :  '反対';
-    }else if(e.seed === 4){
-      agreeBear.value = e.answer === '1' ? '賛成' :  '反対';
-    }else if(e.seed === 5){
-      agreeInsect.value = e.answer === '1' ? '賛成' :  '反対';
-    }
-  });
-  emit('eventEmit', { 
-    'tab': 'page4', 
-    'progress': 0.3, 
-    'agreeImmigrant' : agreeImmigrant.value, 
-    'agreeDefenseCost': agreeDefenseCost.value, 
-    'agreeAI' : agreeAI.value,
-    'agreeBear' : agreeBear.value,
-    'agreeInsect' : agreeInsect.value,
-  });
+const emit = defineEmits(['eventEmit']);
+const execEmit = () => {emit('eventEmit', { 'tab': 'page17', 'progress': 1.0});
 }
 
 //データを送信する関数
