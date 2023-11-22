@@ -16,6 +16,9 @@
 <script setup  lang="ts">
 import { ref, onMounted, defineProps, withDefaults } from "vue";
 
+//親からの受け取りデータ
+const props = defineProps(['uri','UUID']);
+
 //次のページへ
 const toPage5 = function(){
   window.scrollTo(0, 0);  

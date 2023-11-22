@@ -1,8 +1,8 @@
 <template>
   <div class="q-pa-md">
-    <p class="text-subtitle1 text-black">これが、先ほどの質問項目でのパートナーの回答内容です。</p>
+    <p class="text-subtitle1 text-black">先ほどの質問項目でのパートナーの回答内容です。</p>
     <p class="text-subtitle1 text-black">この後の課題を円滑に行うために、<span class="text-bold">よく記憶してください。</span></p>
-    <p>※このページは20秒経過すると次のステップへ進めるようになります。</p>
+    <p>※このページは20秒経過すると、ページ下部のボタンから次のステップへ進めるようになります。</p>
     <div style="height: 40px;"></div>
     <p class="text-h6 text-black text-bold" style="margin-left: 20%;">【パートナーの情報】</p>
     <!-- プロフィール情報 -->
@@ -137,7 +137,7 @@ onMounted(async()=>{
 const twentySecondsPassed = ref<boolean>(false);
 
 //親からの受け取りデータ
-const props = defineProps(['agreeImmigrant','agreeDefenseCost','agreeAI','agreeBear','agreeInsect','condition']);
+const props = defineProps(['uri','UUID','agreeImmigrant','agreeDefenseCost','agreeAI','agreeBear','agreeInsect','condition']);
 
 //次のページへ
 const toPage13 = function(){
