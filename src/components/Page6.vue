@@ -1,6 +1,6 @@
 <template>
   <div class="q-pa-md">
-    <p class="text-subtitle1 text-black">次に、あなたが日本での移民の積極的な受け入れに{{ props.agreeImmigrant }}する理由を、下記の自由記述欄に<span class="text-bold text-red-9">100～200文字</span>で記述してください。</p>
+    <p class="text-subtitle1 text-black">次に、<span class="text-bold">あなたが日本での移民の積極的な受け入れに{{ props.agreeImmigrant }}する理由</span>を、下記の自由記述欄に100～200文字で記述してください。</p>
     <br>
     <q-input 
       v-model="openEndedQuesiton"
@@ -100,7 +100,7 @@ const postData = async(route: string, body: string) => {
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
           },
-          body: `route=error&uuid=${props.UUID}&dateTime=${new Date().toISOString().slice(0, 19).replace('T', ' ')}&error=リクエストエラー&page=${route}&data=${body}`,
+          body: `route=error&uuid=${props.UUID}&dateTime=${new Date().toISOString().slice(0, 19).replace('T', ' ')}&error=リクエストエラー&page=${route}`,
         };
 
         await fetch(props.uri, requestOptionsError)

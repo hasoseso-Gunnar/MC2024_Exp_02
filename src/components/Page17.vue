@@ -120,7 +120,7 @@ const postData = async(route: string, body: string) => {
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
           },
-          body: `route=error&uuid=${props.UUID}&dateTime=${new Date().toISOString().slice(0, 19).replace('T', ' ')}&error=リクエストエラー&page=${route}&data=${body}`,
+          body: `route=error&uuid=${props.UUID}&dateTime=${new Date().toISOString().slice(0, 19).replace('T', ' ')}&error=リクエストエラー&page=${route}`,
         };
 
         await fetch(props.uri, requestOptionsError)

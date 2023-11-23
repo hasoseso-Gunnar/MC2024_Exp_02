@@ -79,7 +79,7 @@ interface itemListType{
 const itemList = ref<Array<itemListType>>([
   {
     seed: 1,
-    question: '日本での移民の積極的な受け入れに賛成でしたか？反対でしたか？',
+    question: '<span class="text-bold">日本での移民の積極的な受け入れ</span>に賛成でしたか？反対でしたか？',
     option1: '賛成',
     option2: '反対',
     value1: '1',
@@ -88,7 +88,7 @@ const itemList = ref<Array<itemListType>>([
   },
   {
     seed: 2,
-    question: '防衛費の財源確保のための将来的な増税に賛成でしたか？反対でしたか？',
+    question: '<span class="text-bold">防衛費の財源確保のための将来的な増税</span>に賛成でしたか？反対でしたか？',
     option1: '賛成',
     option2: '反対',
     value1: '1',
@@ -97,7 +97,7 @@ const itemList = ref<Array<itemListType>>([
   },
   {
     seed: 3,
-    question: 'AIの積極的な利用に賛成でしたか？反対でしたか？',
+    question: '<span class="text-bold">AIの積極的な利用</span>に賛成でしたか？反対でしたか？',
     option1: '賛成',
     option2: '反対',
     value1: '1',
@@ -106,7 +106,7 @@ const itemList = ref<Array<itemListType>>([
   },
   {
     seed: 4,
-    question: '住宅街に出没したクマの駆除に賛成でしたか？反対でしたか？',
+    question: '<span class="text-bold">住宅街に出没したクマの駆除</span>に賛成でしたか？反対でしたか？',
     option1: '賛成',
     option2: '反対',
     value1: '1',
@@ -115,7 +115,7 @@ const itemList = ref<Array<itemListType>>([
   },
   {
     seed: 5,
-    question: '現在の食生活に昆虫食を取り入れることに賛成でしたか？反対でしたか？',
+    question: '<span class="text-bold">現在の食生活に昆虫食を取り入れること</span>に賛成でしたか？反対でしたか？',
     option1: '賛成',
     option2: '反対',
     value1: '1',
@@ -166,7 +166,7 @@ const postData = async(route: string, body: string) => {
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
           },
-          body: `route=error&uuid=${props.UUID}&dateTime=${new Date().toISOString().slice(0, 19).replace('T', ' ')}&error=リクエストエラー&page=${route}&data=${body}`,
+          body: `route=error&uuid=${props.UUID}&dateTime=${new Date().toISOString().slice(0, 19).replace('T', ' ')}&error=リクエストエラー&page=${route}`,
         };
 
         await fetch(props.uri, requestOptionsError)

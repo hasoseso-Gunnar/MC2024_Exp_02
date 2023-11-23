@@ -1,15 +1,15 @@
 <template>
   <div class="q-pa-md">
-    <p class="text-subtitle1 text-black">次に<span class="text-bold">さまざまな物事についてのあなたの賛否</span>をお尋ねします。</p>
+    <p class="text-subtitle1 text-black">社会的・経済的・政治的な問題に関する考え方の違いについて、「保守的－リベラル」と区分されることがあります。</p>
+    <p class="text-subtitle1 text-black">以下の質問を読んで、あなた自身の立場に最も近い数字を選んでください。</p>
     <br>
     <div v-for="(prop, i) in itemList">
-      <p class="text-subtitle1 text-black" style="margin-bottom: 0px;">{{ prop.question1 }}</p>
+      <p class="text-subtitle1 text-black" v-html="prop.question1"></p>
       <p class="text-subtitle1 text-black" v-html="prop.question2"></p>
       <br/>
       <div class="row q-mb-xl">
-        <div class="col-1"></div>
-        <div class="col-2" align="center" :style="prop.answer === '1' ? 'background-color: #CCEBFF;': ''">
-          <p>{{ prop.option1 }}</p>
+        <div class="seven-options" align="center" :style="prop.answer === '1' ? 'background-color: #CCEBFF;': ''">
+          <div v-html="prop.option1"></div>
           <q-radio 
             v-model="prop.answer"
             checked-icon="task_alt" 
@@ -17,13 +17,58 @@
             :val="prop.value1"
           />
         </div>
-        <div class="col-2" align="center" :style="prop.answer === '2' ? 'background-color: #CCEBFF;': ''">
-          <p>{{ prop.option2 }}</p>
+        <div class="seven-options" align="center" :style="prop.answer === '2' ? 'background-color: #CCEBFF;': ''">
+          <div v-html="prop.option2"></div>
           <q-radio 
             v-model="prop.answer"
             checked-icon="task_alt" 
             unchecked-icon="panorama_fish_eye" 
             :val="prop.value2"
+          />
+        </div>
+        <div class="seven-options" align="center" :style="prop.answer === '3' ? 'background-color: #CCEBFF;': ''">
+          <div v-html="prop.option3"></div>
+          <q-radio 
+            v-model="prop.answer"
+            checked-icon="task_alt" 
+            unchecked-icon="panorama_fish_eye" 
+            :val="prop.value3"
+          />
+        </div>
+        <div class="seven-options" align="center" :style="prop.answer === '4' ? 'background-color: #CCEBFF;': ''">
+          <div v-html="prop.option4"></div>
+          <q-radio 
+            v-model="prop.answer"
+            checked-icon="task_alt" 
+            unchecked-icon="panorama_fish_eye" 
+            :val="prop.value4"
+          />
+        </div>
+        <div class="seven-options" align="center" :style="prop.answer === '5' ? 'background-color: #CCEBFF;': ''">
+          <div v-html="prop.option5"></div>
+          <q-radio 
+            v-model="prop.answer"
+            checked-icon="task_alt" 
+            unchecked-icon="panorama_fish_eye" 
+            :val="prop.value5"
+          />
+        </div>
+        <div class="seven-options" align="center" :style="prop.answer === '6' ? 'background-color: #CCEBFF;': ''">
+          <div v-html="prop.option6"></div>
+          <q-radio 
+            v-model="prop.answer"
+            checked-icon="task_alt" 
+            unchecked-icon="panorama_fish_eye" 
+            :val="prop.value6"
+          />
+        </div>
+        <div class="seven-options" align="center" :style="prop.answer === '7' ? 'background-color: #CCEBFF;': ''">
+          <div v-html="prop.option7"></div>
+          <q-radio 
+            v-model="prop.answer"
+            checked-icon="task_alt" 
+            unchecked-icon="panorama_fish_eye" 
+            :val="prop.value7"
           />
         </div>
       </div>
@@ -32,7 +77,7 @@
   <div class="q-pa-md q-mt-xl">
     <div align="right">
         <q-btn 
-            v-if="itemList[0].answer === '' || itemList[1].answer === '' || itemList[2].answer === '' || itemList[3].answer === '' || itemList[4].answer === ''"
+            v-if="itemList[0].answer === '' || itemList[1].answer === '' || itemList[2].answer === ''"
             label="次のページへ"
             flat
             class="bg-grey text-white"
@@ -70,8 +115,18 @@ interface itemListType{
   question2: string,
   option1: string,
   option2: string,
+  option3: string,
+  option4: string,
+  option5: string,
+  option6: string,
+  option7: string,
   value1: string,
   value2: string,
+  value3: string,
+  value4: string,
+  value5: string,
+  value6: string,
+  value7: string,
   answer: string,
 }
 
@@ -79,60 +134,70 @@ interface itemListType{
 const itemList = ref<Array<itemListType>>([
   {
     seed: 1,
-    question1: '近年、少子化に伴う労働人口の増加の解決手段として、日本への移民の積極的受け入れが議論されています。',
-    question2: 'あなたは、<span class="text-bold">日本での移民の積極的な受け入れ</span>について、賛成ですか？反対ですか？',
-    option1: '賛成',
-    option2: '反対',
+    question1: '<span class="text-bold text-underline">環境や人権などの社会的なことがらについて</span>',
+    question2: '<span class="text-bold">「保守的」</span>を<span class="text-underline"/>伝統的な価値を重視し急激な変革よりも安定を望む立場</span>、<span class="text-bold">「リベラル」</span>を<span class="text-underline"/>現状維持よりも改革を重視し弱者の地位向上を志向する立場</span>と定義するなら、あなたはどちらかというと、社会的に保守的ですか？リベラルですか？',
+    option1: 'かなり<br/>リベラル<br/><span class="option-value">1</span>',
+    option2: '　<br/>リベラル<br/><span class="option-value">2</span>',
+    option3: 'やや<br/>リベラル<br/><span class="option-value">3</span>',
+    option4: '<br/>中立<br/><span class="option-value">4</span>',
+    option5: 'やや<br/>保守的<br/><span class="option-value">5</span>',
+    option6: '　<br/>保守的<br/><span class="option-value">6</span>',
+    option7: 'かなり<br/>保守的<br/><span class="option-value">7</span>',
     value1: '1',
     value2: '2',
+    value3: '3',
+    value4: '4',
+    value5: '5',
+    value6: '6',
+    value7: '7',
     answer: '',
   },
   {
     seed: 2,
-    question1: '現在、政府は物価高に対応するために所得税の減税や非課税世帯への給付を行う一方、防衛費の財源確保のために将来的に増税を行うと公表しています。',
-    question2: 'あなたは、<span class="text-bold">防衛費の財源確保のために将来的に増税を行う</span>について、賛成ですか？反対ですか？',
-    option1: '賛成',
-    option2: '反対',
+    question1: '<span class="text-bold text-underline">経済的なことがらについて</span>',
+    question2: '<span class="text-bold">「保守的」</span>を<span class="text-underline"/>競争原理に基づく自由な経済活動を望む立場</span>、<span class="text-bold">「リベラル」</span>を<span class="text-underline"/>政府の規制等に基づく平等な富の分配を望む立場</span>と定義するなら、あなたはどちらかというと、経済的に保守的ですか？リベラルですか？',
+    option1: 'かなり<br/>リベラル<br/><span class="option-value">1</span>',
+    option2: '　<br/>リベラル<br/><span class="option-value">2</span>',
+    option3: 'やや<br/>リベラル<br/><span class="option-value">3</span>',
+    option4: '<br/>中立<br/><span class="option-value">4</span>',
+    option5: 'やや<br/>保守的<br/><span class="option-value">5</span>',
+    option6: '　<br/>保守的<br/><span class="option-value">6</span>',
+    option7: 'かなり<br/>保守的<br/><span class="option-value">7</span>',
     value1: '1',
     value2: '2',
+    value3: '3',
+    value4: '4',
+    value5: '5',
+    value6: '6',
+    value7: '7',
     answer: '',
   },
   {
     seed: 3,
-    question1: '近年、文章や画像などの自動生成を行う生成系AIの技術が目覚ましく発展しています。',
-    question2: 'あなたは、<span class="text-bold">学問やビジネスなどでのAIの積極的な利用</span>について、賛成ですか？反対ですか？',
-    option1: '賛成',
-    option2: '反対',
+    question1: '<span class="text-bold text-underline">政治的な志向について</span>',
+    question2: '<span class="text-bold">「保守的」</span>を<span class="text-underline"/>社会の制度を作ったり政治力を用いたりする目的が、安定した社会を築くためだと考える立場</span>、<span class="text-bold">「リベラル」</span>をそれらが<span class="text-underline"/>社会の改革のためにあると考える立場</span>と定義するなら、あなたはどちらかというと、政治的に保守的ですか？リベラルですか？',
+    option1: 'かなり<br/>リベラル<br/><span class="option-value">1</span>',
+    option2: '　<br/>リベラル<br/><span class="option-value">2</span>',
+    option3: 'やや<br/>リベラル<br/><span class="option-value">3</span>',
+    option4: '<br/>中立<br/><span class="option-value">4</span>',
+    option5: 'やや<br/>保守的<br/><span class="option-value">5</span>',
+    option6: '　<br/>保守的<br/><span class="option-value">6</span>',
+    option7: 'かなり<br/>保守的<br/><span class="option-value">7</span>',
     value1: '1',
     value2: '2',
+    value3: '3',
+    value4: '4',
+    value5: '5',
+    value6: '6',
+    value7: '7',
     answer: '',
-  },
-  {
-    seed: 4,
-    question1: '現在、日本各地でクマの住宅街での出没が社会問題となっており、実際に人が襲われるケースなどが出てきています。',
-    question2: 'あなたは、<span class="text-bold">住宅街に出没したクマを例外なく駆除すること</span>について、賛成ですか？反対ですか？',
-    option1: '賛成',
-    option2: '反対',
-    value1: '1',
-    value2: '2',
-    answer: '',
-  },
-  {
-    seed: 5,
-    question1: '近年、持続可能性などの観点から肉魚に代わるタンパク源として昆虫食が注目されています。',
-    question2: 'あなたは、<span class="text-bold">現在の食生活に昆虫食を取り入れること</span>について、賛成ですか？反対ですか？',
-    option1: '賛成',
-    option2: '反対',
-    value1: '1',
-    value2: '2',
-    answer: '',
-  },
+  }
 ]);
 
 //次のページへ
 const toPage19 = function(){
   window.scrollTo(0, 0);  
-  const body: string = `agree1=${itemList.value.find((e:any) => e.seed === 1)?.answer}&agree2=${itemList.value.find((e:any) => e.seed === 2)?.answer}&agree3=${itemList.value.find((e:any) => e.seed === 3)?.answer}&agree4=${itemList.value.find((e:any) => e.seed === 4)?.answer}&agree5=${itemList.value.find((e:any) => e.seed === 5)?.answer}`;
+  const body: string = `socialIdeology=${itemList.value.find((e:any) => e.seed === 1)?.answer}&economicIdeology=${itemList.value.find((e:any) => e.seed === 2)?.answer}&politicalIdeology=${itemList.value.find((e:any) => e.seed === 3)?.answer}`;
   postData('page18', body);
   execEmit();
 };
@@ -172,7 +237,7 @@ const postData = async(route: string, body: string) => {
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
           },
-          body: `route=error&uuid=${props.UUID}&dateTime=${new Date().toISOString().slice(0, 19).replace('T', ' ')}&error=リクエストエラー&page=${route}&data=${body}`,
+          body: `route=error&uuid=${props.UUID}&dateTime=${new Date().toISOString().slice(0, 19).replace('T', ' ')}&error=リクエストエラー&page=${route}`,
         };
 
         await fetch(props.uri, requestOptionsError)
@@ -205,5 +270,10 @@ const postData = async(route: string, body: string) => {
 
 </script>
 <style lang="scss">
-
+div.seven-options{
+  width: calc(100% / 7);
+}
+span.text-underline{
+  text-decoration: underline;
+}
 </style>

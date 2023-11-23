@@ -43,13 +43,14 @@
   <br/>
   <p class="description text-red-9 text-bold">③本調査では、途中で音が出る箇所がありますので、必ず端末のミュートを解除してください。</p>
   <p class="description">※イヤホンやヘッドホンを装着するか、周りに音を聞かれてもよい環境での回答を推奨します。</p>
+  <p class="description">※また、音楽を聞きながらの回答も控えてください。回答に支障が出る場合がございます。</p>
   <br/>
   <p class="title">調査実施機関：</p>
   <p class="description">名古屋大学 大学院情報学研究科</p>
   <p class="description">社会心理学研究室</p>
   <br/>
   <br/>
-  <p class="description" style="font-size: 19px;">あなたは上記の説明を理解し，本研究への参加に同意しますか。</p>
+  <p class="description" style="font-size: 19px;">あなたは上記の説明を理解し、本研究への参加に同意しますか。</p>
   <br/>
   <div class="row">
     <div class="col-4" align="center" :style="radioAgree === '1' ? 'background-color: #CCEBFF;': ''">
@@ -73,8 +74,7 @@
       />
     </div>
   </div>
-  <div class="row q-mt-xl">
-    <div class="col-6"></div>
+  <div class="q-mt-xl" align="right">
       <q-btn 
         v-if="radioAgree === ''"
         label="次のページへ"

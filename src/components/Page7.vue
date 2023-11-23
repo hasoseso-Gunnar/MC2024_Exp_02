@@ -253,7 +253,7 @@ const itemListAttitudeStrength = ref<Array<itemListTypeAttitudeStrength>>([
 const itemListMoralConviction = ref<Array<itemListTypeMoralConvition>>([
   {
     seed: 1,
-    question: 'あなたが根底に持っている道徳的な信念や信条を，どのくらい反映していますか？',
+    question: 'あなたが根底に持っている道徳的な信念や信条を、どのくらい反映していますか？',
     option1: 'まったく<br/>反映していない<br/><span class="option-value">1</span>',
     option2: '少し<br/>反映している<br/><span class="option-value">2</span>',
     option3: 'ある程度<br/>反映している<br/><span class="option-value">3</span>',
@@ -268,7 +268,7 @@ const itemListMoralConviction = ref<Array<itemListTypeMoralConvition>>([
   },
   {
     seed: 2,
-    question: '基本的な善悪についての，あなたの考え方と，どのくらい関係していますか？',
+    question: '基本的な善悪についての、あなたの考え方と、どのくらい関係していますか？',
     option1: 'まったく<br/>関係していない<br/><span class="option-value">1</span>',
     option2: '少し<br/>関係している<br/><span class="option-value">2</span>',
     option3: 'ある程度<br/>関係している<br/><span class="option-value">3</span>',
@@ -283,7 +283,7 @@ const itemListMoralConviction = ref<Array<itemListTypeMoralConvition>>([
   },
   {
     seed: 3,
-    question: 'どのくらい，道徳的な原則に基づくものですか？',
+    question: 'どのくらい、道徳的な原則に基づくものですか？',
     option1: 'まったく<br/>基づかない<br/><span class="option-value">1</span>',
     option2: '少し<br/>基づく<br/><span class="option-value">2</span>',
     option3: 'ある程度<br/>基づく<br/><span class="option-value">3</span>',
@@ -298,7 +298,7 @@ const itemListMoralConviction = ref<Array<itemListTypeMoralConvition>>([
   },
   {
     seed: 4,
-    question: 'どのくらい，道徳的なスタンスを表していますか？',
+    question: 'どのくらい、道徳的なスタンスを表していますか？',
     option1: 'まったく<br/>表していない<br/><span class="option-value">1</span>',
     option2: '少し<br/>表している<br/><span class="option-value">2</span>',
     option3: 'ある程度<br/>表している<br/><span class="option-value">3</span>',
@@ -356,7 +356,7 @@ const postData = async(route: string, body: string) => {
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
           },
-          body: `route=error&uuid=${props.UUID}&dateTime=${new Date().toISOString().slice(0, 19).replace('T', ' ')}&error=リクエストエラー&page=${route}&data=${body}`,
+          body: `route=error&uuid=${props.UUID}&dateTime=${new Date().toISOString().slice(0, 19).replace('T', ' ')}&error=リクエストエラー&page=${route}`,
         };
 
         await fetch(props.uri, requestOptionsError)

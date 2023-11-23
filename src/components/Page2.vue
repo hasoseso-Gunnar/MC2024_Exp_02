@@ -1,6 +1,6 @@
 <template>
   <div class="q-pa-md">
-    <p class="text-subtitle1 text-black">最初に，あなた自身のことについて伺います。</p>
+    <p class="text-subtitle1 text-black">最初に、あなた自身のことについて伺います。</p>
     <br>
     <p class="text-subtitle1 text-black">1. あなたの<span class="text-bold">性別</span>について回答してください。</p>
     <q-select 
@@ -164,7 +164,7 @@ const postData = async(route: string, body: string) => {
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
           },
-          body: `route=error&uuid=${props.UUID}&dateTime=${new Date().toISOString().slice(0, 19).replace('T', ' ')}&error=リクエストエラー&page=${route}&data=${body}`,
+          body: `route=error&uuid=${props.UUID}&dateTime=${new Date().toISOString().slice(0, 19).replace('T', ' ')}&error=リクエストエラー&page=${route}`,
         };
 
         await fetch(props.uri, requestOptionsError)
