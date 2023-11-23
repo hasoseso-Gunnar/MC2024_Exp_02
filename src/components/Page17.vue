@@ -1,9 +1,7 @@
 <template>
   <div class="q-pa-md">
     <p class="text-subtitle1 text-black">以下の文章は、あなたと同様にパートナーが自由記述を行った際の文章をランダムにピックアップしたものです。</p>
-    <p class="text-subtitle1 text-black">以下の文章を読み、自由記述欄に<span class="text-bold">『この文章にもし返信するとしたら何を伝えるか』</span>を100～200文字で記述してください。</p>
-    <p class="text-subtitle1 text-black">なお、あなたがここで記述した内容は、<span class="text-bold">パートナーに知られることは決してありません。</span></p>
-    <div style="height: 40px;"></div>
+    <div style="height: 30px;"></div>
     <q-card
       dense
       flat 
@@ -20,6 +18,9 @@
         日本は今、自国民のみの力によって少子化を解決できない段階まで来ています。このような状況を打破するために、外国から労働力を招き入れることは非常に合理的だと思います。治安の悪化や不法入国者の増加などが懸念されていますが、それは厳格な入国制限などによって解決できる問題で、日本の存続の危機という問題に比べれば些細な問題だと思います。
       </p>
     </q-card>
+    <div style="height: 50px;"></div>
+    <p class="text-subtitle1 text-black">以上の文章を読み、自由記述欄に<span class="text-bold">『この文章にもし返信するとしたら何を伝えるか』</span>を100～200文字で記述してください。</p>
+    <p class="text-subtitle1 text-black">なお、あなたがここで記述した内容は、<span class="text-bold text-red-9">パートナーに知られることは決してありません。</span></p>
     <div style="height: 40px;"></div>
     <q-input 
       v-model="openEndedQuesiton"

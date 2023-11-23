@@ -1,7 +1,7 @@
 <template>
   <p class="text-h5 text-black text-bold" style="text-decoration: underline;">データ使用に関する同意のお願い</p>
   <br/>
-  <p class="description text-red-9">※まだ画面を閉じないでください。</p>
+  <p class="text-h6 text-bold text-red-9">※まだ画面を閉じないでください。</p>
   <br/>
   <p class="description">改めて、研究にご協力いただき、ありがとうございました。</p>
   <p class="description">これから、本研究の目的について、改めて説明します。</p>

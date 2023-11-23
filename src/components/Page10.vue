@@ -31,7 +31,7 @@
               size="80px"
             />
         </div>
-        <p class="text-blue text-h5 text-center">検索中...</p>
+        <p class="text-blue text-h5 text-center">パートナーを検索中です...</p>
       </div>
     </q-card>
     <br>

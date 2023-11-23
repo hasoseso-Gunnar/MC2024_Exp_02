@@ -30,7 +30,10 @@
         @click="activateSound"
       />
     </div>
-
+    <div style="height: 30px;"></div>
+    <span >※ボタンを最初に押した際には、音が出ない場合がありますが、端末が音源のデータを読み込むのに時間が掛かっているためです。</span>
+    <br>
+    <span>※音が聞こえない場合は、音が聞こえるまでボタンを押してみてください。</span>
     <div style="height: 100px;"></div>
     <p class="text-subtitle1 text-black">適切な音量が設定できましたら、以下の「この音量で適切である」ボタンをクリックして、次のページに進んでください。</p>
     <p class="text-subtitle1 text-black">次のページに進むと、すぐに<span class="text-bold">他の参加者とのマッチングが開始</span>されます。</p>
@@ -86,7 +89,15 @@ const volumeFine = ref<string>('0');
 
 //音を出す関数
 const activateSound = () =>{
+  const audio = new Audio('../../public/sample.mp3');
+  
+  // 音量を取得（0～1の範囲に変換）
+  const volumeFloat = parseFloat(String(volume.value)) / 100;
+  
+  // 音量を設定
+  audio.volume = volumeFloat;
 
+  audio.play();
 };
 
 //次のページへ

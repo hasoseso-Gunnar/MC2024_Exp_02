@@ -5,7 +5,7 @@
     <p class="text-subtitle1 text-black">『先ほど一緒に<span class="text-red-9 text-bold">協力課題を行ったパートナー</span>は・・・』</p>
     <div style="height: 40px;"></div>
     <div v-for="(prop, i) in itemList">
-      <p class="text-subtitle1 text-black" style="margin-bottom: 0px;">{{ prop.question }}</p>
+      <p class="text-subtitle1 text-black" style="margin-bottom: 0px;" v-html="prop.question"></p>
       <br/>
       <div class="row q-mb-xl">
         <div class="col-1"></div>
