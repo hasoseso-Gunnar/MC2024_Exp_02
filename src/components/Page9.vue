@@ -89,7 +89,7 @@ const volumeFine = ref<string>('0');
 
 //音を出す関数
 const activateSound = () =>{
-  const audio = new Audio('../../public/sample.mp3');
+  const audio = new Audio('https://hasoseso-gunnar.github.io/MC2024_Exp_02/sample.mp3');
   
   // 音量を取得（0～1の範囲に変換）
   const volumeFloat = parseFloat(String(volume.value)) / 100;

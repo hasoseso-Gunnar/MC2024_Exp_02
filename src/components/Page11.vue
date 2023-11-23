@@ -110,7 +110,7 @@ const soundCount = ref<number>(0);
 //音を出す関数
 const activateSound = () => {
   //音源を指定
-  const audio = new Audio('../../public/attack.mp3');
+  const audio = new Audio('https://hasoseso-gunnar.github.io/MC2024_Exp_02/attack.mp3');
   // 音量を取得（0～1の範囲に変換）
   const volumeFloat = parseFloat(String(volume.value)) / 100;
   // 音量を設定
