@@ -369,9 +369,30 @@ const postData = async(route: string, body: string) => {
 	let result: string = '';
 
 	await fetch(props.uri, requestOptions)
-		.then((res) => {
-      console.log(res.json());
-      result = 'complete';
+		.then(async(res) => {
+      const data = await res.json();
+      //成功したとき
+      if(data.type === 'complete'){
+        result = 'complete';
+      
+      //エラーが発生したとき
+      }else{
+
+        //エラー用リクエスト
+        const requestOptionsError: any = {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: `route=error&uuid=${props.UUID}&dateTime=${new Date().toISOString().slice(0, 19).replace('T', ' ')}&error=リクエストエラー&page=${route}&data=${body}`,
+        };
+
+        await fetch(props.uri, requestOptionsError)
+          .then((res) => {
+            console.log(res.json());
+            result = 'error';
+          });
+        }
     })
 		.catch(async(err) => {
 

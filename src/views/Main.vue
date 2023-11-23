@@ -154,6 +154,8 @@
         @eventEmit="execEvent" 
         :uri="uri" 
         :UUID="UUID"
+        :agreeImmigrant="agreeImmigrant"
+        :condition="condition"
       />
     </q-tab-panel>
     <q-tab-panel name="page18">
