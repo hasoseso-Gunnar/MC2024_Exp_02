@@ -99,7 +99,7 @@ import uuid from "node-uuid";
 onMounted(async()=>{
   UUID.value = uuid.v4();
   //開始時間
-  startDateTime.value = new Date().toISOString().slice(0, 19).replace('T', ' ');
+  startDateTime.value = new Date().toLocaleString("ja-JP", {timeZone: "Asia/Tokyo", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit"}).replace(/\//g, '-');
   //IPアドレス
   await fetch('https://api.ipify.org?format=json')
     .then(response => response.json())
@@ -171,7 +171,7 @@ const postData = async(route: string, body: string) => {
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
           },
-          body: `route=error&uuid=${UUID.value}&dateTime=${new Date().toISOString().slice(0, 19).replace('T', ' ')}&error=リクエストエラー&page=${route}&data=${body}`,
+          body: `route=error&uuid=${UUID.value}&dateTime=${new Date().toLocaleString("ja-JP", {timeZone: "Asia/Tokyo", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit"}).replace(/\//g, '-')}&error=リクエストエラー&page=${route}&data=${body}`,
         };
 
         await fetch(props.uri, requestOptionsError)
@@ -189,7 +189,7 @@ const postData = async(route: string, body: string) => {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: `route=error&uuid=${UUID.value}&dateTime=${new Date().toISOString().slice(0, 19).replace('T', ' ')}&error=${err}&page=${route}&data=${body}`,
+        body: `route=error&uuid=${UUID.value}&dateTime=${new Date().toLocaleString("ja-JP", {timeZone: "Asia/Tokyo", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit"}).replace(/\//g, '-')}&error=${err}&page=${route}&data=${body}`,
       };
 
       await fetch(props.uri, requestOptionsError)

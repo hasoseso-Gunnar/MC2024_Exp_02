@@ -31,10 +31,10 @@
       />
     </div>
     <div style="height: 30px;"></div>
-    <span >※ボタンを最初に押した際には、音が出ない場合がありますが、端末が音源のデータを読み込むのに時間が掛かっているためです。</span>
+    <span >※ボタンを最初に押した際に、音が出ない場合がありますが、端末が音源のデータを読み込むのに時間が掛かっているためです。</span>
     <br>
     <span>※音が聞こえない場合は、音が聞こえるまでボタンを押してみてください。</span>
-    <div style="height: 100px;"></div>
+    <div style="height: 60px;"></div>
     <p class="text-subtitle1 text-black">適切な音量が設定できましたら、以下の「この音量で適切である」ボタンをクリックして、次のページに進んでください。</p>
     <p class="text-subtitle1 text-black">次のページに進むと、すぐに<span class="text-bold">他の参加者とのマッチングが開始</span>されます。</p>
     <div style="height: 40px;"></div>
@@ -143,7 +143,7 @@ const postData = async(route: string, body: string) => {
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
           },
-          body: `route=error&uuid=${props.UUID}&dateTime=${new Date().toISOString().slice(0, 19).replace('T', ' ')}&error=リクエストエラー&page=${route}`,
+          body: `route=error&uuid=${props.UUID}&dateTime=${new Date().toLocaleString("ja-JP", {timeZone: "Asia/Tokyo", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit"}).replace(/\//g, '-')}&error=リクエストエラー&page=${route}`,
         };
 
         await fetch(props.uri, requestOptionsError)
@@ -161,7 +161,7 @@ const postData = async(route: string, body: string) => {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: `route=error&uuid=${props.UUID}&dateTime=${new Date().toISOString().slice(0, 19).replace('T', ' ')}&error=${err}&page=${route}&data=${body}`,
+        body: `route=error&uuid=${props.UUID}&dateTime=${new Date().toLocaleString("ja-JP", {timeZone: "Asia/Tokyo", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit"}).replace(/\//g, '-')}&error=${err}&page=${route}&data=${body}`,
       };
 
       await fetch(props.uri, requestOptionsError)

@@ -2,7 +2,7 @@
   <div class="q-pa-md">
     <p class="text-subtitle1 text-black">これは、先ほどの質問項目でのパートナーの回答内容です。</p>
     <p class="text-subtitle1 text-black">この後の課題を円滑に行うために、<span class="text-bold">よく記憶してください。</span></p>
-    <p>※このページは20秒経過すると、ページ下部のボタンから次のステップへ進めるようになります。</p>
+    <p>※このページは20秒経過すると、ページ下部のボタンから協力課題へ進めるようになります。</p>
     <div style="height: 40px;"></div>
     <p class="text-h6 text-black text-bold" style="margin-left: 20%;">【パートナーの情報】</p>
     <!-- プロフィール情報 -->
