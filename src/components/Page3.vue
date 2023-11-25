@@ -8,7 +8,7 @@
       <br/>
       <div class="row q-mb-xl">
         <div class="col-1"></div>
-        <div class="col-2" align="center" :style="prop.answer === '1' ? 'background-color: #CCEBFF;': ''">
+        <div class="col-2" align="center" :style="prop.answer === '1' ? 'background-color: #CCEBFF; border: 5px solid white;': 'background: rgba(0,0,0,.08); border: 5px solid white;'">
           <p>{{ prop.option1 }}</p>
           <q-radio 
             v-model="prop.answer"
@@ -17,7 +17,7 @@
             :val="prop.value1"
           />
         </div>
-        <div class="col-2" align="center" :style="prop.answer === '2' ? 'background-color: #CCEBFF;': ''">
+        <div class="col-2" align="center" :style="prop.answer === '2' ? 'background-color: #CCEBFF; border: 5px solid white;': 'background: rgba(0,0,0,.08); border: 5px solid white;'">
           <p>{{ prop.option2 }}</p>
           <q-radio 
             v-model="prop.answer"
@@ -90,7 +90,7 @@ const itemList = ref<Array<itemListType>>([
   {
     seed: 2,
     question1: '現在、政府は物価高に対応するために所得税の減税や非課税世帯への給付を行う一方、防衛費の財源確保のために将来的に増税を行うと公表しています。',
-    question2: 'あなたは、<span class="text-bold">防衛費の財源確保のために将来的に増税を行う</span>について、賛成ですか？反対ですか？',
+    question2: 'あなたは、<span class="text-bold">防衛費の財源確保のために将来的に増税を行う</span>ことについて、賛成ですか？反対ですか？',
     option1: '賛成',
     option2: '反対',
     value1: '1',
@@ -119,7 +119,7 @@ const itemList = ref<Array<itemListType>>([
   },
   {
     seed: 5,
-    question1: '近年、持続可能性などの観点から肉魚に代わるタンパク源として昆虫食が注目されています。',
+    question1: '近年、持続可能性などの観点から肉・魚に代わるタンパク源として昆虫食が注目されています。',
     question2: 'あなたは、<span class="text-bold">現在の食生活に昆虫食を取り入れること</span>について、賛成ですか？反対ですか？',
     option1: '賛成',
     option2: '反対',

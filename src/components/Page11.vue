@@ -3,7 +3,7 @@
     <p class="text-subtitle1 text-black text-bold">これより、協力課題のルールについて説明します。</p>
     <p>※このページは30秒経過すると、ページ下部のボタンから次のステップへ進めるようになります。</p>
     <br/>
-    <p class="text-subtitle1 text-black">協力課題では、あなたとパートナーでそれぞれ<span class="text-bold">5問のクイズに回答</span>します。</p>
+    <p class="text-subtitle1 text-black">協力課題では、あなたとパートナーで同時にそれぞれ<span class="text-bold">5問のクイズに回答</span>します。</p>
     <p class="text-subtitle1 text-black">クイズは以下の(例)のように一般知識レベルの問題が出題され、それを4択の選択肢の中から選んで回答します。</p>
     <br>
     <q-card
@@ -22,9 +22,9 @@
       <br>
     </q-card>
 
-    <p class="text-subtitle1 text-black">クイズに1問正解するたびに1点加算されますので、あなた1人で最大5点獲得できます。</p>
+    <p class="text-subtitle1 text-black">クイズに1問正解するたびに1点加点されます。そのため、あなた1人で最大5点獲得できます。</p>
     <p class="text-subtitle1 text-black">このクイズをパートナーも同時に行うため、お互いの<span class="text-bold">最大合計スコアは10点</span>となります。できるだけ高得点を狙いましょう。</p>
-    <p class="text-subtitle1 text-black">なお、実際の協力課題を行う前に<span class="text-bold">1問練習用のクイズを行います</span>ので、そこで再度ルールと手順を確認してください。</p>
+    <p class="text-subtitle1 text-black">なお、実際の協力課題を行う前に本番のスコアとは関係のない<span class="text-bold">1問練習用のクイズを出題します</span>。そこで再度ルールと手順を確認することができます。</p>
     <div style="height: 60px;"></div>
     <p class="text-subtitle1 text-black">また、本調査では相手との遠隔でのコミュニケーションを通して、どれだけ課題の結果が変化するかを検証しています。</p>
     <p class="text-subtitle1 text-black">コミュニケーション方法の一環として、協力課題の中でパートナーに対してあなたは<span class="text-bold">シグナルを送る</span>ことができます。</p>
@@ -32,7 +32,7 @@
     <br>
     <p class="text-subtitle1 text-black">今回、<span class="text-bold text-red-9">あなたは音のシグナルを出す役割</span>を与えられました。</p>
     <p class="text-subtitle1 text-black">各問題に回答したのちに正解が表示されるタイミングで、以下のスライダーを用いて音量を調整してシグナルを発信してください。</p>
-    <p class="text-subtitle1 text-black">また、<span class="text-bold">次のページに進む前にシグナル音を実際に聞いて</span>ください。</p>
+    <p class="text-subtitle1 text-black">また、<span class="text-bold">次のページに進む前にシグナル音を1回以上聞いて</span>ください。</p>
     <div style="height: 40px;"></div>
     <div class="row">
       <div class="col-2"></div>
@@ -130,7 +130,7 @@ const toPage12 = function(){
 
 const emit = defineEmits(['eventEmit'])
 const execEmit = () => {
-  emit('eventEmit', { 'tab': 'page12', 'progress': 0.55})
+  emit('eventEmit', { 'tab': 'page12', 'progress': 0.550 })
 }
 
 </script>

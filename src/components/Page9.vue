@@ -4,7 +4,7 @@
     <p class="text-subtitle1 text-black">また、協力課題をより円滑に進めるために、協力相手の参加者(パートナー)には<span class="text-bold">あなたがここまで回答した情報の一部が事前</span>に提示されます。</p>
     <p class="text-subtitle1 text-black">提示される情報は<span class="text-bold">「性別」「年齢」「5つのトピックに関するそれぞれの賛否」</span>です。</p>
     <br>
-    <p class="text-subtitle1 text-black">また、このタスクでは音が出ますので、大きすぎず、小さすぎない、<span class="text-red-9 text-bold">適切な音量</span>を事前に設定してください。</p>
+    <p class="text-subtitle1 text-black">加えて、このタスクでは音が出ますので、大きすぎず、小さすぎない、<span class="text-red-9 text-bold">適切な音量</span>を事前に設定してください。</p>
     <p class="text-subtitle1 text-black">※スライダーの下の「サンプル音」ボタンを押すと実際に音が出ますので、サンプル音を聞きながら音量を調節してください。</p>
     <div style="height: 80px;"></div>
     <div class="row">
@@ -40,7 +40,7 @@
     <div style="height: 40px;"></div>
     <div class="row">
       <div class="col-4"></div>
-      <div class="col-4" align="center" :style="volumeFine === '1' ? 'background-color: #CCEBFF;': ''">
+      <div class="col-4" align="center" :style="volumeFine === '1' ? 'background-color: #CCEBFF; border: 5px solid white;': 'background: rgba(0,0,0,.08); border: 5px solid white;'">
         <p class="description" style="font-size: 19px;">この音量で適切である</p>
           <q-radio 
             v-model="volumeFine" 

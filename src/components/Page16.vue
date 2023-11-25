@@ -9,7 +9,7 @@
       <br/>
       <div class="row q-mb-xl">
         <div class="col-1"></div>
-        <div class="col-2" align="center" :style="prop.answer === '1' ? 'background-color: #CCEBFF;': ''">
+        <div class="col-2" align="center" :style="prop.answer === '1' ? 'background-color: #CCEBFF; border: 5px solid white;': 'background: rgba(0,0,0,.08); border: 5px solid white;'">
           <p>{{ prop.option1 }}</p>
           <q-radio 
             v-model="prop.answer"
@@ -18,7 +18,7 @@
             :val="prop.value1"
           />
         </div>
-        <div class="col-2" align="center" :style="prop.answer === '2' ? 'background-color: #CCEBFF;': ''">
+        <div class="col-2" align="center" :style="prop.answer === '2' ? 'background-color: #CCEBFF; border: 5px solid white;': 'background: rgba(0,0,0,.08); border: 5px solid white;'">
           <p>{{ prop.option2 }}</p>
           <q-radio 
             v-model="prop.answer"

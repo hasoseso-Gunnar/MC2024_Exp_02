@@ -10,7 +10,7 @@
       <p class="text-subtitle1 text-black" style="margin-bottom: 0px;">{{ prop.question }}</p>
       <br/>
       <div class="row q-mb-xl">
-        <div class="col-2" align="center" :style="prop.answer === '1' ? 'background-color: #CCEBFF;': ''">
+        <div class="col-2" align="center" :style="prop.answer === '1' ? 'background-color: #CCEBFF; border: 5px solid white;': 'background: rgba(0,0,0,.08); border: 5px solid white;'">
           <div v-html="prop.option1"></div>
           <q-radio 
             v-model="prop.answer"
@@ -19,7 +19,7 @@
             :val="prop.value1"
           />
         </div>
-        <div class="col-2" align="center" :style="prop.answer === '2' ? 'background-color: #CCEBFF;': ''">
+        <div class="col-2" align="center" :style="prop.answer === '2' ? 'background-color: #CCEBFF; border: 5px solid white;': 'background: rgba(0,0,0,.08); border: 5px solid white;'">
           <div v-html="prop.option2"></div>
           <q-radio 
             v-model="prop.answer"
@@ -28,7 +28,7 @@
             :val="prop.value2"
           />
         </div>
-        <div class="col-2" align="center" :style="prop.answer === '3' ? 'background-color: #CCEBFF;': ''">
+        <div class="col-2" align="center" :style="prop.answer === '3' ? 'background-color: #CCEBFF; border: 5px solid white;': 'background: rgba(0,0,0,.08); border: 5px solid white;'">
           <div v-html="prop.option3"></div>
           <q-radio 
             v-model="prop.answer"
@@ -37,7 +37,7 @@
             :val="prop.value3"
           />
         </div>
-        <div class="col-2" align="center" :style="prop.answer === '4' ? 'background-color: #CCEBFF;': ''">
+        <div class="col-2" align="center" :style="prop.answer === '4' ? 'background-color: #CCEBFF; border: 5px solid white;': 'background: rgba(0,0,0,.08); border: 5px solid white;'">
           <div v-html="prop.option4"></div>
           <q-radio 
             v-model="prop.answer"
@@ -46,7 +46,7 @@
             :val="prop.value4"
           />
         </div>
-        <div class="col-2" align="center" :style="prop.answer === '5' ? 'background-color: #CCEBFF;': ''">
+        <div class="col-2" align="center" :style="prop.answer === '5' ? 'background-color: #CCEBFF; border: 5px solid white;': 'background: rgba(0,0,0,.08); border: 5px solid white;'">
           <div v-html="prop.option5"></div>
           <q-radio 
             v-model="prop.answer"
@@ -55,7 +55,7 @@
             :val="prop.value5"
           />
         </div>
-        <div class="col-2" align="center" :style="prop.answer === '6' ? 'background-color: #CCEBFF;': ''">
+        <div class="col-2" align="center" :style="prop.answer === '6' ? 'background-color: #CCEBFF; border: 5px solid white;': 'background: rgba(0,0,0,.08); border: 5px solid white;'">
           <div v-html="prop.option6"></div>
           <q-radio 
             v-model="prop.answer"
@@ -79,7 +79,7 @@
       <p class="text-subtitle1 text-black" style="margin-bottom: 0px;">{{ prop.question }}</p>
       <br/>
       <div class="row q-mb-xl">
-        <div class="col-2" align="center" :style="prop.answer === '1' ? 'background-color: #CCEBFF;': ''">
+        <div class="five-options" align="center" :style="prop.answer === '1' ? 'background-color: #CCEBFF; border: 5px solid white;': 'background: rgba(0,0,0,.08); border: 5px solid white;'">
           <p v-html="prop.option1"></p>
           <q-radio 
             v-model="prop.answer"
@@ -88,7 +88,7 @@
             :val="prop.value1"
           />
         </div>
-        <div class="col-2" align="center" :style="prop.answer === '2' ? 'background-color: #CCEBFF;': ''">
+        <div class="five-options" align="center" :style="prop.answer === '2' ? 'background-color: #CCEBFF; border: 5px solid white;': 'background: rgba(0,0,0,.08); border: 5px solid white;'">
           <p v-html="prop.option2"></p>
           <q-radio 
             v-model="prop.answer"
@@ -97,7 +97,7 @@
             :val="prop.value2"
           />
         </div>
-        <div class="col-2" align="center" :style="prop.answer === '3' ? 'background-color: #CCEBFF;': ''">
+        <div class="five-options" align="center" :style="prop.answer === '3' ? 'background-color: #CCEBFF; border: 5px solid white;': 'background: rgba(0,0,0,.08); border: 5px solid white;'">
           <p v-html="prop.option3"></p>
           <q-radio 
             v-model="prop.answer"
@@ -106,7 +106,7 @@
             :val="prop.value3"
           />
         </div>
-        <div class="col-2" align="center" :style="prop.answer === '4' ? 'background-color: #CCEBFF;': ''">
+        <div class="five-options" align="center" :style="prop.answer === '4' ? 'background-color: #CCEBFF; border: 5px solid white;': 'background: rgba(0,0,0,.08); border: 5px solid white;'">
           <p v-html="prop.option4"></p>
           <q-radio 
             v-model="prop.answer"
@@ -115,7 +115,7 @@
             :val="prop.value4"
           />
         </div>
-        <div class="col-2" align="center" :style="prop.answer === '5' ? 'background-color: #CCEBFF;': ''">
+        <div class="five-options" align="center" :style="prop.answer === '5' ? 'background-color: #CCEBFF; border: 5px solid white;': 'background: rgba(0,0,0,.08); border: 5px solid white;'">
           <p v-html="prop.option5"></p>
           <q-radio 
             v-model="prop.answer"
@@ -149,6 +149,7 @@ import { ref, onMounted, defineProps, withDefaults } from "vue";
 
 //ページ読み込み時に配列をランダムに並び替え
 onMounted(()=>{
+  shuffle(itemListAttitudeStrength.value);
   shuffle(itemListMoralConviction.value);
 });
 
@@ -392,5 +393,8 @@ const postData = async(route: string, body: string) => {
 span.option-value{
   font-size: 18px;
   margin-bottom: 0px;
+}
+div.five-options{
+  width: 20%;
 }
 </style>

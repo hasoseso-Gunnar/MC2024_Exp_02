@@ -29,6 +29,7 @@
     <q-tab name="page18" label="Page18"/>
     <q-tab name="page19" label="Page19"/>
     <q-tab name="page20" label="Page20"/>
+    <q-tab name="page21" label="Page21"/>
     <q-tab name="forcedEnd" label="forcedEnd"/>
   </q-tabs>
   <q-tab-panels
@@ -175,7 +176,14 @@
       />
     </q-tab-panel>
     <q-tab-panel name="page20">
-      <Page20/>
+      <Page20
+        @eventEmit="execEvent" 
+        :uri="uri" 
+        :UUID="UUID"
+      />
+    </q-tab-panel>
+    <q-tab-panel name="page21">
+      <Page21/>
     </q-tab-panel>
     <q-tab-panel name="forcedEnd">
       <forcedEnd 
@@ -210,6 +218,7 @@ import Page17 from "@/components/Page17.vue";
 import Page18 from "@/components/Page18.vue";
 import Page19 from "@/components/Page19.vue";
 import Page20 from "@/components/Page20.vue";
+import Page21 from "@/components/Page21.vue";
 
 const $q = useQuasar();
 

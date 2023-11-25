@@ -1,29 +1,42 @@
 <template>
-  <p class="text-h5 text-black text-bold" style="text-decoration: underline;">データ使用に関する同意のお願い</p>
+  <p class="text-h5 text-black text-bold text-underline text-center">データ使用に関する同意のお願い</p>
   <br/>
-  <p class="text-h6 text-bold text-red-9">※まだ画面を閉じないでください。</p>
+  <p class="text-h6 text-bold text-red-9 text-center">※まだ画面を閉じないでください。</p>
   <br/>
   <p class="description">改めて、研究にご協力いただき、ありがとうございました。</p>
   <p class="description">これから、本研究の目的について、改めて説明します。</p>
   <br/>
-  <p class="title">研究目的</p>
-  <p class="description">本研究は、新型コロナウイルスの感染予防について、自分の意見を「正しい」ものと考えることがもたらす影響について調べています。</p>
-  <p class="description">具体的には、いくつかの予防行動に関する考え方と、その考え方が異なる人々との付き合い方について尋ねました。</p>
+  <p class="title text-underline">本研究の目的と手続きについて</p>
+  <p class="description">本研究では、他者との意見の一致や不一致が起きる際、それが好き・嫌いなど「好み」に関して起きる場合と、正しい・間違っているといった「道徳」に関して起きる場合で、相手に与えるペナルティーがどのように変化するかを調べています。</p>
+  <br/>
+  <q-img 
+    loading="eager"
+    src="https://hasoseso-gunnar.github.io/MC2024_Exp_02/referee_yellowcard.png"
+    width="150px"
+    class="q-mb-lg"
+    style="margin-left: 45%;"
+  ></q-img>
+  <br/>
+  <p class="description">調査では、事前に実験実施者によってプログラムされた行動をとる架空の参加者をパートナーとして提示し、日本での積極的な移民の受け入れについて、意見の一致あるいは不一致を経験していただきました。</p>
+  <p class="description">このように意見が同じ・あるいは異なるパートナーに対し、「音のシグナル」としてクイズで協力する相手にどれだけの音量を聞かせるか、どういった内容の返信の記述を行うかを測定しました。</p>
+  <p class="description">あなたが出した「音のシグナル」はコンピューターに対して行ったものですので、実際に音を聞いた人はいません。ご安心ください。</p>
+  <br/>
+  <p class="description text-bold">なお、この実験は今後も継続して参りますので、実験内容は他の人に言ったりSNSに投稿したりしないよう、よろしくお願いいたします。</p>
+  <br/>
+  <p class="description">最後に、研究の目的上、必要なことではありましたが、冒頭、皆さまに実際の目的とは異なる説明をしたことにつきまして、お詫びいたします。また、本研究に最後までご協力いただきましたこと、改めて、心より御礼申し上げます。</p>
   <br/>
   <br/>
-  <p class="title">データ分析への同意確認</p>
-  <p class="description">最後に、あなたの回答を分析に含めてもよいかどうかを、改めて伺います。</p>
-  <p class="description">事前にお伝えした通り、本研究は匿名回答のため、個人が特定されることはありません。</p>
+  <p class="title text-underline">データ分析への同意について（お願い）</p>
+  <p class="description">質問調査での回答データを分析に含めることついて、改めて同意をいただきたく存じます。万が一ご自身の回答を分析に含められたくない場合は、「同意しない」と回答してください。その場合、あなたの回答は分析から除外されます。</p>
   <br/>
-  <p class="title">調査実施機関：</p>
-  <p class="description">名古屋大学 大学院情報学研究科</p>
-  <p class="description">社会心理学研究室</p>
+  <p class="description text-bold text-red-9">なお、回答を分析に含めることについて同意しない場合でも、報酬を受け取ることができます。</p>
   <br/>
   <br/>
-  <p class="description" style="font-size: 19px;">あなたは上記の説明を理解し、自身のデータが分析されることに同意しますか。</p>
+  <p class="description text-center" style="font-size: 19px;">あなたは上記の説明を理解し、自身のデータが分析されることに同意しますか。</p>
   <br/>
   <div class="row">
-    <div class="col-4" align="center" :style="radioAgree === '1' ? 'background-color: #CCEBFF;': ''">
+    <div class="col-2"></div>
+    <div class="col-4" align="center" :style="radioAgree === '1' ? 'background-color: #CCEBFF; border: 5px solid white;': 'background: rgba(0,0,0,.08); border: 5px solid white;'">
       <p class="description" style="font-size: 19px;">同意する</p>
       <q-radio 
         v-model="radioAgree" 
@@ -33,7 +46,7 @@
         val="1"
       />
     </div>
-    <div class="col-4" align="center" :style="radioAgree === '0' ? 'background-color: #CCEBFF;': ''">
+    <div class="col-4" align="center" :style="radioAgree === '0' ? 'background-color: #CCEBFF; border: 5px solid white;': 'background: rgba(0,0,0,.08); border: 5px solid white;'">
       <p class="description" style="font-size: 19px;">同意しない</p>
       <q-radio 
         v-model="radioAgree" 
@@ -84,7 +97,7 @@ const toPage20 = async function(){
 
 const emit = defineEmits(['eventEmit'])
 const execEmit = () => {
-  emit('eventEmit', { 'tab': 'page20', 'progress': 1.0 });
+  emit('eventEmit', { 'tab': 'page20', 'progress': 0.95 });
 }
 
 //データを送信する関数
@@ -151,5 +164,7 @@ const postData = async(route: string, body: string) => {
 
 </script>
 <style lang="scss">
-
+p.text-underline{
+  text-decoration: underline;
+}
 </style>

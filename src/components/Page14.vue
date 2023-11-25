@@ -41,9 +41,29 @@ const visible = ref<boolean>(true);
 const showSimulatedReturnData = ref<boolean>(false);
 const visibleCountDown = ref<boolean>(false);
 
+//測定データ
+const quiz1 = ref<string>('');
+const quiz2 = ref<string>('');
+const quiz3 = ref<string>('');
+const quiz4 = ref<string>('');
+const quiz5 = ref<string>('');
+const attackVolume1 = ref<number>(0);
+const attackVolume2 = ref<number>(0);
+const attackVolume3 = ref<number>(0);
+const attackVolume4 = ref<number>(0);
+const attackVolume5 = ref<number>(0);
+const attackCount1 = ref<number>(0);
+const attackCount2 = ref<number>(0);
+const attackCount3 = ref<number>(0);
+const attackCount4 = ref<number>(0);
+const attackCount5 = ref<number>(0);
+const score = ref<number>(0);
+
 //次のページへ
-const toPage15 = function(){
-  window.scrollTo(0, 0);  
+const toPage15 = async function(){
+  window.scrollTo(0, 0);
+  const body: string = `quiz1=${quiz1.value}&quiz2=${quiz2.value}&quiz3=${quiz3.value}&quiz4=${quiz4.value}&quiz5=${quiz5.value}&attackVolume1=${attackVolume1.value}&attackVolume2=${attackVolume2.value}&attackVolume3=${attackVolume3.value}&attackVolume4=${attackVolume4.value}&attackVolume5=${attackVolume5.value}&attackCount1=${attackCount1.value}&attackCount2=${attackCount2.value}&attackCount3=${attackCount3.value}&attackCount4=${attackCount4.value}&attackCount5=${attackCount5.value}&score=${score.value}`;
+  await postData('page14', body);  
   execEmit();
 };
 
