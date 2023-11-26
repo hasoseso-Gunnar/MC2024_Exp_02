@@ -4,7 +4,7 @@
     <p>※このページは30秒経過すると、ページ下部のボタンから次のステップへ進めるようになります。</p>
     <br/>
     <p class="text-subtitle1 text-black">協力課題では、あなたとパートナーで同時にそれぞれ<span class="text-bold">5問のクイズに回答</span>します。</p>
-    <p class="text-subtitle1 text-black">クイズは以下の(例)のように一般知識レベルの問題が出題され、それを4択の選択肢の中から選んで回答します。</p>
+    <p class="text-subtitle1 text-black">クイズは以下の(例)のように一般知識レベルの問題が出題され、それを15秒以内に4択の選択肢の中から選んで回答します。</p>
     <br>
     <q-card
       class="q-pt-md q-pl-md q-pr-md q-mb-xl"
@@ -60,7 +60,7 @@
     <div style="height: 30px;"></div>
     <span >※ボタンを最初に押した際に、音が出ない場合がありますが、端末が音源のデータを読み込むのに時間が掛かっているためです。</span>
     <br>
-    <span>※音が聞こえない場合は、音が聞こえるまでボタンを押してみてください。</span>
+    <span>※音が聞こえない場合は、音が聞こえるまでボタンを押してください。</span>
     <div style="height: 60px;"></div>
     <p class="text-subtitle1 text-black">なお、相手からは<span class="text-bold">「色のシグナル」</span>が送られてきます。相手の意図を汲み取り、二人で協力して問題を解いてください。</p>
     <div style="height: 80px;"></div>

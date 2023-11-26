@@ -12,7 +12,7 @@
   <p class="title">【所要時間と回答方法】</p>
   <p class="description">調査の所要時間は約20分です。本調査はオンラインフォーム上のアンケートによって実施されます。</p>
   <p class="description">調査に参加していただく間は、指示に従っていくつかのアンケートに回答してください。</p>
-  <p class="description">また、本調査への回答は、パソコン（Windows, Mac等）またはタブレット端末（iPad等）から行ってください。<span class="text-red-9 text-bold">回答に正解・不正解はありません</span>ので、それぞれの質問に素直にお答えください。</p>
+  <p class="description">また、本調査への回答は、パソコン（Windows, Mac等）またはタブレット端末（iPad等）から行ってください。</p>
   <p class="description">なお、本調査への参加はデバイス1台につき1回に制限されています。そのため、回答を途中で終了した場合でも再回答はできませんので、ご注意ください。</p>
   <br/>
   <p class="title">【本調査での回答上のお願い】</p>
@@ -142,7 +142,7 @@ const execEmit = () => {
     
   //実験参加へ同意しない場合は強制終了
   }else{
-    emit('eventEmit', { 'tab': 'forcedEnd', 'progress': 1.0, 'UUID': UUID.value});
+    emit('eventEmit', { 'tab': 'page21', 'progress': 1.0, 'UUID': UUID.value});
   }
 }
 

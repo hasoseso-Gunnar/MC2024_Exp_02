@@ -138,6 +138,7 @@
         @eventEmit="execEvent"
         :uri="uri" 
         :UUID="UUID"
+        :volume="volume"
       />
     </q-tab-panel>
     <q-tab-panel name="page15">
@@ -235,6 +236,7 @@ const agreeAI = ref<string>('');
 const agreeBear = ref<string>('');
 const agreeInsect = ref<string>('');
 const condition = ref<number>(0);
+const volume = ref<number>(0);
 
 //実験を開始した際に実験条件をランダムに割り当て(1→態度一致,2→態度不一致)
 condition.value = Math.random() < 0.5 ? 1 : 2;
@@ -244,13 +246,14 @@ condition.value = Math.random() < 0.5 ? 1 : 2;
 const execEvent = (data: any) => {
   tab.value = data.tab;
   progress.value = data.progress;
-  //受け渡しデータが存在している時のみ受け入れる変数(UUID・移民受け入れ賛否・AI利用賛否・実験条件)
+  //受け渡しデータが存在している時のみ受け入れる変数(UUID・移民受け入れ賛否・AI利用賛否・実験条件・適性音量)
   UUID.value = !data.UUID ? UUID.value :  data.UUID;
   agreeImmigrant.value = !data.agreeImmigrant ? agreeImmigrant.value :  data.agreeImmigrant;
   agreeDefenseCost.value = !data.agreeDefenseCost ? agreeDefenseCost.value :  data.agreeDefenseCost;
   agreeAI.value = !data.agreeAI ? agreeAI.value :  data.agreeAI;
   agreeBear.value = !data.agreeBear ? agreeBear.value :  data.agreeBear;
   agreeInsect.value = !data.agreeInsect ? agreeInsect.value :  data.agreeInsect;
+  volume.value = !data.volume ? volume.value :  data.volume;
 };
 
 </script>

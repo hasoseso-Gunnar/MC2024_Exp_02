@@ -33,7 +33,7 @@
     <div style="height: 30px;"></div>
     <span >※ボタンを最初に押した際に、音が出ない場合がありますが、端末が音源のデータを読み込むのに時間が掛かっているためです。</span>
     <br>
-    <span>※音が聞こえない場合は、音が聞こえるまでボタンを押してみてください。</span>
+    <span>※音が聞こえない場合は、音が聞こえるまでボタンを押してください。</span>
     <div style="height: 60px;"></div>
     <p class="text-subtitle1 text-black">適切な音量が設定できましたら、以下の「この音量で適切である」ボタンをクリックして、次のページに進んでください。</p>
     <p class="text-subtitle1 text-black">次のページに進むと、すぐに<span class="text-bold">他の参加者とのマッチングが開始</span>されます。</p>
@@ -110,7 +110,7 @@ const toPage10 = function(){
 
 const emit = defineEmits(['eventEmit'])
 const execEmit = () => {
-  emit('eventEmit', { 'tab': 'page10', 'progress': 0.45})
+  emit('eventEmit', { 'tab': 'page10', 'progress': 0.45, 'volume': volume.value})
 }
 
 //データを送信する関数
