@@ -130,7 +130,7 @@ const execEmit = () => {
   
   //それ以外は次のページへ
   }else{
-    emit('eventEmit', { 'tab': 'page3', 'progress': 0.1});
+    emit('eventEmit', { 'tab': 'page3', 'progress': 0.1, 'sex': sex.value, 'age': age.value});
   }
 }
 

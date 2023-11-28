@@ -24,7 +24,7 @@
 
     <p class="text-subtitle1 text-black">クイズに1問正解するたびに1点加点されます。そのため、あなた1人で最大5点獲得できます。</p>
     <p class="text-subtitle1 text-black">このクイズをパートナーも同時に行うため、お互いの<span class="text-bold">最大合計スコアは10点</span>となります。できるだけ高得点を狙いましょう。</p>
-    <p class="text-subtitle1 text-black">なお、実際の協力課題を行う前に本番のスコアとは関係のない<span class="text-bold">1問練習用のクイズを出題します</span>。そこで再度ルールと手順を確認することができます。</p>
+    <p class="text-subtitle1 text-black">なお、実際の協力課題を行う前に本番のスコアとは関係のない<span class="text-bold">1問練習用のクイズを出題します</span>。そこで再度ルールと手順を確認してください。</p>
     <div style="height: 60px;"></div>
     <p class="text-subtitle1 text-black">また、本調査では相手との遠隔でのコミュニケーションを通して、どれだけ課題の結果が変化するかを検証しています。</p>
     <p class="text-subtitle1 text-black">コミュニケーション方法の一環として、協力課題の中でパートナーに対してあなたは<span class="text-bold">シグナルを送る</span>ことができます。</p>

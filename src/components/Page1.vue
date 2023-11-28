@@ -50,7 +50,7 @@
   <p class="description">本研究で得られた結果について知りたい場合は、Lancers上のメッセージ機能でご連絡ください。ただし、個人を特定できるデータを保存しない都合上、個⼈データを開⽰することはできません。</p>
   <p class="description">本研究についてご質問がある場合も、Lancers上のメッセージ機能でご連絡ください。</p>
   <br/>
-  <p class="title">調査実施機関：</p>
+  <p class="title">【調査実施機関】</p>
   <p class="description">名古屋大学 大学院情報学研究科</p>
   <p class="description">社会心理学研究室</p>
   <br/>

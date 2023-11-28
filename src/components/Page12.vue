@@ -19,7 +19,7 @@
             <p class="text-subtitle1" style="margin-bottom: 0px;">性別</p>
           </td>
           <td class="justify-center col-3 row items-center" style="height: 90px;">
-            <p class="text-subtitle1" style="margin-bottom: 0px;">男性</p>
+            <p class="text-subtitle1" style="margin-bottom: 0px;">{{ props.sex }}</p>
           </td>
         </tr>
         <!-- 年齢 -->
@@ -28,7 +28,7 @@
             <p class="text-subtitle1" style="margin-bottom: 0px;">年齢</p>
           </td>
           <td class="justify-center col-3 row items-center" style="height: 90px;">
-            <p class="text-subtitle1" style="margin-bottom: 0px;">24歳</p>
+            <p class="text-subtitle1" style="margin-bottom: 0px;">{{ props.age }}</p>
           </td>
         </tr>
         <!-- 移民 -->
@@ -137,7 +137,7 @@ onMounted(async()=>{
 const twentySecondsPassed = ref<boolean>(false);
 
 //親からの受け取りデータ
-const props = defineProps(['uri','UUID','agreeImmigrant','agreeDefenseCost','agreeAI','agreeBear','agreeInsect','condition']);
+const props = defineProps(['uri','UUID','sex','age','agreeImmigrant','agreeDefenseCost','agreeAI','agreeBear','agreeInsect','condition']);
 
 //次のページへ
 const toPage13 = function(){
