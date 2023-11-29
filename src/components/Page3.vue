@@ -99,8 +99,8 @@ const itemList = ref<Array<itemListType>>([
   },
   {
     seed: 3,
-    question1: '近年、文章や画像などの自動生成を行う生成系AIの技術が目覚ましく発展しています。',
-    question2: 'あなたは、<span class="text-bold">学問やビジネスなどでのAIの積極的な利用</span>について、賛成ですか？反対ですか？',
+    question1: '近年、文章や画像などの自動生成を行う生成系AI（人工知能）の技術が目覚ましく発展しています。',
+    question2: 'あなたは、<span class="text-bold">学問やビジネスなどでのAI（人工知能）の積極的な利用</span>について、賛成ですか？反対ですか？',
     option1: '賛成',
     option2: '反対',
     value1: '1',
@@ -117,56 +117,25 @@ const itemList = ref<Array<itemListType>>([
     value2: '2',
     answer: '',
   },
-  {
-    seed: 5,
-    question1: '近年、持続可能性などの観点から肉・魚に代わるタンパク源として昆虫食が注目されています。',
-    question2: 'あなたは、<span class="text-bold">現在の食生活に昆虫食を取り入れること</span>について、賛成ですか？反対ですか？',
-    option1: '賛成',
-    option2: '反対',
-    value1: '1',
-    value2: '2',
-    answer: '',
-  },
 ]);
-
-//プロフィール情報提示などで使用する変数
-const agreeImmigrant = ref<string>('');
-const agreeDefenseCost = ref<string>('');
-const agreeAI = ref<string>('');
-const agreeBear = ref<string>('');
-const agreeInsect = ref<string>('');
 
 //次のページへ
 const toPage4 = function(){
   window.scrollTo(0, 0);  
-  const body: string = `agree1=${itemList.value.find((e:any) => e.seed === 1)?.answer}&agree2=${itemList.value.find((e:any) => e.seed === 2)?.answer}&agree3=${itemList.value.find((e:any) => e.seed === 3)?.answer}&agree4=${itemList.value.find((e:any) => e.seed === 4)?.answer}&agree5=${itemList.value.find((e:any) => e.seed === 5)?.answer}`;
+  const body: string = `agree1=${itemList.value.find((e:any) => e.seed === 1)?.answer}&agree2=${itemList.value.find((e:any) => e.seed === 2)?.answer}&agree3=${itemList.value.find((e:any) => e.seed === 3)?.answer}&agree4=${itemList.value.find((e:any) => e.seed === 4)?.answer}`;
   postData('page3', body);
   execEmit();
 };
 
 const emit = defineEmits(['eventEmit'])
 const execEmit = () => {
-  itemList.value.forEach((e:any)=>{
-    if(e.seed === 1){
-      agreeImmigrant.value = e.answer === '1' ? '賛成' :  '反対';
-    }else if(e.seed === 2){
-      agreeDefenseCost.value = e.answer === '1' ? '賛成' :  '反対';
-    }else if(e.seed === 3){
-      agreeAI.value = e.answer === '1' ? '賛成' :  '反対';
-    }else if(e.seed === 4){
-      agreeBear.value = e.answer === '1' ? '賛成' :  '反対';
-    }else if(e.seed === 5){
-      agreeInsect.value = e.answer === '1' ? '賛成' :  '反対';
-    }
-  });
   emit('eventEmit', { 
     'tab': 'page4', 
     'progress': 0.15, 
-    'agreeImmigrant' : agreeImmigrant.value, 
-    'agreeDefenseCost': agreeDefenseCost.value, 
-    'agreeAI' : agreeAI.value,
-    'agreeBear' : agreeBear.value,
-    'agreeInsect' : agreeInsect.value,
+    'agreeImmigrant' : itemList.value.find((e:any) => e.seed === 1)?.answer, 
+    'agreeDefenseCost': itemList.value.find((e:any) => e.seed === 2)?.answer, 
+    'agreeAI' : itemList.value.find((e:any) => e.seed === 3)?.answer,
+    'agreeBear' : itemList.value.find((e:any) => e.seed === 4)?.answer,
   });
 }
 

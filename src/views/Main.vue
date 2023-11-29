@@ -100,7 +100,6 @@
         @eventEmit="execEvent" 
         :uri="uri" 
         :UUID="UUID" 
-        :condition="condition"
       />
     </q-tab-panel>
     <q-tab-panel name="page10">
@@ -113,6 +112,9 @@
     <q-tab-panel name="page11">
       <Page11 
         @eventEmit="execEvent"
+        :uri="uri" 
+        :UUID="UUID"
+        :condition="condition"
       />
     </q-tab-panel>
     <q-tab-panel name="page12">
@@ -126,7 +128,6 @@
         :agreeDefenseCost="agreeDefenseCost"
         :agreeAI="agreeAI"
         :agreeBear="agreeBear"
-        :agreeInsect="agreeInsect"
         :condition="condition"
         />
     </q-tab-panel>
@@ -238,7 +239,6 @@ const agreeImmigrant = ref<string>('');
 const agreeDefenseCost = ref<string>('');
 const agreeAI = ref<string>('');
 const agreeBear = ref<string>('');
-const agreeInsect = ref<string>('');
 const condition = ref<number>(0);
 const volume = ref<number>(0);
 
@@ -258,7 +258,6 @@ const execEvent = (data: any) => {
   agreeDefenseCost.value = !data.agreeDefenseCost ? agreeDefenseCost.value :  data.agreeDefenseCost;
   agreeAI.value = !data.agreeAI ? agreeAI.value :  data.agreeAI;
   agreeBear.value = !data.agreeBear ? agreeBear.value :  data.agreeBear;
-  agreeInsect.value = !data.agreeInsect ? agreeInsect.value :  data.agreeInsect;
   volume.value = !data.volume ? volume.value :  data.volume;
 };
 

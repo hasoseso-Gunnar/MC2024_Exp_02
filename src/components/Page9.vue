@@ -1,66 +1,40 @@
 <template>
   <div class="q-pa-md">
-    <p class="text-subtitle1 text-black">ここからは、この調査に同時に参加している<span class="text-bold">他の参加者と協力</span>してタスクを行います。</p>
-    <p class="text-subtitle1 text-black">また、協力課題をより円滑に進めるために、協力相手の参加者(パートナー)には<span class="text-bold">あなたがここまで回答した情報の一部が事前</span>に提示されます。</p>
-    <p class="text-subtitle1 text-black">提示される情報は<span class="text-bold">「性別」「年齢」「5つのトピックに関するそれぞれの賛否」</span>です。</p>
+    <p>※このページは30秒経過すると、ページ下部の「マッチングを開始する」ボタンから次のステップへ進めるようになります。</p>
+    <p class="text-subtitle1 text-black">ここからは、この調査に同時に参加している<span class="text-bold">他の参加者と一緒に</span>ゲームを行います。</p>
+    <br/>
+    <p class="text-subtitle1 text-black">ゲームでは、あなたとパートナーで同時にそれぞれ<span class="text-bold">5問のクイズに回答</span>します。</p>
+    <p class="text-subtitle1 text-black">クイズは一般知識レベルの問題が出題され、質問に対する回答を20秒以内に4つの選択肢から選んで回答する形式です。</p>
     <br>
-    <p class="text-subtitle1 text-black">加えて、このタスクでは音が出ますので、大きすぎず、小さすぎない、<span class="text-red-9 text-bold">適切な音量</span>を事前に設定してください。</p>
-    <p class="text-subtitle1 text-black">※スライダーの下の「サンプル音」ボタンを押すと実際に音が出ますので、サンプル音を聞きながら音量を調節してください。</p>
-    <div style="height: 80px;"></div>
-    <div class="row">
-      <div class="col-2"></div>
-      <q-slider
-        v-model="volume"
-        :min="0"
-        :max="100"
-        color="blue"
-        :marker-labels="markerLabel"
-        label-always
-        class="col-8"
-      />
-    </div>
-    <div style="height: 40px;"></div>
-    <div class="row">
-      <div class="col-5"></div>
-      <q-btn
-        class="bg-blue text-white col-2"
-        label="サンプル音"
-        style="height: 50px; font-size: 19px; font-weight: bold;"
-        icon="volume_up"
-        @click="activateSound"
-      />
-    </div>
+    <span >※以下の画像は、実際のゲーム画面の例です。</span>
+    <br>
+    <q-img 
+      loading="eager"
+      src="https://hasoseso-gunnar.github.io/MC2024_Exp_02/referee_yellowcard.png"
+      width="150px"
+      class="q-mb-lg"
+      style="margin-left: 45%;"
+    ></q-img>
     <div style="height: 30px;"></div>
-    <span >※ボタンを最初に押した際に、音が出ない場合がありますが、端末が音源のデータを読み込むのに時間が掛かっているためです。</span>
-    <br>
-    <span>※音が聞こえない場合は、音が聞こえるまでボタンを押してください。</span>
-    <div style="height: 60px;"></div>
-    <p class="text-subtitle1 text-black">適切な音量が設定できましたら、以下の「この音量で適切である」ボタンをクリックして、次のページに進んでください。</p>
-    <p class="text-subtitle1 text-black">次のページに進むと、すぐに<span class="text-bold">他の参加者とのマッチングが開始</span>されます。</p>
+    <p class="text-subtitle1 text-black">クイズに1問正解するたびに1点加点されます。そのため、あなた1人で最大5点獲得できます。</p>
+    <p class="text-subtitle1 text-black">このクイズをパートナーも同時に行うため、お互いの<span class="text-bold">最大合計スコアは10点</span>となります。できるだけ高得点を狙いましょう。</p>
+    <p class="text-subtitle1 text-black">また、ゲームを行う前に合計スコアとは関係のない<span class="text-bold">1問練習用のクイズを出題します</span>。そこで再度ルールと手順を確認してください。</p>
     <div style="height: 40px;"></div>
-    <div class="row">
-      <div class="col-4"></div>
-      <div class="col-4" align="center" :style="volumeFine === '1' ? 'background-color: #CCEBFF; border: 5px solid white;': 'background: rgba(0,0,0,.08); border: 5px solid white;'">
-        <p class="description" style="font-size: 19px;">この音量で適切である</p>
-          <q-radio 
-            v-model="volumeFine" 
-            size="xl" 
-            checked-icon="task_alt" 
-            unchecked-icon="panorama_fish_eye" 
-            val="1"
-          />
-      </div>
-    </div>
+    <p class="text-subtitle1 text-black"></p>
+    <p class="text-subtitle1 text-black">②ゲームをより円滑に進めるために、協力相手の参加者(パートナー)には<span class="text-bold">あなたがここまで回答した情報の一部が事前</span>に提示されます。</p>
+    <p class="text-subtitle1 text-black">提示される情報は<span class="text-bold">「性別」「年齢」「4つのトピックに関するそれぞれの賛否」</span>です。</p>
+    <br>
+    <div style="height: 30px;"></div>
     <div align="right">
         <q-btn 
-          v-if="volume === 0 || volumeFine !== '1'"
-          label="次のページへ"
+          v-if="thirtySecondsPassed === false"
+          label="マッチングを開始する"
           flat
           class="bg-grey text-white"
         ></q-btn>
         <q-btn 
           v-else
-          label="次のページへ"
+          label="マッチングを開始する"
           flat
           class="bg-blue-7 text-white"
           @click="toPage10"
@@ -71,108 +45,29 @@
 <script setup  lang="ts">
 import { ref, onMounted, defineProps, withDefaults } from "vue";
 
-//親からの受け取りデータ
-const props = defineProps(['uri','UUID','condition']);
+//ページ読み込んだ際の処理
+onMounted(async()=>{
+  //30秒待つ
+  setTimeout(async() => {
+    thirtySecondsPassed.value = true;
+  }, 30000);
+});
 
-//音量に関する変数
-const volume = ref<number>(0);
-const markerLabel = ref<any>([        
-    { value: 0, label: '0' },
-    { value: 20, label: '20' },
-    { value: 40, label: '40' },
-    { value: 60, label: '60' },
-    { value: 80, label: '80' },
-    { value: 100, label: '100' },
-  ])
-
-const volumeFine = ref<string>('0');
-
-//音を出す関数
-const activateSound = () =>{
-  const audio = new Audio('https://hasoseso-gunnar.github.io/MC2024_Exp_02/sample.mp3');
-  
-  // 音量を取得（0～1の範囲に変換）
-  const volumeFloat = parseFloat(String(volume.value)) / 100;
-  
-  // 音量を設定
-  audio.volume = volumeFloat;
-
-  audio.play();
-};
+//30秒カウント過ぎたかどうか
+const thirtySecondsPassed = ref<boolean>(false);
 
 //次のページへ
 const toPage10 = function(){
   window.scrollTo(0, 0);  
-  const body: string = `volume=${volume.value}&condition=${props.condition}`;
-  postData('page9', body);  
   execEmit();
 };
 
 const emit = defineEmits(['eventEmit'])
 const execEmit = () => {
-  emit('eventEmit', { 'tab': 'page10', 'progress': 0.45, 'volume': volume.value})
+  emit('eventEmit', { 'tab': 'page10', 'progress': 0.45})
 }
 
-//データを送信する関数
-const postData = async(route: string, body: string) => {
-  
-  //GASにリクエストを送る
-	const requestOptions: any = {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/x-www-form-urlencoded',
-		},
-		body: `route=${route}&uuid=${props.UUID}&` + body,
-	};
 
-	let result: string = '';
-
-	await fetch(props.uri, requestOptions)
-		.then(async(res) => {
-      const data = await res.json();
-      //成功したとき
-      if(data.type === 'complete'){
-        result = 'complete';
-      
-      //エラーが発生したとき
-      }else{
-
-        //エラー用リクエスト
-        const requestOptionsError: any = {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-          },
-          body: `route=error&uuid=${props.UUID}&dateTime=${new Date().toLocaleString("ja-JP", {timeZone: "Asia/Tokyo", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit"}).replace(/\//g, '-')}&error=リクエストエラー&page=${route}`,
-        };
-
-        await fetch(props.uri, requestOptionsError)
-          .then((res) => {
-            console.log(res.json());
-            result = 'error';
-          });
-        }
-    })
-		.catch(async(err) => {
-
-      //エラー用リクエスト
-      const requestOptionsError: any = {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: `route=error&uuid=${props.UUID}&dateTime=${new Date().toLocaleString("ja-JP", {timeZone: "Asia/Tokyo", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit"}).replace(/\//g, '-')}&error=${err}&page=${route}&data=${body}`,
-      };
-
-      await fetch(props.uri, requestOptionsError)
-        .then((res) => {
-          console.log(res.json());
-          result = 'error';
-        });
-      });
-
-  return result;
-};
 
 </script>
 <style lang="scss">

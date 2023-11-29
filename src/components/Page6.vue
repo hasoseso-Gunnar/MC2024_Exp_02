@@ -1,6 +1,6 @@
 <template>
   <div class="q-pa-md">
-    <p class="text-subtitle1 text-black">次に、<span class="text-bold">あなたが日本での移民の積極的な受け入れに{{ props.agreeImmigrant }}する理由</span>を、下記の自由記述欄に100～200文字で記述してください。</p>
+    <p class="text-subtitle1 text-black">次に、<span class="text-bold">あなたが日本での移民の積極的な受け入れに{{ props.agreeImmigrant }}する理由</span>を、下記のコメント欄に100～200文字で記述してください。</p>
     <br>
     <q-input 
       v-model="openEndedQuesiton"
@@ -42,11 +42,11 @@ import { ref, onMounted, defineProps, withDefaults } from "vue";
 //親からの受け取りデータ
 const props = defineProps(['agreeImmigrant','uri','UUID']);
 
-//自由記述内容
+//コメント内容
 const openEndedQuesiton = ref<string>('');
 const openEndedFinished = ref<boolean>(false);
 
-//自由記述内容が規定の文字数か判定
+//コメント内容が規定の文字数か判定
 const checkTextLength = () => {
   //100文字以上200文字以下の場合
   if(openEndedQuesiton.value.length >= 100 && openEndedQuesiton.value.length <= 200){

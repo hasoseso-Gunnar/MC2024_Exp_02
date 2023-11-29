@@ -1,33 +1,9 @@
 <template>
   <div class="q-pa-md">
-    <p class="text-subtitle1 text-black text-bold">これより、協力課題のルールについて説明します。</p>
+    <p class="text-subtitle1 text-black text-bold">これより、ゲームのルールについて説明します。</p>
     <p>※このページは30秒経過すると、ページ下部のボタンから次のステップへ進めるようになります。</p>
-    <br/>
-    <p class="text-subtitle1 text-black">協力課題では、あなたとパートナーで同時にそれぞれ<span class="text-bold">5問のクイズに回答</span>します。</p>
-    <p class="text-subtitle1 text-black">クイズは以下の(例)のように一般知識レベルの問題が出題され、それを15秒以内に4択の選択肢の中から選んで回答します。</p>
-    <br>
-    <q-card
-      class="q-pt-md q-pl-md q-pr-md q-mb-xl"
-      flat
-      bordered
-    >
-      <p class="text-subtitle1 text-black">(例) 全国に都道府県は合計いくつありますか？(正解: ③)</p>
-      <div class="row">
-        <span class="col-1 text-subtitle1 text-black"></span>
-        <span class="col-1 text-subtitle1 text-black">① 32</span>
-        <span class="col-1 text-subtitle1 text-black">② 39</span>
-        <span class="col-1 text-subtitle1 text-black text-bold">③ 47</span>
-        <span class="col-1 text-subtitle1 text-black">④ 56</span>
-      </div>
-      <br>
-    </q-card>
-
-    <p class="text-subtitle1 text-black">クイズに1問正解するたびに1点加点されます。そのため、あなた1人で最大5点獲得できます。</p>
-    <p class="text-subtitle1 text-black">このクイズをパートナーも同時に行うため、お互いの<span class="text-bold">最大合計スコアは10点</span>となります。できるだけ高得点を狙いましょう。</p>
-    <p class="text-subtitle1 text-black">なお、実際の協力課題を行う前に本番のスコアとは関係のない<span class="text-bold">1問練習用のクイズを出題します</span>。そこで再度ルールと手順を確認してください。</p>
-    <div style="height: 60px;"></div>
     <p class="text-subtitle1 text-black">また、本調査では相手との遠隔でのコミュニケーションを通して、どれだけ課題の結果が変化するかを検証しています。</p>
-    <p class="text-subtitle1 text-black">コミュニケーション方法の一環として、協力課題の中でパートナーに対してあなたは<span class="text-bold">シグナルを送る</span>ことができます。</p>
+    <p class="text-subtitle1 text-black">コミュニケーション方法の一環として、ゲームの中でパートナーに対してあなたは<span class="text-bold">シグナルを送る</span>ことができます。</p>
     <p class="text-subtitle1 text-black">シグナルには<span class="text-bold">「音のシグナル」</span>と<span class="text-bold">「色のシグナル」</span>の2種類があります。</p>
     <br>
     <p class="text-subtitle1 text-black">今回、<span class="text-bold text-red-9">あなたは音のシグナルを出す役割</span>を与えられました。</p>
@@ -84,6 +60,9 @@
 <script setup  lang="ts">
 import { ref, onMounted, defineProps, withDefaults } from "vue";
 
+//親からの受け取りデータ
+const props = defineProps(['uri','UUID','condition']);
+
 //ページ読み込んだ際の処理
 onMounted(async()=>{
   //20秒待つ
@@ -125,13 +104,76 @@ const activateSound = () => {
 //次のページへ
 const toPage12 = function(){
   window.scrollTo(0, 0);  
+  const body: string = `volume=${volume.value}&condition=${props.condition}`;
+  postData('page11', body);  
   execEmit();
 };
 
 const emit = defineEmits(['eventEmit'])
 const execEmit = () => {
-  emit('eventEmit', { 'tab': 'page12', 'progress': 0.550 })
+  emit('eventEmit', { 'tab': 'page12', 'progress': Math.floor(0.55*100)/100 ,'volume': volume.value })
 }
+
+//データを送信する関数
+const postData = async(route: string, body: string) => {
+  
+  //GASにリクエストを送る
+	const requestOptions: any = {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/x-www-form-urlencoded',
+		},
+		body: `route=${route}&uuid=${props.UUID}&` + body,
+	};
+
+	let result: string = '';
+
+	await fetch(props.uri, requestOptions)
+		.then(async(res) => {
+      const data = await res.json();
+      //成功したとき
+      if(data.type === 'complete'){
+        result = 'complete';
+      
+      //エラーが発生したとき
+      }else{
+
+        //エラー用リクエスト
+        const requestOptionsError: any = {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: `route=error&uuid=${props.UUID}&dateTime=${new Date().toLocaleString("ja-JP", {timeZone: "Asia/Tokyo", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit"}).replace(/\//g, '-')}&error=リクエストエラー&page=${route}`,
+        };
+
+        await fetch(props.uri, requestOptionsError)
+          .then((res) => {
+            console.log(res.json());
+            result = 'error';
+          });
+        }
+    })
+		.catch(async(err) => {
+
+      //エラー用リクエスト
+      const requestOptionsError: any = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `route=error&uuid=${props.UUID}&dateTime=${new Date().toLocaleString("ja-JP", {timeZone: "Asia/Tokyo", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit"}).replace(/\//g, '-')}&error=${err}&page=${route}&data=${body}`,
+      };
+
+      await fetch(props.uri, requestOptionsError)
+        .then((res) => {
+          console.log(res.json());
+          result = 'error';
+        });
+      });
+
+  return result;
+};
 
 </script>
 <style lang="scss">

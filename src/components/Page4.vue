@@ -1,6 +1,6 @@
 <template>
   <div class="q-pa-md">
-    <p class="text-subtitle1 text-black">ここからは、先ほどあなたが回答した5つのトピックのうち、ランダムに2つを取り上げます。</p>
+    <p class="text-subtitle1 text-black">ここからは、先ほどあなたが回答した4つのトピックのうち、ランダムに2つを取り上げます。</p>
     <br>
     <p class="text-subtitle1 text-black">それぞれのトピックに続く質問項目について、回答してください。</p>
     <div align="right">

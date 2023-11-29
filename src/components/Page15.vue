@@ -9,7 +9,7 @@
       <p class="text-h4 text-bold fade-in" v-if="visible1">結果発表</p>
       <!-- 表示2 -->
       <p class="text-h6 q-mb-xl fade-in" v-if="visible2">
-      今回の協力課題でのパートナーとの合計スコアは
+      今回のゲームでのパートナーとの合計スコアは
       </p>
       <p class="text-h6 q-mb-xl fade-in" v-if="visible2">
         <span class="text-h4 text-bold">{{ (score + 1) }}点</span>
@@ -19,7 +19,7 @@
       </p>
       <!-- 表示3 -->
       <p class="text-h5 fade-in" v-if="visible3">
-        これにて<span class="text-bold">協力課題は終了</span>です。
+        これにて<span class="text-bold">ゲームは終了</span>です。
       </p>
       <p class="text-subtitle1 fade-in" v-if="visible3">
         引き続き、残りの質問に回答してください。

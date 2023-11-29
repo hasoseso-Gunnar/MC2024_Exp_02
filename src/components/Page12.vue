@@ -2,7 +2,7 @@
   <div class="q-pa-md">
     <p class="text-subtitle1 text-black">これは、先ほどの質問項目でのパートナーの回答内容です。</p>
     <p class="text-subtitle1 text-black">この後の課題を円滑に行うために、<span class="text-bold">よく記憶してください。</span></p>
-    <p>※このページは20秒経過すると、ページ下部のボタンから協力課題へ進めるようになります。</p>
+    <p>※このページは20秒経過すると、ページ下部の「ゲームを開始する」ボタンから次の画面に進むことができます。</p>
     <div style="height: 40px;"></div>
     <p class="text-h6 text-black text-bold" style="margin-left: 20%;">【パートナーの情報】</p>
     <!-- プロフィール情報 -->
@@ -62,7 +62,7 @@
         <!-- AI -->
         <tr class="row q-tr--no-hover">
           <td class="text-left col-9 row items-center">
-            <p class="text-subtitle1" style="margin-bottom: 0px;">AIの積極的な利用</p>
+            <p class="text-subtitle1" style="margin-bottom: 0px;">AI（人工知能）の積極的な利用</p>
           </td>
           <td class="text-center col-3">
             <q-icon 
@@ -87,20 +87,6 @@
             <p class="text-subtitle1" style="margin-bottom: 0px;">{{ props.agreeBear }}</p>
           </td>
         </tr>
-        <!-- クマ -->
-        <tr class="row q-tr--no-hover">
-          <td class="text-left col-9 row items-center">
-            <p class="text-subtitle1" style="margin-bottom: 0px;">現在の食生活に昆虫食を取り入れる</p>
-          </td>
-          <td class="text-center col-3">
-            <q-icon 
-              :name="props.agreeInsect === '賛成' ? 'sentiment_satisfied' : 'sentiment_dissatisfied'"
-              :color="props.agreeInsect === '賛成' ? 'blue' : 'red'"
-              size="48px"
-            />
-            <p class="text-subtitle1" style="margin-bottom: 0px;">{{ props.agreeInsect }}</p>
-          </td>
-        </tr>
       </tbody>
     </q-markup-table>
   </div>
@@ -108,13 +94,13 @@
     <div align="right">
         <q-btn 
             v-if="twentySecondsPassed === false"
-            label="次のページへ"
+            label="ゲームを開始する"
             flat
             class="bg-grey text-white"
         ></q-btn>
         <q-btn 
             v-else
-            label="次のページへ"
+            label="ゲームを開始する"
             flat
             class="bg-blue-7 text-white"
             @click="toPage13"
@@ -137,7 +123,7 @@ onMounted(async()=>{
 const twentySecondsPassed = ref<boolean>(false);
 
 //親からの受け取りデータ
-const props = defineProps(['uri','UUID','sex','age','agreeImmigrant','agreeDefenseCost','agreeAI','agreeBear','agreeInsect','condition']);
+const props = defineProps(['uri','UUID','sex','age','agreeImmigrant','agreeDefenseCost','agreeAI','agreeBear','condition']);
 
 //次のページへ
 const toPage13 = function(){

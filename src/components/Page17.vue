@@ -1,6 +1,6 @@
 <template>
   <div class="q-pa-md">
-    <p class="text-subtitle1 text-black">以下の文章は、特定のトピックに関するパートナーの自由記述です。ここでは、2つ記述したうちの1つをランダムに取り上げています。</p>
+    <p class="text-subtitle1 text-black">以下の文章は、特定のトピックに関するパートナーのコメントです。ここでは、2つ記述したうちの1つをランダムに取り上げています。</p>
     <div style="height: 30px;"></div>
     <q-card
       dense
@@ -8,7 +8,7 @@
       bordered
       class="q-pt-md q-pl-md q-pr-md"
     > 
-      <p class="text-subtitle1 text-black">【パートナーの自由記述内容】</p>
+      <p class="text-subtitle1 text-black">【パートナーのコメント内容】</p>
       <!-- 賛成パートナー -->
       <p class="text-subtitle1 text-black" v-if="(props.condition === '1' && props.agreeImmigrant === '賛成') || (props.condition === '2' && props.agreeImmigrant === '反対')">
         日本は今、自国民のみの力によって少子化を解決できない段階まで来ています。このような状況を打破するために、外国から労働力を招き入れることは非常に合理的だと思います。治安の悪化や不法入国者の増加などが懸念されていますが、それは厳格な入国制限などによって解決できる問題で、日本の存続の危機という問題に比べれば些細な問題だと思います。
@@ -19,7 +19,7 @@
       </p>
     </q-card>
     <div style="height: 50px;"></div>
-    <p class="text-subtitle1 text-black">以上の文章を読み、自由記述欄に<span class="text-bold">『この文章にもし返信するとしたら何を伝えるか』</span>を100～200文字で記述してください。</p>
+    <p class="text-subtitle1 text-black">以上の文章を読み、コメント欄に<span class="text-bold">『この文章にもし返信するとしたら何を伝えるか』</span>を100～200文字で記述してください。</p>
     <p class="text-subtitle1 text-black">なお、あなたがここで記述した内容は、<span class="text-bold text-red-9">パートナーに知られることは決してありません。</span></p>
     <div style="height: 40px;"></div>
     <q-input 
@@ -63,11 +63,11 @@ import { ref, onMounted, defineProps, withDefaults } from "vue";
 //親からの受け取りデータ
 const props = defineProps(['uri','UUID','agreeImmigrant','condition']);
 
-//自由記述内容
+//コメント内容
 const openEndedQuesiton = ref<string>('');
 const openEndedFinished = ref<boolean>(false);
 
-//自由記述内容が規定の文字数か判定
+//コメント内容が規定の文字数か判定
 const checkTextLength = () => {
   //100文字以上200文字以下の場合
   if(openEndedQuesiton.value.length >= 100 && openEndedQuesiton.value.length <= 200){

@@ -2,7 +2,7 @@
   <div class="q-pa-md">
     <p class="text-subtitle1 text-black">以下に続けて各質問を読み、<span class="text-bold text-red-9">正しい内容</span>を選択してください。</p>
     <div style="height: 40px;"></div>
-    <p class="text-subtitle1 text-black">『先ほど一緒に<span class="text-red-9 text-bold">協力課題を行ったパートナー</span>は・・・』</p>
+    <p class="text-subtitle1 text-black">『先ほど一緒に<span class="text-red-9 text-bold">ゲームを行ったパートナー</span>は・・・』</p>
     <div style="height: 40px;"></div>
     <div v-for="(prop, i) in itemList">
       <p class="text-subtitle1 text-black" style="margin-bottom: 0px;" v-html="prop.question"></p>
@@ -97,7 +97,7 @@ const itemList = ref<Array<itemListType>>([
   },
   {
     seed: 3,
-    question: '<span class="text-bold">AIの積極的な利用</span>に賛成でしたか？反対でしたか？',
+    question: '<span class="text-bold">AI（人工知能）の積極的な利用</span>に賛成でしたか？反対でしたか？',
     option1: '賛成',
     option2: '反対',
     value1: '1',
@@ -112,22 +112,13 @@ const itemList = ref<Array<itemListType>>([
     value1: '1',
     value2: '2',
     answer: '',
-  },
-  {
-    seed: 5,
-    question: '<span class="text-bold">現在の食生活に昆虫食を取り入れること</span>に賛成でしたか？反対でしたか？',
-    option1: '賛成',
-    option2: '反対',
-    value1: '1',
-    value2: '2',
-    answer: '',
-  },
+  }
 ]);
 
 //次のページへ
 const toPage17 = function(){
   window.scrollTo(0, 0);  
-  const body: string = `manipulationCheck1=${itemList.value.find((e:any) => e.seed === 1)?.answer}&manipulationCheck2=${itemList.value.find((e:any) => e.seed === 2)?.answer}&manipulationCheck3=${itemList.value.find((e:any) => e.seed === 3)?.answer}&manipulationCheck4=${itemList.value.find((e:any) => e.seed === 4)?.answer}&manipulationCheck5=${itemList.value.find((e:any) => e.seed === 5)?.answer}`;
+  const body: string = `manipulationCheck1=${itemList.value.find((e:any) => e.seed === 1)?.answer}&manipulationCheck2=${itemList.value.find((e:any) => e.seed === 2)?.answer}&manipulationCheck3=${itemList.value.find((e:any) => e.seed === 3)?.answer}&manipulationCheck4=${itemList.value.find((e:any) => e.seed === 4)?.answer}`;
   postData('page16', body);
   execEmit();
 };

@@ -136,7 +136,7 @@
 
     <!-- 最後のみ表示... -->
     <div v-if="visible8" class="locate-center now-loading">
-      <p class="text-bold text-h4 text-center fade-in">以上で、協力課題の回答は終了です</p>
+      <p class="text-bold text-h4 text-center fade-in">以上で、ゲームの回答は終了です</p>
       <br/>
       <p class="text-bold text-h4 text-center fade-in">それでは、合計スコアの発表に移ります</p>
     </div>
@@ -183,7 +183,7 @@ const visible8 = ref<boolean>(false);
 //測定データ
 const score = ref<number>(0);
 
-//協力課題で表示するデータ
+//ゲームで表示するデータ
 const dialog = ref<string>('残り時間');
 const correctOrWrong = ref<string>('正解');
 const seamless = ref<boolean>(false);
@@ -389,7 +389,7 @@ const quizData = ref<Array<quizDataType>>([
   }
 ]);
 
-//協力課題を実行する処理
+//ゲームを実行する処理
 const executeTask = async() => {
 
     //第〇問表示
@@ -565,7 +565,7 @@ const activateSound = () => {
 //次のページへ
 const toPage15 = async function(){
   window.scrollTo(0, 0);
-  const body: string = `quiz1=${quizData.value[1].participantsAnswer}&quiz2=${quizData.value[2].participantsAnswer}&quiz3=${quizData.value[3].participantsAnswer}&quiz4=${quizData.value[4].participantsAnswer}&quiz5=${quizData.value[5].participantsAnswer}&attackVolume1=${quizData.value[1].attackVolume}&attackVolume2=${quizData.value[2].attackVolume}&attackVolume3=${quizData.value[3].attackVolume}&attackVolume4=${quizData.value[4].attackVolume}&attackVolume5=${quizData.value[5].attackVolume}&attackCount1=${quizData.value[1].attackCount}&attackCount2=${quizData.value[2].attackCount}&attackCount3=${quizData.value[3].attackCount}&attackCount4=${quizData.value[4].attackCount}&attackCount5=${quizData.value[5].attackCount}&score=${score.value}`;
+  const body: string = `quizTest=${quizData.value[0].participantsAnswer}quiz1=${quizData.value[1].participantsAnswer}&quiz2=${quizData.value[2].participantsAnswer}&quiz3=${quizData.value[3].participantsAnswer}&quiz4=${quizData.value[4].participantsAnswer}&quiz5=${quizData.value[5].participantsAnswer}&attackVolumeTest=${quizData.value[0].attackVolume}&attackVolume1=${quizData.value[1].attackVolume}&attackVolume2=${quizData.value[2].attackVolume}&attackVolume3=${quizData.value[3].attackVolume}&attackVolume4=${quizData.value[4].attackVolume}&attackVolume5=${quizData.value[5].attackVolume}&attackCountTest=${quizData.value[0].attackCount}&attackCount1=${quizData.value[1].attackCount}&attackCount2=${quizData.value[2].attackCount}&attackCount3=${quizData.value[3].attackCount}&attackCount4=${quizData.value[4].attackCount}&attackCount5=${quizData.value[5].attackCount}&score=${score.value}`;
   await postData('page14', body);  
   execEmit();
 };
