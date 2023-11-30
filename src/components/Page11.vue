@@ -1,14 +1,23 @@
 <template>
   <div class="q-pa-md">
-    <p class="text-subtitle1 text-black text-bold">これより、ゲームのルールについて説明します。</p>
+    <p class="text-subtitle1 text-black text-bold">これより、ゲーム内でのシグナルの送り方について説明します。</p>
     <p>※このページは30秒経過すると、ページ下部のボタンから次のステップへ進めるようになります。</p>
-    <p class="text-subtitle1 text-black">また、本調査では相手との遠隔でのコミュニケーションを通して、どれだけ課題の結果が変化するかを検証しています。</p>
-    <p class="text-subtitle1 text-black">コミュニケーション方法の一環として、ゲームの中でパートナーに対してあなたは<span class="text-bold">シグナルを送る</span>ことができます。</p>
-    <p class="text-subtitle1 text-black">シグナルには<span class="text-bold">「音のシグナル」</span>と<span class="text-bold">「色のシグナル」</span>の2種類があります。</p>
-    <br>
+    <br/>
     <p class="text-subtitle1 text-black">今回、<span class="text-bold text-red-9">あなたは音のシグナルを出す役割</span>を与えられました。</p>
-    <p class="text-subtitle1 text-black">各問題に回答したのちに正解が表示されるタイミングで、以下のスライダーを用いて音量を調整してシグナルを発信してください。</p>
-    <p class="text-subtitle1 text-black">また、<span class="text-bold">次のページに進む前にシグナル音を1回以上聞いて</span>ください。</p>
+    <p class="text-subtitle1 text-black">逆に、相手からは<span class="text-bold">「色のシグナル」</span>が送られてきます。</p>
+    <div style="height: 30px;"></div>
+    <p class="text-subtitle1 text-black">シグナル音は、パートナーがクイズに正解した場合は「ピンポンピンポン」と鳴る正解音、不正解の場合は「ブブー」と鳴る不正解音を鳴らすことになります。</p>
+    <p class="text-subtitle1 text-black">以下の画像のように、各問題に回答したのちに正解が表示される画面で、スライダーを用いて音量を調整してパートナーに音を聞かせてください。</p>
+    <br>
+    <q-img 
+      loading="eager"
+      src="https://hasoseso-gunnar.github.io/MC2024_Exp_02/referee_yellowcard.png"
+      width="150px"
+      class="q-mb-lg"
+      style="margin-left: 45%;"
+    />
+    <br/>
+    <p class="text-subtitle1 text-black">また、ゲームを開始する前に、実際に音声を聞きながら以下のスライダーを操作して<span class="text-bold">「正解音」と「不正解音」のそれぞれについて、自分が適正だと思う音量を設定</span>してください。</p>
     <div style="height: 40px;"></div>
     <div class="row">
       <div class="col-2"></div>
@@ -34,11 +43,13 @@
       />
     </div>
     <div style="height: 30px;"></div>
-    <span >※ボタンを最初に押した際に、音が出ない場合がありますが、端末が音源のデータを読み込むのに時間が掛かっているためです。</span>
+    <span>※サンプル音は何回聞いて頂いても大丈夫です。</span>
     <br>
-    <span>※音が聞こえない場合は、音が聞こえるまでボタンを押してください。</span>
-    <div style="height: 60px;"></div>
-    <p class="text-subtitle1 text-black">なお、相手からは<span class="text-bold">「色のシグナル」</span>が送られてきます。相手の意図を汲み取り、二人で協力して問題を解いてください。</p>
+    <span>※お使いの機器の音量も調節してください。</span>
+    <br>
+    <span>※ボタンを最初に押した際に、音が出ない場合がありますが、端末が音源のデータを読み込むのに時間が掛かっているためです。</span>
+    <br>
+    <span>※音が聞こえない場合は、音が聞こえるまでボタンを押し続けてください。</span>
     <div style="height: 80px;"></div>
     <div align="right">
       <q-btn 
@@ -65,7 +76,7 @@ const props = defineProps(['uri','UUID','condition']);
 
 //ページ読み込んだ際の処理
 onMounted(async()=>{
-  //20秒待つ
+  //30秒待つ
   setTimeout(async() => {
     thirtySecondsPassed.value = true;
   }, 30000);

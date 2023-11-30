@@ -218,22 +218,22 @@ const quizData = ref<Array<quizDataType>>([
     questionTitle: '練習問題',
     correctAnswer: '1',
     partnerAnswer: '正解',
-    question: 'Q. <span class="text-bold">「一つの行為や苦労で、二つの目的を同時に果たすたとえ」</span>として用いられる四字熟語は次のうちどれか？',
+    question: 'Q. 全国に<span class="text-bold">都道府県は合計でいくつ</span>ありますか？',
     options: [
         {
-          label: '1. 一石二鳥',
+          label: '1. 24',
           value: '1'
         },
         {
-          label: '2. 一生懸命',
+          label: '2. 39',
           value: '2'
         },
         {
-          label: '3. 安全第一',
+          label: '3. 47',
           value: '3'
         },
         {
-          label: '4. 一長一短',
+          label: '4. 57',
           value: '4'
         }
       ],
@@ -565,7 +565,7 @@ const activateSound = () => {
 //次のページへ
 const toPage15 = async function(){
   window.scrollTo(0, 0);
-  const body: string = `quizTest=${quizData.value[0].participantsAnswer}quiz1=${quizData.value[1].participantsAnswer}&quiz2=${quizData.value[2].participantsAnswer}&quiz3=${quizData.value[3].participantsAnswer}&quiz4=${quizData.value[4].participantsAnswer}&quiz5=${quizData.value[5].participantsAnswer}&attackVolumeTest=${quizData.value[0].attackVolume}&attackVolume1=${quizData.value[1].attackVolume}&attackVolume2=${quizData.value[2].attackVolume}&attackVolume3=${quizData.value[3].attackVolume}&attackVolume4=${quizData.value[4].attackVolume}&attackVolume5=${quizData.value[5].attackVolume}&attackCountTest=${quizData.value[0].attackCount}&attackCount1=${quizData.value[1].attackCount}&attackCount2=${quizData.value[2].attackCount}&attackCount3=${quizData.value[3].attackCount}&attackCount4=${quizData.value[4].attackCount}&attackCount5=${quizData.value[5].attackCount}&score=${score.value}`;
+  const body: string = `quizTest=${quizData.value[0].participantsAnswer}&quiz1=${quizData.value[1].participantsAnswer}&quiz2=${quizData.value[2].participantsAnswer}&quiz3=${quizData.value[3].participantsAnswer}&quiz4=${quizData.value[4].participantsAnswer}&quiz5=${quizData.value[5].participantsAnswer}&attackVolumeTest=${quizData.value[0].attackVolume}&attackVolume1=${quizData.value[1].attackVolume}&attackVolume2=${quizData.value[2].attackVolume}&attackVolume3=${quizData.value[3].attackVolume}&attackVolume4=${quizData.value[4].attackVolume}&attackVolume5=${quizData.value[5].attackVolume}&attackCountTest=${quizData.value[0].attackCount}&attackCount1=${quizData.value[1].attackCount}&attackCount2=${quizData.value[2].attackCount}&attackCount3=${quizData.value[3].attackCount}&attackCount4=${quizData.value[4].attackCount}&attackCount5=${quizData.value[5].attackCount}&score=${score.value}`;
   await postData('page14', body);  
   execEmit();
 };

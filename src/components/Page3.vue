@@ -32,7 +32,7 @@
   <div class="q-pa-md q-mt-xl">
     <div align="right">
         <q-btn 
-            v-if="itemList[0].answer === '' || itemList[1].answer === '' || itemList[2].answer === '' || itemList[3].answer === '' || itemList[4].answer === ''"
+            v-if="itemList[0].answer === '' || itemList[1].answer === '' || itemList[2].answer === '' || itemList[3].answer === ''"
             label="次のページへ"
             flat
             class="bg-grey text-white"
@@ -132,10 +132,10 @@ const execEmit = () => {
   emit('eventEmit', { 
     'tab': 'page4', 
     'progress': 0.15, 
-    'agreeImmigrant' : itemList.value.find((e:any) => e.seed === 1)?.answer, 
-    'agreeDefenseCost': itemList.value.find((e:any) => e.seed === 2)?.answer, 
-    'agreeAI' : itemList.value.find((e:any) => e.seed === 3)?.answer,
-    'agreeBear' : itemList.value.find((e:any) => e.seed === 4)?.answer,
+    'agreeImmigrant' : itemList.value.find((e:any) => e.seed === 1)?.answer === '1' ? '賛成' : '反対', 
+    'agreeDefenseCost': itemList.value.find((e:any) => e.seed === 2)?.answer === '1' ? '賛成' : '反対', 
+    'agreeAI' : itemList.value.find((e:any) => e.seed === 3)?.answer === '1' ? '賛成' : '反対',
+    'agreeBear' : itemList.value.find((e:any) => e.seed === 4)?.answer === '1' ? '賛成' : '反対',
   });
 }
 

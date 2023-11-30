@@ -8,7 +8,7 @@
       bordered
       class="q-pt-md q-pl-md q-pr-md"
     > 
-      <p class="text-subtitle1 text-black">【パートナーのコメント内容】</p>
+      <p class="text-subtitle1 text-black">【パートナーのコメント】</p>
       <!-- 賛成パートナー -->
       <p class="text-subtitle1 text-black" v-if="(props.condition === '1' && props.agreeImmigrant === '賛成') || (props.condition === '2' && props.agreeImmigrant === '反対')">
         日本は今、自国民のみの力によって少子化を解決できない段階まで来ています。このような状況を打破するために、外国から労働力を招き入れることは非常に合理的だと思います。治安の悪化や不法入国者の増加などが懸念されていますが、それは厳格な入国制限などによって解決できる問題で、日本の存続の危機という問題に比べれば些細な問題だと思います。

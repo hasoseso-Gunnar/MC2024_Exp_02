@@ -33,7 +33,7 @@
   <div class="q-pa-md q-mt-xl">
     <div align="right">
         <q-btn 
-            v-if="itemList[0].answer === '' || itemList[1].answer === '' || itemList[2].answer === '' || itemList[3].answer === '' || itemList[4].answer === ''"
+            v-if="itemList[0].answer === '' || itemList[1].answer === '' || itemList[2].answer === '' || itemList[3].answer === ''"
             label="次のページへ"
             flat
             class="bg-grey text-white"
