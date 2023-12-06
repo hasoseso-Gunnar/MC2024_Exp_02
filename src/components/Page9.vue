@@ -1,10 +1,11 @@
 <template>
   <div class="q-pa-md">
+    <p>※このページは30秒経過すると、ページ下部のボタンから次のステップへ進めるようになります。</p>
+    <br/>
     <p class="text-subtitle1 text-black">ここからは、この調査に同時に参加している<span class="text-bold">他の参加者と一緒に</span>ゲームを行います。</p>
-    <p>※このページは30秒経過すると、ページ下部の「マッチングを開始する」ボタンから次のステップへ進めるようになります。</p>
     <br/>
     <p class="text-subtitle1 text-black">ゲームでは、あなたとパートナーで同時にそれぞれ<span class="text-bold">5問のクイズに回答</span>します。</p>
-    <p class="text-subtitle1 text-black">クイズは一般知識レベルの問題が出題され、質問に対する回答を20秒以内に4つの選択肢から選んで回答する形式です。</p>
+    <p class="text-subtitle1 text-black">クイズでは一般知識レベルの問題が出題され、質問に対する回答を20秒以内に4つの選択肢から選んで回答します。</p>
     <br>
     <span >※以下の画像は、実際のゲーム画面です。クイズはこのような形で出題され、回答することを求められます。</span>
     <div style="height: 30px;"></div>
@@ -24,31 +25,32 @@
     <br>
     <p class="text-subtitle1 text-black">①ゲームをより円滑に進めるために、あなたとパートナーは<span class="text-bold">お互いがここまで回答した情報の一部が事前に提示</span>されます。</p>
     <p class="text-subtitle1 text-black">提示される情報は<span class="text-bold">「性別」「年齢」「4つのトピックに関するそれぞれの賛否」</span>です。</p>
-    <p class="text-subtitle1 text-black">これらの情報はゲームの後で正しく記憶しているかどうか確認しますので、しっかりと覚えてください。</p>
+    <p class="text-subtitle1 text-black">プロフィール情報の一部について、ゲームの後で正しく記憶しているかどうか確認しますので、しっかりと覚えてください。</p>
     <br>
     <p class="text-subtitle1 text-black">②本調査では、オンラインでのコミュニケーション時の行動について調べています。</p>
     <p class="text-subtitle1 text-black">コミュニケーション方法の一環として、ゲームの中であなたとパートナーは<span class="text-bold">お互いにシグナルを送ります</span>。</p>
     <p class="text-subtitle1 text-black">シグナルには<span class="text-bold">「音のシグナル」</span>と<span class="text-bold">「色のシグナル」</span>の2種類があります。</p>
     <p class="text-subtitle1 text-black">どちらのシグナルを送信する役割になるかは、パートナーとのマッチング後にランダムに決まります。</p>
-    <p class="text-subtitle1 text-black">また、どのようにシグナルを送信するのかも、マッチング後に役割が決まってから説明します。</p>
+    <p class="text-subtitle1 text-black">また、シグナルを送信する具体的な方法についても、マッチング後に役割が決まってから説明します。</p>
     <br>
     <div style="height: 30px;"></div>
+    <p class="text-subtitle1 text-black">以上が、ゲームのルールです。</p>
     <p class="text-subtitle1 text-black text-bold">上記のルールを理解し、ゲームを開始する準備が出来ましたら、「マッチングを開始する」ボタンを押してください。</p>
     <div style="height: 30px;"></div>
     <div align="right">
-        <q-btn 
-          v-if="thirtySecondsPassed === false"
-          label="マッチングを開始する"
-          flat
-          class="bg-grey text-white"
-        ></q-btn>
-        <q-btn 
-          v-else
-          label="マッチングを開始する"
-          flat
-          class="bg-blue-7 text-white"
-          @click="toPage10"
-        ></q-btn>
+      <q-btn 
+        v-if="thirtySecondsPassed === false"
+        label="マッチングを開始する"
+        flat
+        class="bg-grey text-white"
+      ></q-btn>
+      <q-btn 
+        v-else
+        label="マッチングを開始する"
+        flat
+        class="bg-blue-7 text-white"
+        @click="toPage10"
+      ></q-btn>
     </div>
   </div>
 </template>

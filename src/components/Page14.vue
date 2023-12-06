@@ -1,51 +1,66 @@
 <template>
+  <!-- 回答終了 & 正解は... -->
+  <div v-if="visible4 && (correctOrWrong === '正解')" class="answer-overlay fade-in column items-center justify-center">
+    <div class="correct-sign q-mb-md"></div>
+    <p class="text-bold text-h4 text-blue q-mb-lg">あなたの選んだ回答は正解でした！</p>
+    <p class="text-bold text-h4">A. {{ quizData[questionNumber].options[Number(quizData[questionNumber].correctAnswer)-1].label.slice(3) }}</p>
+  </div>
+
+  <!-- 回答終了 & 正解は... -->
+  <div v-if="visible4 && (correctOrWrong === '不正解')" class="answer-overlay fade-in column items-center justify-center">
+    <div class="batsu-sign q-mb-md"></div>
+    <p class="text-bold text-h4 text-red q-mb-lg">あなたの選んだ回答は不正解でした...</p>
+    <p class="text-bold text-h4">A. {{ quizData[questionNumber].options[Number(quizData[questionNumber].correctAnswer)-1].label.slice(3) }}</p>
+  </div>
+
   <div class="q-pa-md">
 
+    <!-- クイズ画面 -->
     <q-card 
       class="task-card" 
       flat 
       bordered
     >
+      <!-- 画面上部(クイズ時) -->
+      <div class="row" style="width: 100%; height: 180px;" v-if="visible3">
+          
+        <!-- 問題文の表示・正解不正解表示 -->
+        <div class="col-10 row items-center q-pa-lg">
+          <span class="text-h5" v-html="quizData[questionNumber].question"></span>          
+        </div>
 
-    <!-- 画面上部(クイズ時) -->
-    <div class="row" style="width: 100%; height: 180px;" v-if="visible3">
+        <!-- 右上の枠 -->
+        <div class="col-2 column items-center">
+          <div class="circle-window">
+            <span class="text-h4 text-bold">{{ countDown }}</span>
+          </div>
+          <div class="rectangular-window">
+            <span v-html="dialog"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 画面上部(シグナル送信時) -->
+      <div class="row" style="width: 100%; height: 180px;" v-if="visible6">
         
-      <!-- 問題文の表示・正解不正解表示 -->
-      <div class="col-10 row items-center q-pa-lg">
-        <span class="text-h5" v-html="quizData[questionNumber].question"></span>          
-      </div>
-
-      <!-- 右上の枠 -->
-      <div class="col-2 column items-center">
-        <div class="circle-window">
-          <span class="text-h4 text-bold">{{ countDown }}</span>
+        <!-- 問題文の表示・正解不正解表示 -->
+        <div class="col-10 row items-center q-pa-lg">
+          <span class="text-h5">今回の問題で、パートナーは<span :class="quizData[questionNumber].partnerAnswer === '正解' ? 'text-bold text-green-9' : 'text-bold text-red-9'">{{ quizData[questionNumber].partnerAnswer }}</span>でした</span>     
+          <span style="font-size: 1.3rem;">以下のスライダーを用いて音量を調節し、<span class="text-red-9 text-bold">制限時間内に相手に音のシグナルを送信</span>してください。</span>          
         </div>
-        <div class="rectangular-window">
-          <span v-html="dialog"></span>
-        </div>
-      </div>
-    </div>
 
-    <!-- 画面上部(クイズ時) -->
-    <div class="row" style="width: 100%; height: 180px;" v-if="visible6">
-      
-      <!-- 問題文の表示・正解不正解表示 -->
-      <div class="col-10 row items-center q-pa-lg">
-        <span class="text-h5">次の問題が始まるまでに、今回のクイズの結果を踏まえて音量を調節し、相手に音のシグナルを送信してください。</span>          
-      </div>
-
-      <!-- 右上の枠 -->
-      <div class="col-2 column items-center">
-        <div class="circle-window">
-          <span class="text-h4 text-bold">{{ countDown }}</span>
-        </div>
-        <div class="rectangular-window">
-          <span v-html="dialog"></span>
+        <!-- 右上の枠 -->
+        <div class="col-2 column items-center">
+          <div class="circle-window">
+            <span class="text-h4 text-bold">{{ countDown }}</span>
+          </div>
+          <div class="rectangular-window">
+            <span v-html="dialog"></span>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- 通信中 -->
+      <!-- 通信中 -->
       <div v-if="visible1" class="locate-center now-loading">
         <q-spinner-hourglass 
           color="blue" 
@@ -70,24 +85,8 @@
         />
       </div>
 
-      <!-- 回答終了 & 正解は... -->
-      <div v-if="visible4" class="locate-center now-loading">
-        <p class="text-bold text-h4 text-center fade-in">回答終了！</p>
-        <br/>
-        <p class="text-bold text-h4 text-center fade-in">正解は...</p>
-      </div>
-
-      <!-- あなた&パートナーの結果 -->
-      <div v-if="visible5" class="locate-center quiz-result">
-        <p class="text-bold text-h4 text-center fade-in">A. {{ quizData[questionNumber].options[Number(quizData[questionNumber].correctAnswer)-1].label.slice(3) }}</p>
-        <br/>
-        <p class=" text-h4 text-center fade-in" :style="correctOrWrong === '正解' ? 'color: red' : 'color: blue'">あなた：{{ correctOrWrong }}</p>
-        <br/>
-        <p class="text-h4 text-center fade-in" :style="quizData[questionNumber].partnerAnswer === '正解' ? 'color: red' : 'color: blue'">パートナー：{{ quizData[questionNumber].partnerAnswer }}</p>
-      </div>
-
-      <!-- シグナル表示 -->
-      <div v-if="visible6" class="row" style="width: 100%;">
+      <!-- シグナル表示(パートナー正解時) -->
+      <div v-if="visible6 && quizData[questionNumber].partnerAnswer === '正解'" class="row" style="width: 100%;">
         <div class="col-2"></div>
         <q-slider
           v-model="quizData[questionNumber].attackVolume"
@@ -99,56 +98,91 @@
           class="col-8"
         />
       </div>
-      <div v-if="visible6" style="height: 40px;"></div>
-      <div v-if="visible6" class="row" style="width: 100%;">
+      <div v-if="visible6 && quizData[questionNumber].partnerAnswer === '正解'" style="height: 40px;"></div>
+      <div v-if="visible6 && quizData[questionNumber].partnerAnswer === '正解'" class="row" style="width: 100%;">
         <div class="col-5"></div>
         <q-btn
           class="bg-green text-white col-2"
-          label="シグナル"
+          label="正解音"
           style="height: 50px; font-size: 19px; font-weight: bold;"
           icon="sensors"
-          @click="activateSound()"
+          @click="activateSound('正解')"
         />
       </div>
+
+      <!-- シグナル表示(パートナー不正解時) -->
+      <div v-if="visible6 && quizData[questionNumber].partnerAnswer === '不正解'" class="row" style="width: 100%;">
+        <div class="col-2"></div>
+        <q-slider
+          v-model="quizData[questionNumber].attackVolume"
+          :min="0"
+          :max="100"
+          color="red"
+          :marker-labels="markerLabel"
+          label-always
+          class="col-8"
+        />
+      </div>
+      <div v-if="visible6 && quizData[questionNumber].partnerAnswer === '不正解'" style="height: 40px;"></div>
+      <div v-if="visible6 && quizData[questionNumber].partnerAnswer === '不正解'" class="row" style="width: 100%;">
+        <div class="col-5"></div>
+        <q-btn
+          class="bg-red text-white col-2"
+          label="不正解音"
+          style="height: 50px; font-size: 19px; font-weight: bold;"
+          icon="sensors"
+          @click="activateSound('不正解')"
+        />
+      </div>
+
+      <!-- 練習問題のみ表示... -->
+      <div v-if="visible7" class="locate-center now-loading">
+        <p class="text-bold text-h5 text-center fade-in">これがゲームの一連の流れです</p>
+        <p class="text-bold text-h5 text-center fade-in">以下のボタンを押すと、本番の5問のクイズが始まります。</p>
+        <div class="row justify-center">
+          <q-btn 
+            label="クイズを開始する"
+            @click="toMainQuestion"
+            class="bg-blue text-white text-h5 q-mt-md"
+          />
+        </div>
+      </div>
+
+      <!-- 最後のみ表示... -->
+      <div v-if="visible8" class="locate-center now-loading">
+        <p class="text-bold text-h4 text-center fade-in">以上で、ゲームの回答は終了です</p>
+        <br/>
+        <p class="text-bold text-h4 text-center fade-in">それでは、合計スコアの発表に移ります</p>
+      </div>
+
     </q-card>
-    <br>
+
+    <!-- パートナーからのシグナル -->
+
     <q-dialog v-model="seamless" seamless position="top">
-      <q-card style="width: 350px">
+      <q-card style="width: 500px; height: 120px;">
 
         <q-card-section class="row items-center no-wrap">
-          <div class="col-5">
-            <div class="text-weight-bold">パートナーからの</div>
-            <div class="text-weight-bold">色のシグナル</div>
+          <div class="col-3">
+            <div class="text-weight-bold text-center">パートナーからの</div>
+            <div class="text-weight-bold text-center">色のシグナル</div>
           </div>
 
-          <q-chip class="col-7" :color="quizData[questionNumber].colorSignal" size="40px"/>
+          <q-chip class="col-9" :color="quizData[questionNumber].colorSignal" size="80px"/>
 
         </q-card-section>
       </q-card>
     </q-dialog>
 
-    <!-- 初回のみ表示... -->
-    <div v-if="visible7" class="locate-center now-loading">
-      <p class="text-bold text-h4 text-center fade-in">これが一連のクイズの流れです</p>
-      <br/>
-      <p class="text-bold text-h4 text-center fade-in">それでは、本番に移ります</p>
-    </div>
-
-    <!-- 最後のみ表示... -->
-    <div v-if="visible8" class="locate-center now-loading">
-      <p class="text-bold text-h4 text-center fade-in">以上で、ゲームの回答は終了です</p>
-      <br/>
-      <p class="text-bold text-h4 text-center fade-in">それでは、合計スコアの発表に移ります</p>
-    </div>
-
-    <div align="right">
+    <!-- <div align="right">
       <q-btn 
           label="次のページへ"
           flat
           class="bg-blue-7 text-white"
           @click="toPage15"
       ></q-btn>
-    </div>
+    </div> -->
+
   </div>
 </template>
 <script setup  lang="ts">
@@ -218,29 +252,29 @@ const quizData = ref<Array<quizDataType>>([
     questionTitle: '練習問題',
     correctAnswer: '1',
     partnerAnswer: '正解',
-    question: 'Q. 全国に<span class="text-bold">都道府県は合計でいくつ</span>ありますか？',
+    question: 'Q. 「<span class="text-bold">一つの行為や苦労で、二つの目的を同時に果たすたとえ</span>」として用いられる四字熟語は次のうちどれか？',
     options: [
         {
-          label: '1. 24',
+          label: '1. 一石二鳥',
           value: '1'
         },
         {
-          label: '2. 39',
+          label: '2. 一生懸命',
           value: '2'
         },
         {
-          label: '3. 47',
+          label: '3. 安全第一',
           value: '3'
         },
         {
-          label: '4. 57',
+          label: '4. 一長一短',
           value: '4'
         }
       ],
     participantsAnswer: '',
     attackVolume: 0,
     attackCount: 0,
-    colorSignal: 'green-7',
+    colorSignal: 'blue-3',
   },
   {
     number: 1,
@@ -275,81 +309,81 @@ const quizData = ref<Array<quizDataType>>([
     number: 2,
     questionTitle: '第２問',
     correctAnswer: '1',
-    partnerAnswer: '不正解',
-    question: 'Q. 「一つの行為や苦労で、二つの目的を同時に果たすたとえ」として用いられる四字熟語は次のうちどれか？',
+    partnerAnswer: '正解',
+    question: 'Q. <span class="text-bold">夏季オリンピックは何年ごとに開催</span>される？',
     options: [
         {
-          label: '1. 一石二鳥',
+          label: '1. 4年ごと',
           value: '1'
         },
         {
-          label: '2. 一生懸命',
+          label: '2. 6年ごと',
           value: '2'
         },
         {
-          label: '3. 安全第一',
+          label: '3. 8年ごと',
           value: '3'
         },
         {
-          label: '4. 一長一短',
+          label: '4. 10年ごと',
           value: '4'
         }
       ],
     participantsAnswer: '',
     attackVolume: 0,
     attackCount: 0,
-    colorSignal: 'green-3',
+    colorSignal: 'blue-9',
   },
   {
     number: 3,
     questionTitle: '第３問',
-    correctAnswer: '1',
+    correctAnswer: '2',
     partnerAnswer: '不正解',
-    question: 'Q. 「一つの行為や苦労で、二つの目的を同時に果たすたとえ」として用いられる四字熟語は次のうちどれか？',
+    question: 'Q. <span class="text-bold">「モナ・リザ」の作者</span>は次のうちどれか？',
     options: [
         {
-          label: '1. 一石二鳥',
+          label: '1. ミケランジェロ',
           value: '1'
         },
         {
-          label: '2. 一生懸命',
+          label: '2. レオナルド・ダ・ヴィンチ',
           value: '2'
         },
         {
-          label: '3. 安全第一',
+          label: '3. ラファエロ・サンティ',
           value: '3'
         },
         {
-          label: '4. 一長一短',
+          label: '4. ティツィアーノ・ヴェチェッリオ',
           value: '4'
         }
       ],
     participantsAnswer: '',
     attackVolume: 0,
     attackCount: 0,
-    colorSignal: 'green-10',
+    colorSignal: 'red-2',
   },
   {
     number: 4,
     questionTitle: '第４問',
-    correctAnswer: '1',
+    correctAnswer: '4',
     partnerAnswer: '不正解',
-    question: 'Q. 「一つの行為や苦労で、二つの目的を同時に果たすたとえ」として用いられる四字熟語は次のうちどれか？',
+    question: 'Q.  <span class="text-bold">太陽系で最大の惑星</span>は次のうちどれか？',
     options: [
         {
-          label: '1. 一石二鳥',
+          label: '1. 地球',
           value: '1'
         },
         {
-          label: '2. 一生懸命',
+          label: '2. 海王星',
           value: '2'
         },
         {
-          label: '3. 安全第一',
+          label: '3. 金星',
           value: '3'
         },
         {
-          label: '4. 一長一短',
+          label: '4. 木星',
           value: '4'
         }
       ],
@@ -363,36 +397,36 @@ const quizData = ref<Array<quizDataType>>([
     questionTitle: '第５問',
     correctAnswer: '1',
     partnerAnswer: '不正解',
-    question: 'Q. 「一つの行為や苦労で、二つの目的を同時に果たすたとえ」として用いられる四字熟語は次のうちどれか？',
+    question: 'Q. <span class="text-bold">アメリカ国内で使用されている通貨の単位</span>は次のうちどれか？',
     options: [
         {
-          label: '1. 一石二鳥',
+          label: '1. ドル',
           value: '1'
         },
         {
-          label: '2. 一生懸命',
+          label: '2. ユーロ',
           value: '2'
         },
         {
-          label: '3. 安全第一',
+          label: '3. ルピー',
           value: '3'
         },
         {
-          label: '4. 一長一短',
+          label: '4. ペソ',
           value: '4'
         }
       ],
     participantsAnswer: '',
     attackVolume: 0,
     attackCount: 0,
-    colorSignal: 'green-4',
+    colorSignal: 'yellow-9',
   }
 ]);
 
 //ゲームを実行する処理
 const executeTask = async() => {
 
-    //第〇問表示
+    //リセット
     dialog.value = '残り時間';
     visible2.value = true;
 
@@ -410,151 +444,149 @@ const executeTask = async() => {
       //問題セクション表示
       visible3.value = true;
 
-      //10秒カウントダウン開始
-      intervalId.value = null;
-      await startCountdown(10);
+      //20秒カウントダウン開始
+      await startCountdown(20);
       
-      //16秒カウント
+      //21秒カウント
       setTimeout(async() => {
 
+        //正解の場合と不正解の場合で表示を切り替え
+        if(quizData.value[questionNumber.value].participantsAnswer === quizData.value[questionNumber.value].correctAnswer){
+          correctOrWrong.value = '正解';
+          if(questionNumber.value !== 0){
+            score.value += 1;
+          }
+        }else{
+          correctOrWrong.value = '不正解';
+        };
+
         //カウントダウンが0になったら、回答終了
-        visible3.value = false;
         visible4.value = true;
 
-        //正解まで3秒カウント
+        //正解の場合と不正解の場合で音を変更
+        if(quizData.value[questionNumber.value].participantsAnswer === quizData.value[questionNumber.value].correctAnswer){
+          //ピンポン
+          const audioCorrect = new Audio('https://hasoseso-gunnar.github.io/MC2024_Exp_02/correct.mp3');
+          const volumeFloatCorrect = parseFloat(String(props.volume)) / 100;
+          audioCorrect.volume = volumeFloatCorrect;
+          audioCorrect.play();
+        }else{
+          //ブッブー
+          const audioWrong = new Audio('https://hasoseso-gunnar.github.io/MC2024_Exp_02/wrong.mp3');
+          const volumeFloatWrong = parseFloat(String(props.volume)) / 100;
+          audioWrong.volume = volumeFloatWrong;
+          audioWrong.play();
+        };
+
+        //シグナル表示まで5秒カウント
         setTimeout(async() => {
 
-          //正解の場合と不正解の場合で表示を切り替え
-          if(quizData.value[questionNumber.value].participantsAnswer === quizData.value[questionNumber.value].correctAnswer){
-            correctOrWrong.value = '正解';
-          }else{
-            correctOrWrong.value = '不正解';
-          };
-
-          //正解発表
+          //シグナル表示
+          visible3.value = false;
           visible4.value = false;
-          visible5.value = true;
-
-          //正解の場合と不正解の場合で音を変更
-          if(quizData.value[questionNumber.value].participantsAnswer === quizData.value[questionNumber.value].correctAnswer){
-            //ピンポン
-            const audioCorrect = new Audio('https://hasoseso-gunnar.github.io/MC2024_Exp_02/correct.mp3');
-            const volumeFloatCorrect = parseFloat(String(props.volume)) / 100;
-            audioCorrect.volume = volumeFloatCorrect;
-            audioCorrect.play();
-          }else{
-            //ブッブー
-            const audioWrong = new Audio('https://hasoseso-gunnar.github.io/MC2024_Exp_02/wrong.mp3');
-            const volumeFloatWrong = parseFloat(String(props.volume)) / 100;
-            audioWrong.volume = volumeFloatWrong;
-            audioWrong.play();
-          };
-
-          //シグナル表示まで3秒カウント
+          visible6.value = true;
+              
+          //3秒後待ってからパートナーのシグナルを5秒間表示
           setTimeout(async() => {
-
-            //シグナル表示
-            visible5.value = false;
-            visible6.value = true;
-                
-            //2秒後待ってからパートナーのシグナルを5秒間表示
             setTimeout(async() => {
-              setTimeout(async() => {
-                seamless.value = true;
-              });
-            }, 2000);
-
-            //5秒カウントダウン開始
-            intervalId.value = null;
-            await startCountdown(10);
-
-            dialog.value = '次の問題まで<br/>残り時間'
-
-            //次の問題へ
-            setTimeout(async() => {
-
-              seamless.value = false;
-
-              //練習問題
-              if(questionNumber.value === 0){
-
-                //メッセージ表示
-                setTimeout(async() => {
-                  visible6.value = false;
-                  visible7.value = true;
-                  
-                  //次の問題へ
-                  setTimeout(async() => {
-
-                    questionNumber.value += 1;
-                    visible7.value = false;
-                    executeTask();
-
-                  }, 3000)
-
-                }, 3000);
-
-              //最後の問題
-              }else if(questionNumber.value === 5){
-
-                //シグナル表示
-                visible6.value = false;
-                visible8.value = true;
-
-                //メッセージ表示
-                setTimeout(async() => {
-
-                  questionNumber.value += 1;
-                  visible7.value = false;
-                  toPage15();
-
-                }, 3000)
-
-              //それ以外
-              }else{
-                questionNumber.value += 1;
-                visible6.value = false;
-                executeTask();
-              }
-            }, 3000);
-
+              seamless.value = true;
+            });
           }, 3000);
 
-        }, 3000);
+          //20秒カウントダウン開始
+          await startCountdown(20);
 
-      }, 11000);
+          dialog.value = '次の問題まで<br/>残り時間'
+
+          //次の問題へ
+          setTimeout(async() => {
+
+            seamless.value = false;
+
+            //練習問題
+            if(questionNumber.value === 0){
+
+              //メッセージ表示
+              visible6.value = false;
+              visible7.value = true;
+
+
+            //最後の問題
+            }else if(questionNumber.value === 5){
+
+              //シグナル表示
+              visible6.value = false;
+              visible8.value = true;
+
+              //メッセージ表示
+              setTimeout(async() => {
+
+                questionNumber.value += 1;
+                visible7.value = false;
+                toPage15();
+
+              }, 3000)
+
+            //それ以外
+            }else{
+              questionNumber.value += 1;
+              visible6.value = false;
+              executeTask();
+            }
+          }, 21000);
+
+        }, 5000);
+
+      }, 21000);
       
-  },  2000);
+  }, 3000);
 
 };
 
-//カウントダウンに必要な変数
-const countDown = ref<number>(10);
-const intervalId = ref<any>(null);
+//次の問題へ
+const toMainQuestion = () => {
 
-//カウントダウンを行う関数
-const startCountdown = async(index: number) => {
+  visible1.value = true;
+  questionNumber.value += 1;
+  visible7.value = false;
+
+  //通信中表示
+  setTimeout(async() => {
+    visible1.value = false;
+
+    //テスト用問題を実行
+    executeTask();
+
+  }, 2000);
+}
+
+//カウントダウンに必要な変数
+const countDown = ref<number>(20);
+const intervalId = ref<NodeJS.Timeout|null>(null);
+
+// カウントダウンを行う関数
+const startCountdown = async (index: number) => {
+  // すでに実行中の場合、現在のカウントダウンを停止する
+  if(intervalId.value){
+    clearInterval(intervalId.value!);
+  }
   countDown.value = index;
-  clearInterval(intervalId);
   intervalId.value = setInterval(() => {
     if (countDown.value > 0) {
       countDown.value--;
     } else {
-      clearInterval(intervalId);
+      clearInterval(intervalId.value!);
+      intervalId.value = null;
     }
   }, 1000);
 };
 
 //音を出す関数
-const activateSound = () => {
+const activateSound = (type: string) => {
   
-  //音源を指定
-  const audio = new Audio('https://hasoseso-gunnar.github.io/MC2024_Exp_02/attack.mp3');
-  // 音量を取得（0～1の範囲に変換）
+  const audio = type === '正解' ? new Audio('https://hasoseso-gunnar.github.io/MC2024_Exp_02/correct.mp3') : new Audio('https://hasoseso-gunnar.github.io/MC2024_Exp_02/wrong.mp3');
   const volumeFloat = parseFloat(String(quizData.value[questionNumber.value].attackVolume)) / 100;
-  // 音量を設定
   audio.volume = volumeFloat;
-  //音源を再生
   audio.play();
 
   //音源を聞いた回数をカウント
@@ -572,7 +604,7 @@ const toPage15 = async function(){
 
 const emit = defineEmits(['eventEmit'])
 const execEmit = () => {
-  emit('eventEmit', { 'tab': 'page15', 'progress': 0.7})
+  emit('eventEmit', { 'tab': 'page15', 'progress': 0.7, 'score': score.value})
 };
 
 //データを送信する関数
@@ -708,4 +740,48 @@ p.fade-in {
     opacity: 1;
   }
 }
+
+.answer-overlay{
+  position: absolute;
+  left: 0; 
+  top: 0;
+  width: 100%; 
+  height: 100%;
+  background: rgba(255, 255, 255, 0.9);
+  z-index: 100;
+}
+
+.correct-sign{
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 5px solid #2196f3;
+  box-sizing: border-box;
+}
+
+.batsu-sign {
+  display: block;
+  position: relative;
+  width: 150px;
+  height: 150px;
+}
+ 
+.batsu-sign::before, .batsu-sign::after{
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 150px;
+  background: #f44336;
+}
+ 
+.batsu-sign::before {
+  transform: translate(-50%,-50%) rotate(45deg);
+}
+ 
+.batsu-sign::after {
+  transform: translate(-50%,-50%) rotate(-45deg);
+}
+
 </style>

@@ -12,7 +12,7 @@
       今回のゲームでのパートナーとの合計スコアは
       </p>
       <p class="text-h6 q-mb-xl fade-in" v-if="visible2">
-        <span class="text-h4 text-bold">{{ (score + 1) }}点</span>
+        <span class="text-h4 text-bold">{{ (props.score + 2) }}点</span>
       </p>
       <p class="text-h6 q-mb-xl fade-in" v-if="visible2">
       でした。
@@ -49,6 +49,8 @@
 <script setup  lang="ts">
 import { ref, onMounted, defineProps, withDefaults } from "vue";
 
+//親からの受け取りデータ
+const props = defineProps(['score']);
 
 //ページ読み込んだ際の処理
 onMounted(async()=>{
@@ -72,7 +74,6 @@ onMounted(async()=>{
 const visible1 = ref<boolean>(true);
 const visible2 = ref<boolean>(false);
 const visible3 = ref<boolean>(false);
-const score = ref<number>(0);
 
 //次のページへ
 const toPage16 = function(){

@@ -2,7 +2,7 @@
 
   <!-- 進捗表示 -->
   <q-linear-progress :value="progress" color="blue"/>
-  <div class="text-right">進捗率：{{ (progress*100) }}%</div>
+  <div class="text-right">進捗率：{{ (progress*100).toFixed(0) }}%</div>
 
   <q-tabs
     v-model="tab"
@@ -147,6 +147,7 @@
     <q-tab-panel name="page15">
       <Page15
         @eventEmit="execEvent"
+        :score="score"
       />
     </q-tab-panel>
     <q-tab-panel name="page16">
@@ -241,6 +242,8 @@ const agreeAI = ref<string>('');
 const agreeBear = ref<string>('');
 const condition = ref<number>(0);
 const volume = ref<number>(0);
+const score = ref<number>(0);
+
 
 //実験を開始した際に実験条件をランダムに割り当て(1→態度一致,2→態度不一致)
 condition.value = Math.random() < 0.5 ? 1 : 2;
@@ -259,6 +262,7 @@ const execEvent = (data: any) => {
   agreeAI.value = !data.agreeAI ? agreeAI.value :  data.agreeAI;
   agreeBear.value = !data.agreeBear ? agreeBear.value :  data.agreeBear;
   volume.value = !data.volume ? volume.value :  data.volume;
+  score.value = !data.score ? score.value :  data.score;
 };
 
 </script>

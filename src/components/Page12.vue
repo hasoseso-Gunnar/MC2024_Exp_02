@@ -1,8 +1,9 @@
 <template>
   <div class="q-pa-md">
-    <p class="text-subtitle1 text-black">これは、先ほどの質問項目でのパートナーの回答内容です。</p>
-    <p class="text-subtitle1 text-black">この後の課題を円滑に行うために、<span class="text-bold">よく記憶してください。</span></p>
     <p>※このページは20秒経過すると、ページ下部の「ゲームを開始する」ボタンから次の画面に進むことができます。</p>
+    <br/>
+    <p class="text-subtitle1 text-black">これは、先ほどの質問項目でのパートナーの回答内容です。</p>
+    <p class="text-subtitle1 text-black text-bold">プロフィール情報の一部について、ゲームの後で正しく記憶しているかどうか確認しますので、しっかりと覚えてください。</p>
     <div style="height: 40px;"></div>
     <p class="text-h6 text-black text-bold" style="margin-left: 20%;">【パートナーの情報】</p>
     <!-- プロフィール情報 -->

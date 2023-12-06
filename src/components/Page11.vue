@@ -1,28 +1,37 @@
 <template>
   <div class="q-pa-md">
-    <p class="text-subtitle1 text-black text-bold">これより、ゲーム内でのシグナルの送り方について説明します。</p>
     <p>※このページは30秒経過すると、ページ下部のボタンから次のステップへ進めるようになります。</p>
     <br/>
+    <p class="text-subtitle1 text-black">これより、ゲーム内でのシグナルの送り方について説明します。</p>
+    <br/>
     <p class="text-subtitle1 text-black">今回、<span class="text-bold text-red-9">あなたは音のシグナルを出す役割</span>を与えられました。</p>
-    <p class="text-subtitle1 text-black">逆に、相手からは<span class="text-bold">「色のシグナル」</span>が送られてきます。</p>
+    <p class="text-subtitle1 text-black">一方で、<span class="text-bold">パートナーからは「色のシグナル」</span>が送られてきます。</p>
     <div style="height: 30px;"></div>
-    <p class="text-subtitle1 text-black">シグナル音は、パートナーがクイズに正解した場合は「ピンポンピンポン」と鳴る正解音、不正解の場合は「ブブー」と鳴る不正解音を鳴らすことになります。</p>
-    <p class="text-subtitle1 text-black">以下の画像のように、各問題に回答したのちに正解が表示される画面で、スライダーを用いて音量を調整してパートナーに音を聞かせてください。</p>
+    <p class="text-subtitle1 text-black">シグナル音は、パートナーがクイズに<span class="text-bold text-red-9">正解した場合は「ピンポンピンポン」</span>と鳴る正解音、<span class="text-bold text-red-9">不正解の場合は「ブブー」</span>と鳴る不正解音を鳴らすことになります。</p>
+    <p class="text-subtitle1 text-black">以下の画像のように、シグナル音はパートナーの回答結果が表示される画面で、スライダーを用いて音量を調整して送信してください。</p>
     <br>
     <q-img 
       loading="eager"
-      src="https://hasoseso-gunnar.github.io/MC2024_Exp_02/referee_yellowcard.png"
-      width="150px"
+      src="https://hasoseso-gunnar.github.io/MC2024_Exp_02/gameExample2.jpg"
+      width="80%"
       class="q-mb-lg"
-      style="margin-left: 45%;"
+      style="margin-left: 10%;"
     />
     <br/>
-    <p class="text-subtitle1 text-black">また、ゲームを開始する前に、実際に音声を聞きながら以下のスライダーを操作して<span class="text-bold">「正解音」と「不正解音」のそれぞれについて、自分が適正だと思う音量を設定</span>してください。</p>
-    <div style="height: 40px;"></div>
+    <p class="text-subtitle1 text-black">また、ゲームを開始する前に、<span class="text-bold">実際にシグナル音を聞きながら</span>以下のスライダーを操作して<span class="text-bold text-red-9">「正解音」と「不正解音」のそれぞれについて、自分が適正だと思う音量を設定</span>してください。</p>
+    <div style="height: 10px;"></div>
+    <span>※サンプル音は何回聞いて頂いても大丈夫です。(最低でも1回以上聞いてください)</span>
+    <br>
+    <span>※適性音量が定まらない際は、お使いの機器の音量も調節してください。</span>
+    <br>
+    <span>※ボタンを最初に押した際に、音が出ない場合がありますが、端末が音源のデータを読み込むのに時間が掛かっているためです。</span>
+    <br>
+    <span>※音が聞こえない場合は、音が聞こえるまでボタンを押し続けてください。</span>
+    <div style="height: 80px;"></div>
     <div class="row">
       <div class="col-2"></div>
       <q-slider
-        v-model="volume"
+        v-model="volumeCorrect"
         :min="0"
         :max="100"
         color="green"
@@ -36,24 +45,40 @@
       <div class="col-5"></div>
       <q-btn
         class="bg-green text-white col-2"
-        label="シグナル"
+        label="正解音"
         style="height: 50px; font-size: 19px; font-weight: bold;"
         icon="sensors"
-        @click="activateSound"
+        @click="activateSoundCorrect"
       />
     </div>
-    <div style="height: 30px;"></div>
-    <span>※サンプル音は何回聞いて頂いても大丈夫です。</span>
-    <br>
-    <span>※お使いの機器の音量も調節してください。</span>
-    <br>
-    <span>※ボタンを最初に押した際に、音が出ない場合がありますが、端末が音源のデータを読み込むのに時間が掛かっているためです。</span>
-    <br>
-    <span>※音が聞こえない場合は、音が聞こえるまでボタンを押し続けてください。</span>
     <div style="height: 80px;"></div>
+    <div class="row">
+      <div class="col-2"></div>
+      <q-slider
+        v-model="volumeWrong"
+        :min="0"
+        :max="100"
+        color="red"
+        :marker-labels="markerLabel"
+        label-always
+        class="col-8"
+      />
+    </div>
+    <div style="height: 40px;"></div>
+    <div class="row">
+      <div class="col-5"></div>
+      <q-btn
+        class="bg-red text-white col-2"
+        label="不正解音"
+        style="height: 50px; font-size: 19px; font-weight: bold;"
+        icon="sensors"
+        @click="activateSoundWrong"
+      />
+    </div>
+    <div style="height: 60px;"></div>
     <div align="right">
       <q-btn 
-            v-if="thirtySecondsPassed === false || soundCount === 0"
+            v-if="thirtySecondsPassed === false || soundCountCorrect === 0 || soundCountWrong === 0"
             label="次のページへ"
             flat
             class="bg-grey text-white"
@@ -86,7 +111,10 @@ onMounted(async()=>{
 const thirtySecondsPassed = ref<boolean>(false);
 
 //音量に関する変数
-const volume = ref<number>(0);
+const volumeCorrect = ref<number>(0);
+const volumeWrong = ref<number>(0);
+const soundCountCorrect = ref<number>(0);
+const soundCountWrong = ref<number>(0);
 const markerLabel = ref<any>([        
     { value: 0, label: '0' },
     { value: 20, label: '20' },
@@ -95,35 +123,37 @@ const markerLabel = ref<any>([
     { value: 80, label: '80' },
     { value: 100, label: '100' },
   ]);
-const soundCount = ref<number>(0);
 
-//音を出す関数
-const activateSound = () => {
-  //音源を指定
-  const audio = new Audio('https://hasoseso-gunnar.github.io/MC2024_Exp_02/attack.mp3');
-  // 音量を取得（0～1の範囲に変換）
-  const volumeFloat = parseFloat(String(volume.value)) / 100;
-  // 音量を設定
+//正解音を出す関数
+const activateSoundCorrect = () => {
+  const audio = new Audio('https://hasoseso-gunnar.github.io/MC2024_Exp_02/correct.mp3');
+  const volumeFloat = parseFloat(String(volumeCorrect.value)) / 100;
   audio.volume = volumeFloat;
-  //音源を再生
   audio.play();
+  soundCountCorrect.value += 1
+};
 
-  //音源を聞いた回数をカウント
-  soundCount.value += 1
+//不正解音を出す関数
+const activateSoundWrong = () => {
+  const audio = new Audio('https://hasoseso-gunnar.github.io/MC2024_Exp_02/wrong.mp3');
+  const volumeFloat = parseFloat(String(volumeWrong.value)) / 100;
+  audio.volume = volumeFloat;
+  audio.play();
+  soundCountWrong.value += 1
 };
 
 //次のページへ
 const toPage12 = function(){
   window.scrollTo(0, 0);  
-  const body: string = `volume=${volume.value}&condition=${props.condition}`;
+  const body: string = `volumeCorrect=${volumeCorrect.value}&volumeWrong=${volumeWrong.value}&condition=${props.condition}`;
   postData('page11', body);  
   execEmit();
 };
 
 const emit = defineEmits(['eventEmit'])
 const execEmit = () => {
-  emit('eventEmit', { 'tab': 'page12', 'progress': Math.floor(0.55*100)/100 ,'volume': volume.value })
-}
+  emit('eventEmit', { 'tab': 'page12', 'progress': Math.round(0.55 * 100) / 100,'volume': volumeCorrect.value })
+};
 
 //データを送信する関数
 const postData = async(route: string, body: string) => {
