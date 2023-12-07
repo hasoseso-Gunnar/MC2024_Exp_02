@@ -368,22 +368,22 @@ const quizData = ref<Array<quizDataType>>([
     questionTitle: '第４問',
     correctAnswer: '4',
     partnerAnswer: '不正解',
-    question: 'Q.  <span class="text-bold">太陽系で最大の惑星</span>は次のうちどれか？',
+    question: 'Q.  <span class="text-bold">世界最大の動物</span>は次のうちどれか？',
     options: [
         {
-          label: '地球',
+          label: 'ミジンコ',
           value: '1'
         },
         {
-          label: '海王星',
+          label: 'インドゾウ',
           value: '2'
         },
         {
-          label: '金星',
+          label: 'ヒト',
           value: '3'
         },
         {
-          label: '木星',
+          label: 'シロナガスクジラ',
           value: '4'
         }
       ],
