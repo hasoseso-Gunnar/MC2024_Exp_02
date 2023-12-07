@@ -23,8 +23,8 @@
     <div style="height: 40px;"></div>
     <p class="text-subtitle1 text-black">なお、このゲームでは上記の基本的なルールに加えて、<span class="text-bold text-red-9">2つの特殊なルール</span>があります。</p>
     <br>
-    <p class="text-subtitle1 text-black">①ゲームをより円滑に進めるために、あなたとパートナーは<span class="text-bold">お互いがここまで回答した情報の一部が事前に提示</span>されます。</p>
-    <p class="text-subtitle1 text-black">提示される情報は<span class="text-bold">「性別」「年齢」「4つのトピックに関するそれぞれの賛否」</span>です。</p>
+    <p class="text-subtitle1 text-black">①ゲームをより円滑に進めるために、あなたとパートナーが<span class="text-bold">これまでに回答した情報の一部についてゲーム開始前に表示</span>されます。</p>
+    <p class="text-subtitle1 text-black">表示される情報は<span class="text-bold">「性別」「年齢」「4つのトピックに関するそれぞれの賛否」</span>です。</p>
     <p class="text-subtitle1 text-black">プロフィール情報の一部について、ゲームの後で正しく記憶しているかどうか確認しますので、しっかりと覚えてください。</p>
     <br>
     <p class="text-subtitle1 text-black">②本調査では、オンラインでのコミュニケーション時の行動について調べています。</p>

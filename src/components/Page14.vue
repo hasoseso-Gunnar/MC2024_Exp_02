@@ -255,19 +255,19 @@ const quizData = ref<Array<quizDataType>>([
     question: 'Q. 「<span class="text-bold">一つの行為や苦労で、二つの目的を同時に果たすたとえ</span>」として用いられる四字熟語は次のうちどれか？',
     options: [
         {
-          label: '1. 一石二鳥',
+          label: '一石二鳥',
           value: '1'
         },
         {
-          label: '2. 一生懸命',
+          label: '一生懸命',
           value: '2'
         },
         {
-          label: '3. 安全第一',
+          label: '安全第一',
           value: '3'
         },
         {
-          label: '4. 一長一短',
+          label: '一長一短',
           value: '4'
         }
       ],
@@ -284,19 +284,19 @@ const quizData = ref<Array<quizDataType>>([
     question: 'Q. <span class="text-bold">世界で一番高い山</span>の名前は次のうちどれか？',
     options: [
         {
-          label: '1. マッターホルン',
+          label: 'マッターホルン',
           value: '1'
         },
         {
-          label: '2. 富士山',
+          label: '富士山',
           value: '2'
         },
         {
-          label: '3. エベレスト',
+          label: 'エベレスト',
           value: '3'
         },
         {
-          label: '4. モンブラン',
+          label: 'モンブラン',
           value: '4'
         }
       ],
@@ -313,19 +313,19 @@ const quizData = ref<Array<quizDataType>>([
     question: 'Q. <span class="text-bold">夏季オリンピックは何年ごとに開催</span>される？',
     options: [
         {
-          label: '1. 4年ごと',
+          label: '4年ごと',
           value: '1'
         },
         {
-          label: '2. 6年ごと',
+          label: '6年ごと',
           value: '2'
         },
         {
-          label: '3. 8年ごと',
+          label: '8年ごと',
           value: '3'
         },
         {
-          label: '4. 10年ごと',
+          label: '10年ごと',
           value: '4'
         }
       ],
@@ -339,22 +339,22 @@ const quizData = ref<Array<quizDataType>>([
     questionTitle: '第３問',
     correctAnswer: '2',
     partnerAnswer: '不正解',
-    question: 'Q. <span class="text-bold">「モナ・リザ」の作者</span>は次のうちどれか？',
+    question: 'Q. 「芸術は爆発だ」などの名言でも知られる、<span class="text-bold">「太陽の塔」をデザインした人物</span>は次のうちどれか？',
     options: [
         {
-          label: '1. ミケランジェロ',
+          label: '麻生太郎',
           value: '1'
         },
         {
-          label: '2. レオナルド・ダ・ヴィンチ',
+          label: '岡本太郎',
           value: '2'
         },
         {
-          label: '3. ラファエロ・サンティ',
+          label: '五味太郎',
           value: '3'
         },
         {
-          label: '4. ティツィアーノ・ヴェチェッリオ',
+          label: '左翔太郎',
           value: '4'
         }
       ],
@@ -371,19 +371,19 @@ const quizData = ref<Array<quizDataType>>([
     question: 'Q.  <span class="text-bold">太陽系で最大の惑星</span>は次のうちどれか？',
     options: [
         {
-          label: '1. 地球',
+          label: '地球',
           value: '1'
         },
         {
-          label: '2. 海王星',
+          label: '海王星',
           value: '2'
         },
         {
-          label: '3. 金星',
+          label: '金星',
           value: '3'
         },
         {
-          label: '4. 木星',
+          label: '木星',
           value: '4'
         }
       ],
@@ -400,19 +400,19 @@ const quizData = ref<Array<quizDataType>>([
     question: 'Q. <span class="text-bold">アメリカ国内で使用されている通貨の単位</span>は次のうちどれか？',
     options: [
         {
-          label: '1. ドル',
+          label: 'ドル',
           value: '1'
         },
         {
-          label: '2. ユーロ',
+          label: 'ユーロ',
           value: '2'
         },
         {
-          label: '3. ルピー',
+          label: 'ルピー',
           value: '3'
         },
         {
-          label: '4. ペソ',
+          label: 'ペソ',
           value: '4'
         }
       ],

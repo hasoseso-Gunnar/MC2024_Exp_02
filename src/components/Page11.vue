@@ -5,7 +5,6 @@
     <p class="text-subtitle1 text-black">これより、ゲーム内でのシグナルの送り方について説明します。</p>
     <br/>
     <p class="text-subtitle1 text-black">今回、<span class="text-bold text-red-9">あなたは音のシグナルを出す役割</span>を与えられました。</p>
-    <p class="text-subtitle1 text-black">一方で、<span class="text-bold">パートナーからは「色のシグナル」</span>が送られてきます。</p>
     <div style="height: 30px;"></div>
     <p class="text-subtitle1 text-black">シグナル音は、パートナーがクイズに<span class="text-bold text-red-9">正解した場合は「ピンポンピンポン」</span>と鳴る正解音、<span class="text-bold text-red-9">不正解の場合は「ブブー」</span>と鳴る不正解音を鳴らすことになります。</p>
     <p class="text-subtitle1 text-black">以下の画像のように、シグナル音はパートナーの回答結果が表示される画面で、スライダーを用いて音量を調整して送信してください。</p>
@@ -18,6 +17,9 @@
       style="margin-left: 10%;"
     />
     <br/>
+    <p class="text-subtitle1 text-black">一方で、<span class="text-bold">パートナーからは「色のシグナル」</span>が送られてきます。</p>
+    <p class="text-subtitle1 text-black">上記の画像のように、シグナル音の発信と同じタイミングでパートナーから「色のシグナル」が送られてきますので、できるだけ意図を汲み取るようにしてください。</p>
+    <div style="height: 30px;"></div>
     <p class="text-subtitle1 text-black">また、ゲームを開始する前に、<span class="text-bold">実際にシグナル音を聞きながら</span>以下のスライダーを操作して<span class="text-bold text-red-9">「正解音」と「不正解音」のそれぞれについて、自分が適正だと思う音量を設定</span>してください。</p>
     <div style="height: 10px;"></div>
     <span>※サンプル音は何回聞いて頂いても大丈夫です。(最低でも1回以上聞いてください)</span>
