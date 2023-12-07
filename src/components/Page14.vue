@@ -3,14 +3,14 @@
   <div v-if="visible4 && (correctOrWrong === '正解')" class="answer-overlay fade-in column items-center justify-center">
     <div class="correct-sign q-mb-md"></div>
     <p class="text-bold text-h4 text-blue q-mb-lg">あなたの選んだ回答は正解でした！</p>
-    <p class="text-bold text-h4">A. {{ quizData[questionNumber].options[Number(quizData[questionNumber].correctAnswer)-1].label.slice(3) }}</p>
+    <p class="text-bold text-h4">A. {{ quizData[questionNumber].options[Number(quizData[questionNumber].correctAnswer)-1].label }}</p>
   </div>
 
   <!-- 回答終了 & 正解は... -->
   <div v-if="visible4 && (correctOrWrong === '不正解')" class="answer-overlay fade-in column items-center justify-center">
     <div class="batsu-sign q-mb-md"></div>
     <p class="text-bold text-h4 text-red q-mb-lg">あなたの選んだ回答は不正解でした...</p>
-    <p class="text-bold text-h4">A. {{ quizData[questionNumber].options[Number(quizData[questionNumber].correctAnswer)-1].label.slice(3) }}</p>
+    <p class="text-bold text-h4">A. {{ quizData[questionNumber].options[Number(quizData[questionNumber].correctAnswer)-1].label }}</p>
   </div>
 
   <div class="q-pa-md">
