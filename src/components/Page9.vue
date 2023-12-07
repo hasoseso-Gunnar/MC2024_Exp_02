@@ -19,7 +19,7 @@
     <div style="height: 30px;"></div>
     <p class="text-subtitle1 text-black">クイズに1問正解するたびに1点加点されます。そのため、あなた1人で最大5点獲得できます。</p>
     <p class="text-subtitle1 text-black">このクイズをパートナーも同時に行うため、お互いの<span class="text-bold">最大合計スコアは10点</span>となります。できるだけ高得点を狙いましょう。</p>
-    <p class="text-subtitle1 text-black">また、ゲームを行う前に合計スコアとは関係のない<span class="text-bold">1問練習用のクイズを出題します</span>。そこで再度ルールと手順を確認してください。</p>
+    <p class="text-subtitle1 text-black">また、ゲームを行う前に合計スコアとは関係のない<span class="text-bold">練習用のクイズを1問出題します</span>。そこで再度ルールと手順を確認してください。</p>
     <div style="height: 40px;"></div>
     <p class="text-subtitle1 text-black">なお、このゲームでは上記の基本的なルールに加えて、<span class="text-bold text-red-9">2つの特殊なルール</span>があります。</p>
     <br>
